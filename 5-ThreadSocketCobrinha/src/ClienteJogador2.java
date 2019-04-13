@@ -2,11 +2,10 @@
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,53 +14,21 @@ import javax.swing.JButton;
  */
 /**
  *
- * @author usrlab10
+ * @author usrlab25
  */
-public class ServidorJogador1 extends javax.swing.JFrame {
+public class ClienteJogador2 extends javax.swing.JFrame {
 
     /**
-     * Creates new form ServidorJogador1
+     * Creates new form ClienteJogador2
      */
-    public ServidorJogador1() {
+    public ClienteJogador2() {
         initComponents();
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(30);
-                    System.out.println("Servidor esperando o cliente conectar-se...");
-
-                    servidor = new ServerSocket(12345);
-                    Socket socket_jogador2 = servidor.accept();
-                    ObjectInputStream entrada = new ObjectInputStream(socket_jogador2.getInputStream());
-                    System.out.println("Cliente conectado.......");
-                    //ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
-                    
-                    while (true) {
-                        
-                        JButton botao = (JButton) entrada.readObject();
-                        jButtonJogador2.setBounds(botao.getBounds());
-                    // o método accept() bloqueia a execução até que
-                    // o servidor receba um pedido de conexão
-                    //System.out.println("Cliente conectado: " + socket_jogador2.getInetAddress().getHostAddress());
-
-                    //servidor recebe a solicitacao de calculo de operacao
-                    //JButton botao = (JButton) entrada.readObject();
-                    //    System.out.println("botao do jogador 2 esta sendo reposicionado");
-                    //this.jButtonJogador2.setBounds(botao.getBounds());
-                    //servidor enviando resposta ao cliente
-                    //saida.flush();
-                    //saida.writeObject(c);
-                    }
-                } catch (IOException ex) {
-                    Logger.getLogger(ServidorJogador1.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ServidorJogador1.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (Exception e) {
-                    System.out.println("Erro: " + e.getMessage());
-                }
-            }
-        }.start();
+        
+        try {
+            socket_jogador1 = new Socket("localhost", 12345);
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteJogador2.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -73,19 +40,16 @@ public class ServidorJogador1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelJogador1 = new javax.swing.JPanel();
+        jPanelJogador2 = new javax.swing.JPanel();
         jButtonJogador1 = new javax.swing.JButton();
-        jButtonJogador2 = new javax.swing.JButton();
         jButtonFruta = new javax.swing.JButton();
+        jButtonJogador2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Jogador 1 - SERVIDOR");
+        setTitle("Jogador 2 - CLIENTE");
 
         jButtonJogador1.setText("j1");
         jButtonJogador1.setFocusable(false);
-
-        jButtonJogador2.setText("j2");
-        jButtonJogador2.setFocusable(false);
 
         jButtonFruta.setBackground(new java.awt.Color(255, 204, 0));
         jButtonFruta.setText("@");
@@ -95,28 +59,31 @@ public class ServidorJogador1 extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanelJogador1Layout = new javax.swing.GroupLayout(jPanelJogador1);
-        jPanelJogador1.setLayout(jPanelJogador1Layout);
-        jPanelJogador1Layout.setHorizontalGroup(
-            jPanelJogador1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelJogador1Layout.createSequentialGroup()
-                .addGroup(jPanelJogador1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelJogador1Layout.createSequentialGroup()
+        jButtonJogador2.setText("j2");
+        jButtonJogador2.setFocusable(false);
+
+        javax.swing.GroupLayout jPanelJogador2Layout = new javax.swing.GroupLayout(jPanelJogador2);
+        jPanelJogador2.setLayout(jPanelJogador2Layout);
+        jPanelJogador2Layout.setHorizontalGroup(
+            jPanelJogador2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelJogador2Layout.createSequentialGroup()
+                .addGroup(jPanelJogador2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelJogador2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonJogador2))
-                    .addGroup(jPanelJogador1Layout.createSequentialGroup()
+                    .addGroup(jPanelJogador2Layout.createSequentialGroup()
                         .addGap(163, 163, 163)
                         .addComponent(jButtonFruta)
                         .addGap(0, 184, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanelJogador1Layout.createSequentialGroup()
+            .addGroup(jPanelJogador2Layout.createSequentialGroup()
                 .addGap(106, 106, 106)
                 .addComponent(jButtonJogador1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanelJogador1Layout.setVerticalGroup(
-            jPanelJogador1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelJogador1Layout.createSequentialGroup()
+        jPanelJogador2Layout.setVerticalGroup(
+            jPanelJogador2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelJogador2Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jButtonJogador1)
                 .addGap(64, 64, 64)
@@ -130,11 +97,11 @@ public class ServidorJogador1 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelJogador1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelJogador2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelJogador1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelJogador2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -146,26 +113,37 @@ public class ServidorJogador1 extends javax.swing.JFrame {
         switch (evt.getKeyCode()) {
             case 37:
                 //System.out.println("indo para esquerda");
-                Movimenta.irEsquerda(jButtonJogador1);
+                Movimenta.irEsquerda(jButtonJogador2);
                 break;
             case 38:
                 //System.out.println("indo para cima");
-                Movimenta.irCima(jButtonJogador1);
+                Movimenta.irCima(jButtonJogador2);
                 break;
             case 39:
                 //System.out.println("indo para direita");
-                Movimenta.irDireita(jButtonJogador1, jPanelJogador1.getBounds().width);
+                Movimenta.irDireita(jButtonJogador2, jPanelJogador2.getBounds().width);
                 break;
             case 40:
                 //System.out.println("indo para baixo");
-                Movimenta.irBaixo(jButtonJogador1, jPanelJogador1.getBounds().height);
+                Movimenta.irBaixo(jButtonJogador2, jPanelJogador2.getBounds().height);
                 break;
         }
-        if (Movimenta.pegou(jButtonJogador1, jButtonFruta)) {
+        if (Movimenta.pegou(jButtonJogador2, jButtonFruta)) {
             Movimenta.posicionaAleatorio(jButtonFruta,
-                    jPanelJogador1.getBounds().width,
-                    jPanelJogador1.getBounds().height);
+                    jPanelJogador2.getBounds().width,
+                    jPanelJogador2.getBounds().height);
         }
+        
+        //enviando o botao do jogador2 para o servidor
+        try {
+            Thread.sleep(300);
+            ObjectOutputStream saida = new ObjectOutputStream(socket_jogador1.getOutputStream());
+            saida.flush();
+            saida.writeObject(jButtonJogador2);
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+
     }//GEN-LAST:event_jButtonFrutaKeyPressed
 
     /**
@@ -185,28 +163,30 @@ public class ServidorJogador1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ServidorJogador1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteJogador2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ServidorJogador1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteJogador2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ServidorJogador1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteJogador2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ServidorJogador1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteJogador2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ServidorJogador1().setVisible(true);
+                new ClienteJogador2().setVisible(true);
             }
         });
     }
-    ServerSocket servidor;
+
+    Socket socket_jogador1;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFruta;
     private javax.swing.JButton jButtonJogador1;
     private javax.swing.JButton jButtonJogador2;
-    private javax.swing.JPanel jPanelJogador1;
+    private javax.swing.JPanel jPanelJogador2;
     // End of variables declaration//GEN-END:variables
 }
