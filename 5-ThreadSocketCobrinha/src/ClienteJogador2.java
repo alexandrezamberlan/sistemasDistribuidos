@@ -1,20 +1,11 @@
-
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
- * @author usrlab25
+ * @author alexandrezamberlan
  */
 public class ClienteJogador2 extends javax.swing.JFrame {
 
@@ -28,8 +19,12 @@ public class ClienteJogador2 extends javax.swing.JFrame {
             @Override
             public void run() {
                 try {
-                    socket_jogador1 = new Socket("localhost", 12345);
+                    String host = JOptionPane.showInputDialog(null,"Endereço do servidor");
+                    int porta = Integer.parseInt(JOptionPane.showInputDialog(null,"Porta lógica do servidor (padrão 12345)"));
+                    socket_jogador1 = new Socket(host, porta);
+                    
                     saida = new ObjectOutputStream(socket_jogador1.getOutputStream());
+                    
                 } catch (IOException ex) {
                     System.out.println("Erro: " + ex.getMessage());
                 }
