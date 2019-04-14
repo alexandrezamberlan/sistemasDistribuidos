@@ -24,26 +24,26 @@ public class ServidorJogador1 extends javax.swing.JFrame {
      */
     public ServidorJogador1() {
         initComponents();
+        
         new Thread() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(30);
                     System.out.println("Servidor esperando o cliente conectar-se...");
-
                     servidor = new ServerSocket(12345);
                     Socket socket_jogador2 = servidor.accept();
                     ObjectInputStream entrada = new ObjectInputStream(socket_jogador2.getInputStream());
-                    System.out.println("Cliente conectado.......");
+                    System.out.println("Cliente conectado: " + socket_jogador2.getInetAddress().getHostAddress());
                     //ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
                     
                     while (true) {
                         
-                        JButton botao = (JButton) entrada.readObject();
-                        jButtonJogador2.setBounds(botao.getBounds());
+                        c = (Componente) entrada.readObject();  
+                        
+                        jButtonJogador2.setBounds(c.x, c.y, c.largura, c.altura);
                     // o método accept() bloqueia a execução até que
                     // o servidor receba um pedido de conexão
-                    //System.out.println("Cliente conectado: " + socket_jogador2.getInetAddress().getHostAddress());
+                        
 
                     //servidor recebe a solicitacao de calculo de operacao
                     //JButton botao = (JButton) entrada.readObject();
@@ -53,10 +53,6 @@ public class ServidorJogador1 extends javax.swing.JFrame {
                     //saida.flush();
                     //saida.writeObject(c);
                     }
-                } catch (IOException ex) {
-                    Logger.getLogger(ServidorJogador1.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ServidorJogador1.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (Exception e) {
                     System.out.println("Erro: " + e.getMessage());
                 }
@@ -203,6 +199,7 @@ public class ServidorJogador1 extends javax.swing.JFrame {
         });
     }
     ServerSocket servidor;
+    Componente c;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFruta;
     private javax.swing.JButton jButtonJogador1;

@@ -24,11 +24,17 @@ public class ClienteJogador2 extends javax.swing.JFrame {
     public ClienteJogador2() {
         initComponents();
         
-        try {
-            socket_jogador1 = new Socket("localhost", 12345);
-        } catch (IOException ex) {
-            Logger.getLogger(ClienteJogador2.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    socket_jogador1 = new Socket("localhost", 12345);
+                    saida = new ObjectOutputStream(socket_jogador1.getOutputStream());
+                } catch (IOException ex) {
+                    System.out.println("Erro: " + ex.getMessage());
+                }
+            }
+        }.start();
     }
 
     /**
@@ -109,7 +115,6 @@ public class ClienteJogador2 extends javax.swing.JFrame {
 
     private void jButtonFrutaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonFrutaKeyPressed
         // TODO add your handling code here:
-
         switch (evt.getKeyCode()) {
             case 37:
                 //System.out.println("indo para esquerda");
@@ -136,12 +141,14 @@ public class ClienteJogador2 extends javax.swing.JFrame {
         
         //enviando o botao do jogador2 para o servidor
         try {
-            Thread.sleep(300);
-            ObjectOutputStream saida = new ObjectOutputStream(socket_jogador1.getOutputStream());
             saida.flush();
-            saida.writeObject(jButtonJogador2);
+            c = new Componente(jButtonJogador2.getBounds().x,
+                               jButtonJogador2.getBounds().y,
+                               jButtonJogador2.getBounds().width,
+                               jButtonJogador2.getBounds().height);
+            saida.writeObject(c);
         } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
+            System.out.println("Erro.... sem servidor: " + e.getMessage());
         }
 
     }//GEN-LAST:event_jButtonFrutaKeyPressed
@@ -182,6 +189,8 @@ public class ClienteJogador2 extends javax.swing.JFrame {
     }
 
     Socket socket_jogador1;
+    ObjectOutputStream saida ;
+    Componente c;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFruta;
