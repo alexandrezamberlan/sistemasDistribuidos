@@ -1,5 +1,6 @@
 
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -19,29 +20,22 @@ public class ServidorJogador1 extends javax.swing.JFrame {
             @Override
             public void run() {
                 try {
-                    System.out.println("Servidor esperando o cliente conectar-se...");
+                    System.out.println("Servidor esperando o cliente conectar-se...porta 12345");
                     servidor = new ServerSocket(12345);
-                    Socket socket_jogador2 = servidor.accept();
-                    ObjectInputStream entrada = new ObjectInputStream(socket_jogador2.getInputStream());
-                    System.out.println("Cliente conectado: " + socket_jogador2.getInetAddress().getHostAddress());
-                    //ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
                     
-                    while (true) {
-                        
-                        c = (Componente) entrada.readObject();  
-                        
-                        jButtonJogador2.setBounds(c.x, c.y, c.largura, c.altura);
+                    Socket socket_jogador2 = servidor.accept();
                     // o método accept() bloqueia a execução até que
                     // o servidor receba um pedido de conexão
                         
-
-                    //servidor recebe a solicitacao de calculo de operacao
-                    //JButton botao = (JButton) entrada.readObject();
-                    //    System.out.println("botao do jogador 2 esta sendo reposicionado");
-                    //this.jButtonJogador2.setBounds(botao.getBounds());
-                    //servidor enviando resposta ao cliente
-                    //saida.flush();
-                    //saida.writeObject(c);
+                    ObjectInputStream entrada = new ObjectInputStream(socket_jogador2.getInputStream());
+                    System.out.println("Cliente conectado: " + socket_jogador2.getInetAddress().getHostAddress());
+                    
+                    //para enviar ao jogador 2
+                    //saida = new ObjectOutputStream(socket_jogador2.getOutputStream());
+                    
+                    while (true) {
+                        c = (Componente) entrada.readObject();  
+                        jButtonJogador2.setBounds(c.x, c.y, c.largura, c.altura);
                     }
                 } catch (Exception e) {
                     System.out.println("Erro: " + e.getMessage());
@@ -152,6 +146,25 @@ public class ServidorJogador1 extends javax.swing.JFrame {
                     jPanelJogador1.getBounds().width,
                     jPanelJogador1.getBounds().height);
         }
+        
+        //enviando o botao do jogador1 e o botao da fruta para o cliente
+//        try {
+//            saida.flush();
+//            c = new Componente(jButtonJogador1.getBounds().x,
+//                               jButtonJogador1.getBounds().y,
+//                               jButtonJogador1.getBounds().width,
+//                               jButtonJogador1.getBounds().height);
+//            saida.writeObject(c);
+//            
+////            saida.flush();
+////            c = new Componente(jButtonFruta.getBounds().x,
+////                               jButtonFruta.getBounds().y,
+////                               jButtonFruta.getBounds().width,
+////                               jButtonJogador2.getBounds().height);
+////            saida.writeObject(c);
+//        } catch (Exception e) {
+//            System.out.println("Erro.... sem servidor: " + e.getMessage());
+//        }
     }//GEN-LAST:event_jButtonFrutaKeyPressed
 
     /**
@@ -189,7 +202,9 @@ public class ServidorJogador1 extends javax.swing.JFrame {
         });
     }
     ServerSocket servidor;
+    ObjectOutputStream saida ;
     Componente c;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFruta;
     private javax.swing.JButton jButtonJogador1;

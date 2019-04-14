@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import javax.swing.JOptionPane;
@@ -23,10 +24,18 @@ public class ClienteJogador2 extends javax.swing.JFrame {
                     int porta = Integer.parseInt(JOptionPane.showInputDialog(null,"Porta lógica do servidor (padrão 12345)"));
                     socket_jogador1 = new Socket(host, porta);
                     
+                    //ObjectInputStream entrada = new ObjectInputStream(socket_jogador1.getInputStream());
+                    
+        
+                    //para enviar ao jogador 1
                     saida = new ObjectOutputStream(socket_jogador1.getOutputStream());
                     
-                } catch (IOException ex) {
-                    System.out.println("Erro: " + ex.getMessage());
+//                    while (true) {
+//                        c = (Componente) entrada.readObject();  
+//                        jButtonJogador1.setBounds(c.x, c.y, c.largura, c.altura);
+//                    } 
+                } catch (Exception e) {
+                    System.out.println("Erro: " + e.getMessage());
                 }
             }
         }.start();
