@@ -164,7 +164,6 @@ public class ServidorJogador1 extends javax.swing.JFrame {
                 System.out.println("Erro ao enviar a fruta");
             }
         }
-
         //enviando o botao do jogador1 e o botao da fruta para o cliente
         try {
             saida.flush();
@@ -176,7 +175,7 @@ public class ServidorJogador1 extends javax.swing.JFrame {
             saida.writeObject(c);
 
         } catch (Exception e) {
-            System.out.println("Erro.... sem servidor: " + e.getMessage());
+            System.out.println("Erro ao enviar jogador 1");
         }
     }//GEN-LAST:event_jButtonFrutaKeyPressed
 
