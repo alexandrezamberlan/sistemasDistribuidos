@@ -26,6 +26,8 @@ public class ServidorJogador1 extends javax.swing.JFrame {
                     Socket socket_jogador2 = servidor.accept();
                     // o método accept() bloqueia a execução até que
                     // o servidor receba um pedido de conexão
+                    
+                    //ATENÇAO... a sequencia de instanciacao dever ser 1o o saida e 2o o entrada
                     saida = new ObjectOutputStream(socket_jogador2.getOutputStream());
                     entrada = new ObjectInputStream(socket_jogador2.getInputStream());
                     System.out.println("Cliente conectado: " + socket_jogador2.getInetAddress().getHostAddress());

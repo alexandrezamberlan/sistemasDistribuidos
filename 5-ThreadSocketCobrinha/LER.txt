@@ -1,0 +1,6 @@
+Segundo a documentação Java para as classes ObjectOutputStream e ObjectInputStream
+
+saida = new ObjectOutputStream(cliente.getOutputStream());
+entrada = new ObjectInputStream(cliente.getInputStream());
+
+A sequencia de instanciação dever ser 1o o objeto saida e 2o o objeto entrada

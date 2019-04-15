@@ -24,7 +24,9 @@ public class ClienteJogador2 extends javax.swing.JFrame {
                     String host = JOptionPane.showInputDialog(null, "Endereço do servidor");
                     int porta = Integer.parseInt(JOptionPane.showInputDialog(null, "Porta lógica do servidor (padrão 12345)"));
                     socket_jogador1 = new Socket(host, porta);
+                    
                     //para enviar ao jogador 1
+                    //ATENÇAO... a sequencia de instanciacao dever ser 1o o saida e 2o o entrada
                     saida = new ObjectOutputStream(socket_jogador1.getOutputStream());
                     entrada = new ObjectInputStream(socket_jogador1.getInputStream());
 
