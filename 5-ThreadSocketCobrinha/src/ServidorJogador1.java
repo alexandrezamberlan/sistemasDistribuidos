@@ -15,27 +15,32 @@ public class ServidorJogador1 extends javax.swing.JFrame {
      */
     public ServidorJogador1() {
         initComponents();
-        
+
         new Thread() {
             @Override
             public void run() {
                 try {
                     System.out.println("Servidor esperando o cliente conectar-se...porta 12345");
                     servidor = new ServerSocket(12345);
-                    
+
                     Socket socket_jogador2 = servidor.accept();
                     // o método accept() bloqueia a execução até que
                     // o servidor receba um pedido de conexão
-                        
-                    ObjectInputStream entrada = new ObjectInputStream(socket_jogador2.getInputStream());
+                    saida = new ObjectOutputStream(socket_jogador2.getOutputStream());
+                    entrada = new ObjectInputStream(socket_jogador2.getInputStream());
                     System.out.println("Cliente conectado: " + socket_jogador2.getInetAddress().getHostAddress());
-                    
+
                     //para enviar ao jogador 2
                     //saida = new ObjectOutputStream(socket_jogador2.getOutputStream());
-                    
                     while (true) {
-                        c = (Componente) entrada.readObject();  
-                        jButtonJogador2.setBounds(c.x, c.y, c.largura, c.altura);
+                        c = (Componente) entrada.readObject();
+                        //se for jogador
+                        if (c.tipo == Componente.JOGADOR) {
+                            jButtonJogador2.setBounds(c.x, c.y, c.largura, c.altura);
+                        } //se for fruta
+                        else if (c.tipo == Componente.FRUTA) {
+                            jButtonFruta.setBounds(c.x, c.y, c.largura, c.altura);
+                        }
                     }
                 } catch (Exception e) {
                     System.out.println("Erro: " + e.getMessage());
@@ -145,26 +150,32 @@ public class ServidorJogador1 extends javax.swing.JFrame {
             Movimenta.posicionaAleatorio(jButtonFruta,
                     jPanelJogador1.getBounds().width,
                     jPanelJogador1.getBounds().height);
+            try {
+                saida.flush();
+                c = new Componente(jButtonFruta.getBounds().x,
+                        jButtonFruta.getBounds().y,
+                        jButtonFruta.getBounds().width,
+                        jButtonFruta.getBounds().height);
+                c.tipo = Componente.FRUTA;
+                saida.writeObject(c);
+            } catch (Exception e) {
+                System.out.println("Erro ao enviar a fruta");
+            }
         }
-        
+
         //enviando o botao do jogador1 e o botao da fruta para o cliente
-//        try {
-//            saida.flush();
-//            c = new Componente(jButtonJogador1.getBounds().x,
-//                               jButtonJogador1.getBounds().y,
-//                               jButtonJogador1.getBounds().width,
-//                               jButtonJogador1.getBounds().height);
-//            saida.writeObject(c);
-//            
-////            saida.flush();
-////            c = new Componente(jButtonFruta.getBounds().x,
-////                               jButtonFruta.getBounds().y,
-////                               jButtonFruta.getBounds().width,
-////                               jButtonJogador2.getBounds().height);
-////            saida.writeObject(c);
-//        } catch (Exception e) {
-//            System.out.println("Erro.... sem servidor: " + e.getMessage());
-//        }
+        try {
+            saida.flush();
+            c = new Componente(jButtonJogador1.getBounds().x,
+                    jButtonJogador1.getBounds().y,
+                    jButtonJogador1.getBounds().width,
+                    jButtonJogador1.getBounds().height);
+            c.tipo = Componente.JOGADOR;
+            saida.writeObject(c);
+
+        } catch (Exception e) {
+            System.out.println("Erro.... sem servidor: " + e.getMessage());
+        }
     }//GEN-LAST:event_jButtonFrutaKeyPressed
 
     /**
@@ -202,9 +213,10 @@ public class ServidorJogador1 extends javax.swing.JFrame {
         });
     }
     ServerSocket servidor;
-    ObjectOutputStream saida ;
+    ObjectOutputStream saida;
+    ObjectInputStream entrada;
     Componente c;
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFruta;
     private javax.swing.JButton jButtonJogador1;
