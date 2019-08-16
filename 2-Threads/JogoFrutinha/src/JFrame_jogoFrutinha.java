@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author usrlab01
@@ -18,7 +17,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
      * Creates new form JFrame_jogoFrutinha
      */
     public JFrame_jogoFrutinha() {
-        initComponents();        
+        initComponents();
     }
 
     /**
@@ -41,6 +40,11 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jButton_jogador1.setText("1");
         jButton_jogador1.setFocusable(false);
@@ -50,11 +54,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
 
         jButton_fruta.setBackground(new java.awt.Color(255, 204, 0));
         jButton_fruta.setText("@");
-        jButton_fruta.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jButton_frutaKeyTyped(evt);
-            }
-        });
+        jButton_fruta.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,56 +85,69 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_frutaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_frutaKeyTyped
-        // TODO add your handling code here:        
-        switch (evt.getKeyChar()) {
-            case 'o' : 
-                Movimenta.irCima(jButton_jogador2);
-                break;
-            case 'l' : 
-                Movimenta.irBaixo(jButton_jogador2, this.getHeight());
-                break;
-            case 'k' : 
-                Movimenta.irEsquerda(jButton_jogador2);
-                break;
-            case 'ç' : 
-                Movimenta.irDireita(jButton_jogador2,this.getWidth());
-                break;                    
-        }
-        
-        switch (evt.getKeyChar()) {
-            case 'w' : 
-                Movimenta.irCima(jButton_jogador1);
-                break;
-            case 's' : 
-                Movimenta.irBaixo(jButton_jogador1, this.getHeight());
-                break;
-            case 'a' : 
-                Movimenta.irEsquerda(jButton_jogador1);
-                break;
-            case 'd' : 
-                Movimenta.irDireita(jButton_jogador1,this.getWidth());
-                break;                    
-        }
-        
-        if (Movimenta.pegou(jButton_fruta,jButton_jogador1)){
-            Movimenta.sorteiaPosicao(jButton_fruta, this);
-        }
-        if (Movimenta.pegou(jButton_fruta,jButton_jogador2)){
-            Movimenta.sorteiaPosicao(jButton_fruta, this);
-        }
-    }//GEN-LAST:event_jButton_frutaKeyTyped
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         Random gerador = new Random();
         JOptionPane.showMessageDialog(this, "Pronto para começar????");
         jButton_fruta.setBounds(gerador.nextInt(this.getWidth() - 80), gerador.nextInt(this.getHeight() - 80), jButton_fruta.getWidth(), jButton_fruta.getHeight());
-        jButton_jogador1.setBounds(gerador.nextInt(this.getWidth() - 80), gerador.nextInt(this.getHeight() - 80), 
+        jButton_jogador1.setBounds(gerador.nextInt(this.getWidth() - 80), gerador.nextInt(this.getHeight() - 80),
                 jButton_jogador1.getWidth(), jButton_jogador1.getHeight());
-        jButton_jogador2.setBounds(gerador.nextInt(this.getWidth() - 80), gerador.nextInt(this.getHeight() - 80), 
+        jButton_jogador2.setBounds(gerador.nextInt(this.getWidth() - 80), gerador.nextInt(this.getHeight() - 80),
                 jButton_jogador2.getWidth(), jButton_jogador2.getHeight());
     }//GEN-LAST:event_formWindowOpened
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+        System.out.println("entrei no evento do clique");
+        largura = this.getWidth();
+        altura = this.getHeight();
+               
+        
+        this.t = new Thread() {
+            @Override
+            public void run() {
+                switch (evt.getKeyChar()) {
+                    case 'o':
+                        Movimenta.irCima(jButton_jogador2);
+                        break;
+                    case 'l':
+                        Movimenta.irBaixo(jButton_jogador2, altura);
+                        break;
+                    case 'k':
+                        Movimenta.irEsquerda(jButton_jogador2);
+                        break;
+                    case 'ç':
+                        Movimenta.irDireita(jButton_jogador2, largura);
+                        break;
+                }
+            }
+        };
+        t.start();
+        
+        
+
+        switch (evt.getKeyChar()) {
+            case 'w':
+                Movimenta.irCima(jButton_jogador1);
+                break;
+            case 's':
+                Movimenta.irBaixo(jButton_jogador1, this.getHeight());
+                break;
+            case 'a':
+                Movimenta.irEsquerda(jButton_jogador1);
+                break;
+            case 'd':
+                Movimenta.irDireita(jButton_jogador1, this.getWidth());
+                break;
+        }
+
+        if (Movimenta.pegou(jButton_fruta, jButton_jogador1)) {
+            Movimenta.sorteiaPosicao(jButton_fruta, this);
+        }
+        if (Movimenta.pegou(jButton_fruta, jButton_jogador2)) {
+            Movimenta.sorteiaPosicao(jButton_fruta, this);
+        }
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
@@ -169,13 +182,13 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
             public void run() {
                 new JFrame_jogoFrutinha().setVisible(true);
             }
-        }); 
+        });
     }
-    
-    
 
-    
-    
+    Thread t = new Thread();
+    int largura;
+    int altura;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButton_fruta;
     public javax.swing.JButton jButton_jogador1;
