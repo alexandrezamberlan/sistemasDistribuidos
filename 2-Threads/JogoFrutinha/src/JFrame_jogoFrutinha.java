@@ -98,11 +98,9 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
-        System.out.println("entrei no evento do clique");
         largura = this.getWidth();
         altura = this.getHeight();
-               
-        
+
         this.t = new Thread() {
             @Override
             public void run() {
@@ -120,27 +118,25 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                         Movimenta.irDireita(jButton_jogador2, largura);
                         break;
                 }
+
             }
         };
         t.start();
         
-        
-
         switch (evt.getKeyChar()) {
             case 'w':
                 Movimenta.irCima(jButton_jogador1);
                 break;
             case 's':
-                Movimenta.irBaixo(jButton_jogador1, this.getHeight());
+                Movimenta.irBaixo(jButton_jogador1, altura);
                 break;
             case 'a':
                 Movimenta.irEsquerda(jButton_jogador1);
                 break;
             case 'd':
-                Movimenta.irDireita(jButton_jogador1, this.getWidth());
+                Movimenta.irDireita(jButton_jogador1, largura);
                 break;
         }
-
         if (Movimenta.pegou(jButton_fruta, jButton_jogador1)) {
             Movimenta.sorteiaPosicao(jButton_fruta, this);
         }

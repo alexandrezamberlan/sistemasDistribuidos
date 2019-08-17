@@ -11,10 +11,11 @@ public class Movimenta {
         }
     }
     
-    public static void irEsquerda(JButton botao) {
+    public static boolean irEsquerda(JButton botao) {
         if (botao.getX() > 0) {
-            botao.setBounds(botao.getX() - 10, botao.getY(), botao.getWidth(), botao.getHeight());
+            botao.setBounds(botao.getX() - 10, botao.getY(), botao.getWidth(), botao.getHeight());            
         }
+        return false;
     }
     
     public static void irBaixo(JButton botao, int altura) {
@@ -23,10 +24,11 @@ public class Movimenta {
         }
     }
     
-    public static void irDireita(JButton botao, int largura) {
+    public static boolean irDireita(JButton botao, int largura) {
         if (botao.getX() < largura - 70) {
             botao.setBounds(botao.getX() + 10, botao.getY(), botao.getWidth(), botao.getHeight());
         }
+        return false;
     }
     
     public static boolean pegou(JButton origem, JButton destino) {
