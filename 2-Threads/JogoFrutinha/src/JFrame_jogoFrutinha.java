@@ -1,4 +1,5 @@
 
+import java.awt.event.KeyEvent;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
@@ -18,13 +19,12 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
      */
     public JFrame_jogoFrutinha() {
         initComponents();
-        minhaThread = new Thread();
         new Thread() {
-            @Override
             public void run() {
                 sorteiaPosicoes();
             }
         }.start();
+        
     }
 
     private void sorteiaPosicoes() {
@@ -86,24 +86,27 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jButton_jogador2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton_jogador1)
-                .addGap(82, 82, 82)
-                .addComponent(jButton_fruta)
-                .addGap(21, 453, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField_jogador1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField_jogador2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField_jogador1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 404, Short.MAX_VALUE)
+                        .addComponent(jTextField_jogador2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton_jogador1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_jogador2)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(350, 350, 350)
+                .addComponent(jButton_fruta)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,12 +117,16 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                     .addComponent(jTextField_jogador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_jogador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_jogador2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_jogador1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_fruta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jButton_jogador2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton_jogador1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
+                .addComponent(jButton_fruta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
         );
 
         jButton_jogador1.getAccessibleContext().setAccessibleDescription("");
@@ -130,13 +137,12 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
     private void jButton_frutaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_frutaKeyPressed
         // TODO add your handling code here:
         largura = this.getWidth();
-        altura = this.getHeight();
-
-        switch (evt.getKeyChar()) {
-            case 'o':
+        altura = this.getHeight();                
+        
+        switch (evt.getKeyCode()) {
+            case KeyEvent.VK_UP:
                 if (minhaThread.isAlive()) {
                     minhaThread.suspend();
-                    System.out.println("matei");
                 }
                 this.minhaThread = new Thread() {
                     @Override
@@ -146,7 +152,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                 };
                 this.minhaThread.start();
                 break;
-            case 'l':
+            case KeyEvent.VK_DOWN:
                 if (minhaThread.isAlive()) {
                     minhaThread.suspend();
                 }
@@ -158,7 +164,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                 };
                 this.minhaThread.start();                
                 break;
-            case 'k':
+            case KeyEvent.VK_LEFT:
                 if (minhaThread.isAlive()) {
                     minhaThread.suspend();
                 }
@@ -170,7 +176,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                 };
                 this.minhaThread.start();                
                 break;
-            case 'ç':
+            case KeyEvent.VK_RIGHT:
                 if (minhaThread.isAlive()) {
                     minhaThread.suspend();
                 }
@@ -182,7 +188,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                 };
                 this.minhaThread.start();                
                 break;
-            case 'w':
+            case KeyEvent.VK_W:
                 if (minhaThread.isAlive()) {
                     minhaThread.suspend();
                 }
@@ -194,7 +200,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                 };
                 this.minhaThread.start();
                 break;
-            case 's':
+            case KeyEvent.VK_S:
                 if (minhaThread.isAlive()) {
                     minhaThread.suspend();
                 }
@@ -206,7 +212,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                 };
                 this.minhaThread.start();
                 break;
-            case 'a':
+            case KeyEvent.VK_A:
                 if (minhaThread.isAlive()) {
                     minhaThread.suspend();
                 }
@@ -218,7 +224,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                 };
                 this.minhaThread.start();
                 break;
-            case 'd':
+            case KeyEvent.VK_D:
                 if (minhaThread.isAlive()) {
                     minhaThread.suspend();
                 }
@@ -279,7 +285,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
         });
     }
 
-    Thread minhaThread;
+    Thread minhaThread = new Thread();
     int largura;
     int altura;
     int pontosJogador1 = 0;
