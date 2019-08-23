@@ -18,6 +18,23 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
      */
     public JFrame_jogoFrutinha() {
         initComponents();
+        minhaThread = new Thread();
+        new Thread() {
+            @Override
+            public void run() {
+                sorteiaPosicoes();
+            }
+        }.start();
+    }
+
+    private void sorteiaPosicoes() {
+        Random gerador = new Random();
+        JOptionPane.showMessageDialog(this, "Pronto para começar????");
+        jButton_fruta.setBounds(gerador.nextInt(this.getWidth() - 80), gerador.nextInt(this.getHeight() - 80), jButton_fruta.getWidth(), jButton_fruta.getHeight());
+        jButton_jogador1.setBounds(gerador.nextInt(this.getWidth() - 80), gerador.nextInt(this.getHeight() - 80),
+                jButton_jogador1.getWidth(), jButton_jogador1.getHeight());
+        jButton_jogador2.setBounds(gerador.nextInt(this.getWidth() - 80), gerador.nextInt(this.getHeight() - 80),
+                jButton_jogador2.getWidth(), jButton_jogador2.getHeight());
     }
 
     /**
@@ -32,19 +49,13 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
         jButton_jogador1 = new javax.swing.JButton();
         jButton_jogador2 = new javax.swing.JButton();
         jButton_fruta = new javax.swing.JButton();
+        jTextField_jogador1 = new javax.swing.JTextField();
+        jTextField_jogador2 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jogo da frutinha");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formKeyPressed(evt);
-            }
-        });
 
         jButton_jogador1.setText("1");
         jButton_jogador1.setFocusable(false);
@@ -54,30 +65,61 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
 
         jButton_fruta.setBackground(new java.awt.Color(255, 204, 0));
         jButton_fruta.setText("@");
-        jButton_fruta.setFocusable(false);
+        jButton_fruta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton_frutaKeyPressed(evt);
+            }
+        });
+
+        jTextField_jogador1.setEditable(false);
+        jTextField_jogador1.setFocusable(false);
+
+        jTextField_jogador2.setEditable(false);
+        jTextField_jogador2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField_jogador2.setFocusable(false);
+
+        jLabel1.setText(":Pontos Jogador2");
+
+        jLabel2.setText("Pontos Jogador1:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(jButton_jogador2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton_jogador1)
                 .addGap(82, 82, 82)
                 .addComponent(jButton_fruta)
-                .addContainerGap(453, Short.MAX_VALUE))
+                .addGap(21, 453, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField_jogador1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextField_jogador2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField_jogador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_jogador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_jogador2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_jogador1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_fruta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(317, Short.MAX_VALUE))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
 
         jButton_jogador1.getAccessibleContext().setAccessibleDescription("");
@@ -85,65 +127,121 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        Random gerador = new Random();
-        JOptionPane.showMessageDialog(this, "Pronto para começar????");
-        jButton_fruta.setBounds(gerador.nextInt(this.getWidth() - 80), gerador.nextInt(this.getHeight() - 80), jButton_fruta.getWidth(), jButton_fruta.getHeight());
-        jButton_jogador1.setBounds(gerador.nextInt(this.getWidth() - 80), gerador.nextInt(this.getHeight() - 80),
-                jButton_jogador1.getWidth(), jButton_jogador1.getHeight());
-        jButton_jogador2.setBounds(gerador.nextInt(this.getWidth() - 80), gerador.nextInt(this.getHeight() - 80),
-                jButton_jogador2.getWidth(), jButton_jogador2.getHeight());
-    }//GEN-LAST:event_formWindowOpened
-
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+    private void jButton_frutaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_frutaKeyPressed
         // TODO add your handling code here:
         largura = this.getWidth();
         altura = this.getHeight();
 
-        this.t = new Thread() {
-            @Override
-            public void run() {
-                switch (evt.getKeyChar()) {
-                    case 'o':
-                        Movimenta.irCima(jButton_jogador2);
-                        break;
-                    case 'l':
-                        Movimenta.irBaixo(jButton_jogador2, altura);
-                        break;
-                    case 'k':
-                        Movimenta.irEsquerda(jButton_jogador2);
-                        break;
-                    case 'ç':
-                        Movimenta.irDireita(jButton_jogador2, largura);
-                        break;
-                }
-
-            }
-        };
-        t.start();
-        
         switch (evt.getKeyChar()) {
+            case 'o':
+                if (minhaThread.isAlive()) {
+                    minhaThread.suspend();
+                    System.out.println("matei");
+                }
+                this.minhaThread = new Thread() {
+                    @Override
+                    public void run() {
+                        Movimenta.irCima(jButton_jogador2);
+                    }
+                };
+                this.minhaThread.start();
+                break;
+            case 'l':
+                if (minhaThread.isAlive()) {
+                    minhaThread.suspend();
+                }
+                this.minhaThread = new Thread() {
+                    @Override
+                    public void run() {
+                        Movimenta.irBaixo(jButton_jogador2, altura);
+                    }
+                };
+                this.minhaThread.start();                
+                break;
+            case 'k':
+                if (minhaThread.isAlive()) {
+                    minhaThread.suspend();
+                }
+                this.minhaThread = new Thread() {
+                    @Override
+                    public void run() {
+                        Movimenta.irEsquerda(jButton_jogador2);
+                    }
+                };
+                this.minhaThread.start();                
+                break;
+            case 'ç':
+                if (minhaThread.isAlive()) {
+                    minhaThread.suspend();
+                }
+                this.minhaThread = new Thread() {
+                    @Override
+                    public void run() {
+                        Movimenta.irDireita(jButton_jogador2, largura);
+                    }
+                };
+                this.minhaThread.start();                
+                break;
             case 'w':
-                Movimenta.irCima(jButton_jogador1);
+                if (minhaThread.isAlive()) {
+                    minhaThread.suspend();
+                }
+                this.minhaThread = new Thread() {
+                    @Override
+                    public void run() {
+                        Movimenta.irCima(jButton_jogador1);
+                    }
+                };
+                this.minhaThread.start();
                 break;
             case 's':
-                Movimenta.irBaixo(jButton_jogador1, altura);
+                if (minhaThread.isAlive()) {
+                    minhaThread.suspend();
+                }
+                this.minhaThread = new Thread() {
+                    @Override
+                    public void run() {
+                        Movimenta.irBaixo(jButton_jogador1, altura);
+                    }
+                };
+                this.minhaThread.start();
                 break;
             case 'a':
-                Movimenta.irEsquerda(jButton_jogador1);
+                if (minhaThread.isAlive()) {
+                    minhaThread.suspend();
+                }
+                this.minhaThread = new Thread() {
+                    @Override
+                    public void run() {
+                        Movimenta.irEsquerda(jButton_jogador1);
+                    }
+                };
+                this.minhaThread.start();
                 break;
             case 'd':
-                Movimenta.irDireita(jButton_jogador1, largura);
+                if (minhaThread.isAlive()) {
+                    minhaThread.suspend();
+                }
+                this.minhaThread = new Thread() {
+                    @Override
+                    public void run() {
+                        Movimenta.irDireita(jButton_jogador1, largura);
+                    }
+                };
+                this.minhaThread.start();                
                 break;
         }
         if (Movimenta.pegou(jButton_fruta, jButton_jogador1)) {
             Movimenta.sorteiaPosicao(jButton_fruta, this);
+            this.pontosJogador1++;
+            this.jTextField_jogador1.setText(""+this.pontosJogador1);
         }
         if (Movimenta.pegou(jButton_fruta, jButton_jogador2)) {
             Movimenta.sorteiaPosicao(jButton_fruta, this);
+            this.pontosJogador2++;
+            this.jTextField_jogador2.setText(""+this.pontosJogador2);
         }
-    }//GEN-LAST:event_formKeyPressed
+    }//GEN-LAST:event_jButton_frutaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -181,13 +279,19 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
         });
     }
 
-    Thread t = new Thread();
+    Thread minhaThread;
     int largura;
     int altura;
+    int pontosJogador1 = 0;
+    int pontosJogador2 = 0;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButton_fruta;
     public javax.swing.JButton jButton_jogador1;
     public javax.swing.JButton jButton_jogador2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField jTextField_jogador1;
+    private javax.swing.JTextField jTextField_jogador2;
     // End of variables declaration//GEN-END:variables
 }
