@@ -8,8 +8,11 @@ import javax.swing.JOptionPane;
 public class ClienteTCPBasico {
   public static void main(String[] args) {
     try {
-      Socket cliente = new Socket("10.104.0.6",8080);
+      int porta = 3333;
+      Socket cliente = new Socket("172.25.0.154",porta);
+      
       ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
+     
       Date data_atual = (Date)entrada.readObject();
       JOptionPane.showMessageDialog(null,"Data recebida do servidor: " + data_atual.toString());
       entrada.close();
