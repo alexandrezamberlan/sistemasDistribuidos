@@ -9,9 +9,7 @@ para a criação de grupos/clusters
  * --> Detecção e remoção de nodos falhos
  * --> Envio e recebimento de mensagens em grupo
  * --> Envio e recebimento de mensagens ponto-a-ponto
- * 
  */
-package comunicacao;
 
 import java.util.List;
 import java.util.Scanner;
