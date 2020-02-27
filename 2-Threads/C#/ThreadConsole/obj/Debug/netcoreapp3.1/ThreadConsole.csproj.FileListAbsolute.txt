@@ -1,0 +1,11 @@
+C:\Users\usrlab01\Desktop\sistemasDistribuidos\2-Threads\C#\ThreadConsole\bin\Debug\netcoreapp3.1\ThreadConsole.exe
+C:\Users\usrlab01\Desktop\sistemasDistribuidos\2-Threads\C#\ThreadConsole\bin\Debug\netcoreapp3.1\ThreadConsole.deps.json
+C:\Users\usrlab01\Desktop\sistemasDistribuidos\2-Threads\C#\ThreadConsole\bin\Debug\netcoreapp3.1\ThreadConsole.runtimeconfig.json
+C:\Users\usrlab01\Desktop\sistemasDistribuidos\2-Threads\C#\ThreadConsole\bin\Debug\netcoreapp3.1\ThreadConsole.runtimeconfig.dev.json
+C:\Users\usrlab01\Desktop\sistemasDistribuidos\2-Threads\C#\ThreadConsole\bin\Debug\netcoreapp3.1\ThreadConsole.dll
+C:\Users\usrlab01\Desktop\sistemasDistribuidos\2-Threads\C#\ThreadConsole\bin\Debug\netcoreapp3.1\ThreadConsole.pdb
+C:\Users\usrlab01\Desktop\sistemasDistribuidos\2-Threads\C#\ThreadConsole\obj\Debug\netcoreapp3.1\ThreadConsole.csprojAssemblyReference.cache
+C:\Users\usrlab01\Desktop\sistemasDistribuidos\2-Threads\C#\ThreadConsole\obj\Debug\netcoreapp3.1\ThreadConsole.AssemblyInfoInputs.cache
+C:\Users\usrlab01\Desktop\sistemasDistribuidos\2-Threads\C#\ThreadConsole\obj\Debug\netcoreapp3.1\ThreadConsole.AssemblyInfo.cs
+C:\Users\usrlab01\Desktop\sistemasDistribuidos\2-Threads\C#\ThreadConsole\obj\Debug\netcoreapp3.1\ThreadConsole.dll
+C:\Users\usrlab01\Desktop\sistemasDistribuidos\2-Threads\C#\ThreadConsole\obj\Debug\netcoreapp3.1\ThreadConsole.pdb

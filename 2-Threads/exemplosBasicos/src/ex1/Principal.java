@@ -16,6 +16,12 @@ public class Principal {
     public static void main(String[] args) {
         MinhaRunnable r = new MinhaRunnable();
         
+		Thread t = new Thread() {
+			public void run() {
+				sout("oi");
+			}
+		};
+		
         Thread t1 = new Thread(r);
         Thread t2 = new Thread(r);
         
