@@ -74,14 +74,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_ServidorIP">
       <Properties>
-        <Property name="text" type="java.lang.String" value="239.1.2.3"/>
-        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="224.0.0.1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_Porta">
       <Properties>
         <Property name="text" type="java.lang.String" value="3456"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel_Porta">

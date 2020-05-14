@@ -44,11 +44,9 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
 
         jLabel_ServidorIP.setText("Servidor IP:");
 
-        jTextField_ServidorIP.setText("239.1.2.3");
-        jTextField_ServidorIP.setEnabled(false);
+        jTextField_ServidorIP.setText("224.0.0.1");
 
         jTextField_Porta.setText("3456");
-        jTextField_Porta.setEnabled(false);
 
         jLabel_Porta.setText("Porta");
 
@@ -153,10 +151,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
 
 
     private void jButton_ConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ConectarActionPerformed
-        jTextField_ServidorIP.setText("239.1.0.3");
-        //meu ip 192.168.0.102
-        jTextField_Porta.setText("3456");
-
+        
         try {
             if (jTextField_Apelido.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Preencha seu apelido");
@@ -168,11 +163,17 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                 jButton_jogador.requestFocus();
 
                 //DEFINO O IP DO GRUPO
-                group = InetAddress.getByName(jTextField_ServidorIP.getText());
+                String servidor = jTextField_ServidorIP.getText();
+                int porta = Integer.parseInt(jTextField_Porta.getText()); 
+                System.out.println(servidor + ":" + porta);
+                
+                group = InetAddress.getByName(servidor);
                 //CRIO O SOCKET MULTICAST COM A PORTA ESPECIFICADA
-                s = new MulticastSocket(Integer.parseInt(jTextField_Porta.getText()));
+                s = new MulticastSocket(porta);
+                
                 //ENTRA NO GRUPO MULTICAST PARA RECEBER AS MENSAGENS
                 s.joinGroup(group);
+                
                 //CRIO A THREAD PARA RECEBER AS MENSAGENS
                 ThreadReceptora tR = new ThreadReceptora();
                 tR.start();
