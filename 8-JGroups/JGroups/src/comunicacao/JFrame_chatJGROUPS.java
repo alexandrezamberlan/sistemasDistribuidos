@@ -5,6 +5,8 @@
  */
 package comunicacao;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,7 +28,7 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
         jComboBox_listaParticipantesGrupo.setEnabled(false);
         jTextField_mensagemParaParticipante.setEnabled(false);
         jButton_enviarParticipante.setEnabled(false);
-        
+
     }
 
     /**
@@ -54,6 +56,11 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chat com JGroups");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Apelido: ");
 
@@ -73,6 +80,11 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
         });
 
         jButton_sairGrupo.setText("Sair");
+        jButton_sairGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_sairGrupoActionPerformed(evt);
+            }
+        });
 
         jComboBox_listaParticipantesGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o participante", " " }));
 
@@ -147,7 +159,7 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
     private void jButton_entrarGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_entrarGrupoActionPerformed
         // TODO add your handling code here:
         if (jTextField_apelido.getText().equals("")) {
-            JOptionPane.showMessageDialog(this,"Você precisa informar um apelido!!!");
+            JOptionPane.showMessageDialog(this, "Você precisa informar um apelido!!!");
         } else {
             jButton_entrarGrupo.setEnabled(false);
             jButton_sairGrupo.setEnabled(true);
@@ -159,8 +171,39 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
             jTextField_apelido.setText(jTextField_apelido.getText().toUpperCase());
             jTextField_apelido.setEditable(false);
             jTextField_apelido.setFocusable(false);
+
+            comunicador = new Comunicador();
+            try {
+                comunicador.iniciar(jTextArea_mensagensGerais);
+            } catch (Exception ex) {
+                Logger.getLogger(JFrame_chatJGROUPS.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
     }//GEN-LAST:event_jButton_entrarGrupoActionPerformed
+
+    private void jButton_sairGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_sairGrupoActionPerformed
+
+        comunicador.enviar("Saiu do grupo: " /*+ comunicador.mensagem.getSrc()*/,  null);
+        comunicador.finalizar();
+
+        jButton_entrarGrupo.setEnabled(true);
+        jButton_sairGrupo.setEnabled(false);
+        jTextField_apelido.setText("");
+        jTextField_mensagemParaGrupo.setEnabled(false);
+        jButton_enviarMensagemGrupo.setEnabled(false);
+        jComboBox_listaParticipantesGrupo.setEnabled(false);
+        jTextField_mensagemParaParticipante.setEnabled(false);
+        jButton_enviarParticipante.setEnabled(false);
+        jTextField_apelido.setEditable(true);
+        jTextField_apelido.setFocusable(true);
+    }//GEN-LAST:event_jButton_sairGrupoActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if (comunicador != null) {
+            comunicador.finalizar();
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -196,6 +239,8 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
             }
         });
     }
+
+    Comunicador comunicador;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_entrarGrupo;

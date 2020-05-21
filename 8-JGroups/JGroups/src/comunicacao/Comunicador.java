@@ -3,6 +3,7 @@ package comunicacao;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import org.jgroups.Address;
 import org.jgroups.JChannel;
 import org.jgroups.Message;
@@ -14,8 +15,9 @@ public class Comunicador extends ReceiverAdapter {
     JChannel channel;
     String frase;
     Message mensagem;
+    JTextArea areaMensagens = new JTextArea();
 
-    public void iniciar() throws Exception {
+    public void iniciar(JTextArea areaMensagens) throws Exception {
 
         System.setProperty("java.net.preferIPv4Stack", "true");//desabilita ipv6, para que só sejam aceitas conexões via ipv4
         /*
@@ -40,6 +42,7 @@ public class Comunicador extends ReceiverAdapter {
          * cria o cluster caso este seja o primeiro membro a entrar nele.
          */
         this.channel.connect("Chat com JGroups");
+        this.areaMensagens = areaMensagens;
     }
 
     public void enviar(String frase, String participante) {
@@ -96,15 +99,15 @@ public class Comunicador extends ReceiverAdapter {
     @Override
     public void viewAccepted(View view_atual) {
 
-        System.out.println("---VISÃO DO GRUPO ATUALIZADA---");
-        System.out.println("ID da view: " + view_atual.getViewId().getId());
-        System.out.println("Coordenador: " + view_atual.getCreator());
-        System.out.print("Membros: ");
+        this.areaMensagens.append("---VISÃO DO GRUPO ATUALIZADA---\n");
+        this.areaMensagens.append("ID da view: " + view_atual.getViewId().getId());
+        this.areaMensagens.append("Coordenador: " + view_atual.getCreator());
+        this.areaMensagens.append("Membros: ");
         List<Address> membros = view_atual.getMembers();
         for (int i = 0; i < membros.size(); i++) {
-            System.out.print(membros.get(i) + ", ");
+            this.areaMensagens.append(membros.get(i) + ", ");
         }
-        System.out.println();
+        this.areaMensagens.append("--------------------------------------------");
 
     }
 
