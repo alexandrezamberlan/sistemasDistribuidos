@@ -1,6 +1,6 @@
 /*
- * JGroups é uma API para comunicação confiável em grupo. Ele pode ser utilizado 
-para a criação de grupos/clusters
+ * JGroups é uma API para comunicação confiável em grupo. 
+Ele pode ser utilizado para a criação de grupos/clusters
  * em que as instancias podem enviar mensagens umas as outras.
  * As principais características são:
  * --> Criação e exclusão de clusters/grupos.
@@ -9,6 +9,7 @@ para a criação de grupos/clusters
  * --> Detecção e remoção de nodos falhos
  * --> Envio e recebimento de mensagens em grupo
  * --> Envio e recebimento de mensagens ponto-a-ponto
+ * 
  */
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class Exemplo extends ReceiverAdapter {
          * bem como registrar os eventos callback quando acontecer alguma
          * mudança (por exemplo, entrada de um membro no grupo).
          * 
-         * Neste caso, criamos uma instancia deste objeto, utilizando configurações dafult.
+         * Neste caso, criamos uma instancia deste objeto, utilizando configurações default.
          */
         channel = new JChannel();
         /*
@@ -82,6 +83,7 @@ public class Exemplo extends ReceiverAdapter {
                  * envia a mensagem montada acima ao grupo
                  */
                 channel.send(msg);
+                
             } catch (Exception e) {
             }
         }
@@ -91,7 +93,7 @@ public class Exemplo extends ReceiverAdapter {
 
     /*
      * O método abaixo é callback, e é chamado toda vez que alguem
-     * envia uma mensagem ao processo/grupo. Esta mensagem é recebida no parâmetro
+     * envia uma mensagem ao processo/grupo/canal. Esta mensagem é recebida no parâmetro
      * Message msg. Nessa implementação, mostramos na tela o originador
      * da mensagem em msg.getSrc() e a mensagem propriamente dita em
      * msg.getObject
@@ -99,9 +101,7 @@ public class Exemplo extends ReceiverAdapter {
     
     @Override
     public void receive(Message msg) {
-
         System.out.println("\n"+msg.getSrc()+" disse: "+msg.getObject());
-
     }
 
     /*
