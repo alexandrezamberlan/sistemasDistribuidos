@@ -147,7 +147,8 @@ public class Exemplo extends ReceiverAdapter {
 
     public static void main(String[] args) throws Exception {
 
-        new Exemplo().iniciar();
+        Exemplo ex = new Exemplo();
+        ex.iniciar();
 
     }
 }

@@ -7,7 +7,11 @@ package comunicacao;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -172,11 +176,13 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
             jTextField_apelido.setEditable(false);
             jTextField_apelido.setFocusable(false);
 
-            comunicador = new Comunicador();
             try {
-                comunicador.iniciar(jTextArea_mensagensGerais);
+                comunicador = new Comunicador();
+                comunicador.iniciar(this.jTextArea_mensagensGerais, JFrame_chatJGROUPS.this);
+                jTextArea_mensagensGerais.append("Entreeeeiii");
             } catch (Exception ex) {
-                Logger.getLogger(JFrame_chatJGROUPS.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(JFrame_chatJGROUPS.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this,"Problema para entrar no grupo ou channel.....");
             }
 
         }
@@ -184,7 +190,7 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
 
     private void jButton_sairGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_sairGrupoActionPerformed
 
-        comunicador.enviar("Saiu do grupo: " /*+ comunicador.mensagem.getSrc()*/,  null);
+        //comunicador.enviar("Saiu do grupo: " /*+ comunicador.mensagem.getSrc()*/,  null);
         comunicador.finalizar();
 
         jButton_entrarGrupo.setEnabled(true);
@@ -241,6 +247,44 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
     }
 
     Comunicador comunicador;
+
+    public JButton getjButton_entrarGrupo() {
+        return jButton_entrarGrupo;
+    }
+
+    public JButton getjButton_enviarMensagemGrupo() {
+        return jButton_enviarMensagemGrupo;
+    }
+
+    public JButton getjButton_enviarParticipante() {
+        return jButton_enviarParticipante;
+    }
+
+    public JButton getjButton_sairGrupo() {
+        return jButton_sairGrupo;
+    }
+
+    public JComboBox<String> getjComboBox_listaParticipantesGrupo() {
+        return jComboBox_listaParticipantesGrupo;
+    }
+
+    public JTextArea getjTextArea_mensagensGerais() {
+        return jTextArea_mensagensGerais;
+    }
+
+    public JTextField getjTextField_apelido() {
+        return jTextField_apelido;
+    }
+
+    public JTextField getjTextField_mensagemParaGrupo() {
+        return jTextField_mensagemParaGrupo;
+    }
+
+    public JTextField getjTextField_mensagemParaParticipante() {
+        return jTextField_mensagemParaParticipante;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_entrarGrupo;

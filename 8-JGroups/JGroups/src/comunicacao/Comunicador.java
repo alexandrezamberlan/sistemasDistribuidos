@@ -1,7 +1,6 @@
 package comunicacao;
 
 import java.util.List;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import org.jgroups.Address;
@@ -16,8 +15,9 @@ public class Comunicador extends ReceiverAdapter {
     String frase;
     Message mensagem;
     JTextArea areaMensagens = new JTextArea();
+    JFrame_chatJGROUPS meuFrame;
 
-    public void iniciar(JTextArea areaMensagens) throws Exception {
+    public void iniciar(JTextArea areaMensagens, JFrame_chatJGROUPS meuFrame) throws Exception {
 
         System.setProperty("java.net.preferIPv4Stack", "true");//desabilita ipv6, para que só sejam aceitas conexões via ipv4
         /*
@@ -41,7 +41,9 @@ public class Comunicador extends ReceiverAdapter {
          * Não há a necessidade de se criar explicitamente um cluster, pois o método connect
          * cria o cluster caso este seja o primeiro membro a entrar nele.
          */
-        this.channel.connect("Chat com JGroups");
+        this.meuFrame = meuFrame;
+        this.channel.connect(meuFrame.getTitle());
+        this.channel.setName(meuFrame.getjTextField_apelido().getText());
         this.areaMensagens = areaMensagens;
     }
 
@@ -63,7 +65,7 @@ public class Comunicador extends ReceiverAdapter {
              */
             this.channel.send(this.mensagem);
         } catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Algo ocorreu de errrado ao enviar sua mensagem!!");
+            JOptionPane.showMessageDialog(meuFrame, "Algo ocorreu de errrado ao enviar sua mensagem!!");
         }
     }
 
@@ -81,7 +83,7 @@ public class Comunicador extends ReceiverAdapter {
 
     @Override
     public void receive(Message msg) {
-        System.out.println("\n" + msg.getSrc() + " disse: " + msg.getObject());
+        JOptionPane.showMessageDialog(meuFrame,"\n" + msg.getSrc() + " disse: " + msg.getObject());
     }
 
     /*
