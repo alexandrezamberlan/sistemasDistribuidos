@@ -1,5 +1,7 @@
 package comunicacao;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -15,9 +17,12 @@ public class Comunicador extends ReceiverAdapter {
     String frase;
     Message mensagem;
     JTextArea areaMensagens = new JTextArea();
+    JTextArea areaListaMembros = new JTextArea();
     JFrame_chatJGROUPS meuFrame;
+    StringBuffer listaMembros;
 
-    public void iniciar(JTextArea areaMensagens, JFrame_chatJGROUPS meuFrame) throws Exception {
+    public void iniciar(JTextArea areaMensagens, JTextArea areaListaMembros, 
+            JFrame_chatJGROUPS meuFrame) throws Exception {
 
         System.setProperty("java.net.preferIPv4Stack", "true");//desabilita ipv6, para que só sejam aceitas conexões via ipv4
         /*
@@ -42,9 +47,11 @@ public class Comunicador extends ReceiverAdapter {
          * cria o cluster caso este seja o primeiro membro a entrar nele.
          */
         this.meuFrame = meuFrame;
-        this.channel.connect(meuFrame.getTitle());
         this.channel.setName(meuFrame.getjTextField_apelido().getText());
+        this.channel.connect(meuFrame.getTitle());
         this.areaMensagens = areaMensagens;
+        this.areaListaMembros = areaListaMembros;
+        this.areaListaMembros.setText(listaMembros.toString());
     }
 
     public void enviar(String frase, String participante) {
@@ -55,7 +62,7 @@ public class Comunicador extends ReceiverAdapter {
             * O segundo parâmetro é a mensagem enviada através de um buffer de bytes (convertida automaticamente)
              */
             
-            if (participante.equals("")){
+            if (participante == null){
                 this.mensagem = new Message(null, frase);
             } else {
                 this.mensagem = new Message(this.channel.getAddress(), frase);
@@ -83,7 +90,9 @@ public class Comunicador extends ReceiverAdapter {
 
     @Override
     public void receive(Message msg) {
-        JOptionPane.showMessageDialog(meuFrame,"\n" + msg.getSrc() + " disse: " + msg.getObject());
+        Date dt = new Date();
+        this.areaMensagens.append("[" + dt.toString() + "] " + msg.getSrc() +  
+                 " disse: " + msg.getObject() + "\n");
     }
 
     /*
@@ -100,17 +109,17 @@ public class Comunicador extends ReceiverAdapter {
      */
     @Override
     public void viewAccepted(View view_atual) {
-
-        this.areaMensagens.append("---VISÃO DO GRUPO ATUALIZADA---\n");
-        this.areaMensagens.append("ID da view: " + view_atual.getViewId().getId());
-        this.areaMensagens.append("Coordenador: " + view_atual.getCreator());
-        this.areaMensagens.append("Membros: ");
+//        this.areaListaMembros.setText("");
+//        this.areaListaMembros.append("VISÃO DO GRUPO ATUALIZADA\n");
+//        this.areaListaMembros.append("ID da view: " + view_atual.getViewId().getId());
+//        this.areaListaMembros.append("Coordenador: " + view_atual.getCreator()+"\n");
+//        this.areaListaMembros.append("Membros: \n");
         List<Address> membros = view_atual.getMembers();
+        this.listaMembros = new StringBuffer();
         for (int i = 0; i < membros.size(); i++) {
-            this.areaMensagens.append(membros.get(i) + ", ");
+            this.listaMembros.append(membros.get(i) + "\n");
         }
-        this.areaMensagens.append("--------------------------------------------");
-
+        this.areaListaMembros.setText(listaMembros.toString());
     }
 
     /*

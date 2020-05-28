@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package comunicacao;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -57,6 +51,10 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
         jTextField_mensagemParaParticipante = new javax.swing.JTextField();
         jButton_enviarMensagemGrupo = new javax.swing.JButton();
         jButton_enviarParticipante = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea_listaMembros = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chat com JGroups");
@@ -72,8 +70,10 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
 
         jLabel3.setText("Mensagem excluiva para: ");
 
+        jTextArea_mensagensGerais.setEditable(false);
         jTextArea_mensagensGerais.setColumns(20);
         jTextArea_mensagensGerais.setRows(5);
+        jTextArea_mensagensGerais.setFocusable(false);
         jScrollPane1.setViewportView(jTextArea_mensagensGerais);
 
         jButton_entrarGrupo.setText("Entrar");
@@ -93,8 +93,28 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
         jComboBox_listaParticipantesGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o participante", " " }));
 
         jButton_enviarMensagemGrupo.setText("Enviar Grupo");
+        jButton_enviarMensagemGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_enviarMensagemGrupoActionPerformed(evt);
+            }
+        });
 
         jButton_enviarParticipante.setText("Enviar Part.");
+        jButton_enviarParticipante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_enviarParticipanteActionPerformed(evt);
+            }
+        });
+
+        jTextArea_listaMembros.setEditable(false);
+        jTextArea_listaMembros.setColumns(20);
+        jTextArea_listaMembros.setRows(5);
+        jTextArea_listaMembros.setFocusable(false);
+        jScrollPane2.setViewportView(jTextArea_listaMembros);
+
+        jLabel4.setText("LISTA DE MEMBROS");
+
+        jLabel5.setText("ÁREA DE MENSAGENS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,10 +147,17 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton_enviarParticipante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton_enviarMensagemGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                        .addGap(16, 16, 16))
+                        .addContainerGap(16, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,9 +168,15 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
                     .addComponent(jTextField_apelido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_entrarGrupo)
                     .addComponent(jButton_sairGrupo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField_mensagemParaGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,6 +202,7 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
             jButton_sairGrupo.setEnabled(true);
             jTextField_mensagemParaGrupo.setEnabled(true);
             jButton_enviarMensagemGrupo.setEnabled(true);
+            jButton_enviarMensagemGrupo.setFocusable(true);
             jComboBox_listaParticipantesGrupo.setEnabled(true);
             jTextField_mensagemParaParticipante.setEnabled(true);
             jButton_enviarParticipante.setEnabled(true);
@@ -178,8 +212,7 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
 
             try {
                 comunicador = new Comunicador();
-                comunicador.iniciar(this.jTextArea_mensagensGerais, JFrame_chatJGROUPS.this);
-                jTextArea_mensagensGerais.append("Entreeeeiii");
+                comunicador.iniciar(this.jTextArea_mensagensGerais, this.jTextArea_listaMembros, JFrame_chatJGROUPS.this);               
             } catch (Exception ex) {
 //                Logger.getLogger(JFrame_chatJGROUPS.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this,"Problema para entrar no grupo ou channel.....");
@@ -192,7 +225,7 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
 
         //comunicador.enviar("Saiu do grupo: " /*+ comunicador.mensagem.getSrc()*/,  null);
         comunicador.finalizar();
-
+        jTextArea_listaMembros.setText("");
         jButton_entrarGrupo.setEnabled(true);
         jButton_sairGrupo.setEnabled(false);
         jTextField_apelido.setText("");
@@ -210,6 +243,18 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
             comunicador.finalizar();
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void jButton_enviarMensagemGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_enviarMensagemGrupoActionPerformed
+        // TODO add your handling code here:
+        if (!jTextField_mensagemParaGrupo.getText().equals("")) {
+            comunicador.enviar(jTextField_mensagemParaGrupo.getText(), null);
+            jTextField_mensagemParaGrupo.setText("");
+        } else JOptionPane.showMessageDialog(this, "Antes de enviar, você precisa escrever uma mensagem");
+    }//GEN-LAST:event_jButton_enviarMensagemGrupoActionPerformed
+
+    private void jButton_enviarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_enviarParticipanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_enviarParticipanteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,7 +291,7 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
         });
     }
 
-    Comunicador comunicador;
+    
 
     public JButton getjButton_entrarGrupo() {
         return jButton_entrarGrupo;
@@ -284,7 +329,7 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
         return jTextField_mensagemParaParticipante;
     }
     
-    
+    Comunicador comunicador;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_entrarGrupo;
@@ -295,7 +340,11 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea_listaMembros;
     private javax.swing.JTextArea jTextArea_mensagensGerais;
     private javax.swing.JTextField jTextField_apelido;
     private javax.swing.JTextField jTextField_mensagemParaGrupo;
