@@ -173,9 +173,8 @@
     <Component class="javax.swing.JComboBox" name="jComboBox_listaParticipantesGrupo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
+          <StringArray count="1">
             <StringItem index="0" value="Selecione o participante"/>
-            <StringItem index="1" value=" "/>
           </StringArray>
         </Property>
       </Properties>

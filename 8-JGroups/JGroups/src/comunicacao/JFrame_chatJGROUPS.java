@@ -90,7 +90,7 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
             }
         });
 
-        jComboBox_listaParticipantesGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o participante", " " }));
+        jComboBox_listaParticipantesGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o participante" }));
 
         jButton_enviarMensagemGrupo.setText("Enviar Grupo");
         jButton_enviarMensagemGrupo.addActionListener(new java.awt.event.ActionListener() {
@@ -212,7 +212,7 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
 
             try {
                 comunicador = new Comunicador();
-                comunicador.iniciar(this.jTextArea_mensagensGerais, this.jTextArea_listaMembros, JFrame_chatJGROUPS.this);               
+                comunicador.iniciar(JFrame_chatJGROUPS.this);               
             } catch (Exception ex) {
 //                Logger.getLogger(JFrame_chatJGROUPS.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this,"Problema para entrar no grupo ou channel.....");
@@ -254,6 +254,12 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
 
     private void jButton_enviarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_enviarParticipanteActionPerformed
         // TODO add your handling code here:
+         if (!jTextField_mensagemParaParticipante.getText().equals("") && jComboBox_listaParticipantesGrupo.getSelectedIndex() != 0) {
+            comunicador.enviar("[privado para " + jComboBox_listaParticipantesGrupo.getSelectedItem().toString() + "] "+ jTextField_mensagemParaParticipante.getText(), 
+                    jComboBox_listaParticipantesGrupo.getSelectedItem().toString());
+            
+            jTextField_mensagemParaParticipante.setText("");
+        } else JOptionPane.showMessageDialog(this, "Antes de enviar, você precisa escrever uma mensagem e selecionar um participante");
     }//GEN-LAST:event_jButton_enviarParticipanteActionPerformed
 
     /**
@@ -328,6 +334,12 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
     public JTextField getjTextField_mensagemParaParticipante() {
         return jTextField_mensagemParaParticipante;
     }
+
+    public JTextArea getjTextArea_listaMembros() {
+        return jTextArea_listaMembros;
+    }
+    
+    
     
     Comunicador comunicador;
 

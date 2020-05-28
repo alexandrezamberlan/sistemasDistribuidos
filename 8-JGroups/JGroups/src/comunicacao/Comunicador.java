@@ -1,6 +1,5 @@
 package comunicacao;
 
-import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -14,15 +13,13 @@ import org.jgroups.View;
 public class Comunicador extends ReceiverAdapter {
 
     JChannel channel;
+    List<Address> membros;
     String frase;
     Message mensagem;
-    JTextArea areaMensagens = new JTextArea();
-    JTextArea areaListaMembros = new JTextArea();
     JFrame_chatJGROUPS meuFrame;
     StringBuffer listaMembros;
 
-    public void iniciar(JTextArea areaMensagens, JTextArea areaListaMembros, 
-            JFrame_chatJGROUPS meuFrame) throws Exception {
+    public void iniciar(JFrame_chatJGROUPS meuFrame) throws Exception {
 
         System.setProperty("java.net.preferIPv4Stack", "true");//desabilita ipv6, para que só sejam aceitas conexões via ipv4
         /*
@@ -49,29 +46,35 @@ public class Comunicador extends ReceiverAdapter {
         this.meuFrame = meuFrame;
         this.channel.setName(meuFrame.getjTextField_apelido().getText());
         this.channel.connect(meuFrame.getTitle());
-        this.areaMensagens = areaMensagens;
-        this.areaListaMembros = areaListaMembros;
-        this.areaListaMembros.setText(listaMembros.toString());
+        this.meuFrame.getjTextArea_listaMembros().setText(listaMembros.toString());
     }
 
     public void enviar(String frase, String participante) {
         try {
-            /*
-            * cria uma instancia da classe Message do JGrupos com a mensagem.
-            * O primeiro parâmetro é o endereço do destinatário. Caso seja null, a mensagem é enviada para todos do grupo
-            * O segundo parâmetro é a mensagem enviada através de um buffer de bytes (convertida automaticamente)
-             */
+
             
-            if (participante == null){
+
+            if (participante == null) {
+                /*
+                 * cria uma instancia da classe Message do JGrupos com a mensagem.
+                 * O primeiro parâmetro é o endereço do destinatário. Caso seja null, a mensagem é enviada para todos do grupo
+                 * O segundo parâmetro é a mensagem enviada através de um buffer de bytes (convertida automaticamente)
+                 */
                 this.mensagem = new Message(null, frase);
             } else {
-                this.mensagem = new Message(this.channel.getAddress(), frase);
+                for (int i = 0; i < this.membros.size(); i++) {
+                    if (participante.equals(membros.get(i).toString())) {
+                        System.out.println("Achouuuu");
+                        this.mensagem = new Message(membros.get(i), frase);
+                        break;
+                    }
+                }                
             }
             /*
             * envia a mensagem montada acima ao grupo
              */
             this.channel.send(this.mensagem);
-        } catch(Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(meuFrame, "Algo ocorreu de errrado ao enviar sua mensagem!!");
         }
     }
@@ -87,12 +90,11 @@ public class Comunicador extends ReceiverAdapter {
      * da mensagem em msg.getSrc() e a mensagem propriamente dita em
      * msg.getObject
      */
-
     @Override
     public void receive(Message msg) {
         Date dt = new Date();
-        this.areaMensagens.append("[" + dt.toString() + "] " + msg.getSrc() +  
-                 " disse: " + msg.getObject() + "\n");
+        this.meuFrame.getjTextArea_mensagensGerais().append("[" + dt.toString() + "] " + msg.getSrc()
+                + " disse: " + msg.getObject() + "\n");
     }
 
     /*
@@ -109,17 +111,15 @@ public class Comunicador extends ReceiverAdapter {
      */
     @Override
     public void viewAccepted(View view_atual) {
-//        this.areaListaMembros.setText("");
-//        this.areaListaMembros.append("VISÃO DO GRUPO ATUALIZADA\n");
-//        this.areaListaMembros.append("ID da view: " + view_atual.getViewId().getId());
-//        this.areaListaMembros.append("Coordenador: " + view_atual.getCreator()+"\n");
-//        this.areaListaMembros.append("Membros: \n");
-        List<Address> membros = view_atual.getMembers();
+        this.membros = view_atual.getMembers();
         this.listaMembros = new StringBuffer();
+        this.meuFrame.getjComboBox_listaParticipantesGrupo().removeAllItems();
+        this.meuFrame.getjComboBox_listaParticipantesGrupo().addItem("Selecione o participante");
         for (int i = 0; i < membros.size(); i++) {
             this.listaMembros.append(membros.get(i) + "\n");
+            this.meuFrame.getjComboBox_listaParticipantesGrupo().addItem(membros.get(i).toString());
         }
-        this.areaListaMembros.setText(listaMembros.toString());
+        this.meuFrame.getjTextArea_listaMembros().setText(listaMembros.toString());
     }
 
     /*
@@ -130,7 +130,7 @@ public class Comunicador extends ReceiverAdapter {
     @Override
     public void suspect(Address mbr) {
 
-        System.out.println("PROCESSO SUSPEITO DE FALHA: " + mbr);
+        JOptionPane.showMessageDialog(meuFrame, "PROCESSO SUSPEITO DE FALHA: " + mbr);
     }
 
 }
