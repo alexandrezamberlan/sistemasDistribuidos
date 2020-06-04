@@ -10,7 +10,6 @@ public class Componente implements Serializable {
     public int y;
     public int largura;
     public int altura;
-
     public JButton botao;
     
     public Componente(String apelido, int x, int y, int largura, int altura) {
@@ -26,8 +25,6 @@ public class Componente implements Serializable {
     public int hashCode() {
         int hash = 7;
         hash = 83 * hash + Objects.hashCode(this.apelido);
-        hash = 83 * hash + this.x;
-        hash = 83 * hash + this.y;
         return hash;
     }
 
@@ -43,12 +40,6 @@ public class Componente implements Serializable {
             return false;
         }
         final Componente other = (Componente) obj;
-//        if (this.x != other.x) {
-//            return false;
-//        }
-//        if (this.y != other.y) {
-//            return false;
-//        }
         if (!Objects.equals(this.apelido, other.apelido)) {
             return false;
         }

@@ -13,11 +13,11 @@ import org.jgroups.View;
 public class Comunicador extends ReceiverAdapter {
 
     JChannel channel;
-    List<Address> membros;
+    List<Address> listaMembros;
     String frase;
     Message mensagem;
     JFrame_chatJGROUPS meuFrame;
-    StringBuffer listaMembros;
+    StringBuffer membrosStringBuffer;
 
     public void iniciar(JFrame_chatJGROUPS meuFrame) throws Exception {
 
@@ -46,14 +46,11 @@ public class Comunicador extends ReceiverAdapter {
         this.meuFrame = meuFrame;
         this.channel.setName(meuFrame.getjTextField_apelido().getText());
         this.channel.connect(meuFrame.getTitle());
-        this.meuFrame.getjTextArea_listaMembros().setText(listaMembros.toString());
+        this.meuFrame.getjTextArea_listaMembros().setText(membrosStringBuffer.toString());
     }
 
     public void enviar(String frase, String participante) {
         try {
-
-            
-
             if (participante == null) {
                 /*
                  * cria uma instancia da classe Message do JGrupos com a mensagem.
@@ -62,10 +59,10 @@ public class Comunicador extends ReceiverAdapter {
                  */
                 this.mensagem = new Message(null, frase);
             } else {
-                for (int i = 0; i < this.membros.size(); i++) {
-                    if (participante.equals(membros.get(i).toString())) {
+                for (int i = 0; i < this.listaMembros.size(); i++) {
+                    if (participante.equals(listaMembros.get(i).toString())) {
                         System.out.println("Achouuuu");
-                        this.mensagem = new Message(membros.get(i), frase);
+                        this.mensagem = new Message(listaMembros.get(i), frase);
                         break;
                     }
                 }                
@@ -111,15 +108,15 @@ public class Comunicador extends ReceiverAdapter {
      */
     @Override
     public void viewAccepted(View view_atual) {
-        this.membros = view_atual.getMembers();
-        this.listaMembros = new StringBuffer();
+        this.listaMembros = view_atual.getMembers();
+        this.membrosStringBuffer = new StringBuffer();
         this.meuFrame.getjComboBox_listaParticipantesGrupo().removeAllItems();
         this.meuFrame.getjComboBox_listaParticipantesGrupo().addItem("Selecione o participante");
-        for (int i = 0; i < membros.size(); i++) {
-            this.listaMembros.append(membros.get(i) + "\n");
-            this.meuFrame.getjComboBox_listaParticipantesGrupo().addItem(membros.get(i).toString());
+        for (int i = 0; i < listaMembros.size(); i++) {
+            this.membrosStringBuffer.append(listaMembros.get(i) + "\n");
+            this.meuFrame.getjComboBox_listaParticipantesGrupo().addItem(listaMembros.get(i).toString());
         }
-        this.meuFrame.getjTextArea_listaMembros().setText(listaMembros.toString());
+        this.meuFrame.getjTextArea_listaMembros().setText(membrosStringBuffer.toString());
     }
 
     /*

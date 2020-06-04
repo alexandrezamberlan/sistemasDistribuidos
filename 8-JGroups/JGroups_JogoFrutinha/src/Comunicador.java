@@ -45,6 +45,7 @@ public class Comunicador extends ReceiverAdapter {
         this.channel.setName(meuFrame.getjTextField_apelido().getText());
         this.channel.connect(meuFrame.getTitle());
         this.meuFrame.getjTextArea_listaMembros().setText(listaMembros.toString());
+        this.desenhaJogadores();
     }
 
     public void enviar(String frase, String participante) {
@@ -116,13 +117,7 @@ public class Comunicador extends ReceiverAdapter {
             this.listaMembros.append(membros.get(i) + "\n");
         }
         this.meuFrame.getjTextArea_listaMembros().setText(listaMembros.toString());
-        Componente c;
-        for (int i = 0; i < this.meuFrame.listaJogadores.size(); i++){
-            c = this.meuFrame.listaJogadores.get(i);
-            this.meuFrame.getjPanel_area().add(c.botao);
-            c.botao.setVisible(true);
-            c.botao.setBounds(c.x, c.y, c.largura, c.altura);
-        }
+        this.desenhaJogadores();
     }
 
     /*
@@ -136,4 +131,14 @@ public class Comunicador extends ReceiverAdapter {
         JOptionPane.showMessageDialog(meuFrame, "PROCESSO SUSPEITO DE FALHA: " + mbr);
     }
 
+    
+    private void desenhaJogadores() {
+        Componente c;
+        for (int i = 0; i < this.meuFrame.listaJogadores.size(); i++){
+            c = this.meuFrame.listaJogadores.get(i);
+            this.meuFrame.getjPanel_area().add(c.botao);
+            c.botao.setVisible(true);
+            c.botao.setBounds(c.x, c.y, c.largura, c.altura);
+        }
+    }
 }

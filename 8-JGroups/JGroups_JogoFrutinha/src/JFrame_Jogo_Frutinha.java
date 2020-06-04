@@ -168,7 +168,7 @@ public class JFrame_Jogo_Frutinha extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, this.jTextField_apelido.getText() + " já foi inserido!!");
                 }               
-                
+             
                 //inicia o comunidador
                 comunicador = new Comunicador();
                 comunicador.iniciar(JFrame_Jogo_Frutinha.this);               

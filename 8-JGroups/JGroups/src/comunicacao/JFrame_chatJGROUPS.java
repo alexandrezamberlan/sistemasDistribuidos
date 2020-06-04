@@ -297,8 +297,6 @@ public class JFrame_chatJGROUPS extends javax.swing.JFrame {
         });
     }
 
-    
-
     public JButton getjButton_entrarGrupo() {
         return jButton_entrarGrupo;
     }

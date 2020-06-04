@@ -103,7 +103,9 @@ public class JFrame_paraTestes extends javax.swing.JFrame {
                 int altura = 40;
                 int x = gerador.nextInt(this.jPanel_area.getBounds().width - largura);
                 int y = gerador.nextInt(this.jPanel_area.getBounds().height - altura);
+                
                 Componente c = new Componente(this.jTextField_apelido.getText(), x, y, largura, altura);
+                
                 if (!listaJogadores.contains(c)) {
                     listaJogadores.add(c);
                     //adiciona o botao no jPane_area
