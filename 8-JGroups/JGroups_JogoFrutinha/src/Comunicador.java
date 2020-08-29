@@ -1,3 +1,4 @@
+
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -48,27 +49,14 @@ public class Comunicador extends ReceiverAdapter {
         this.desenhaJogadores();
     }
 
-    public void enviar(String frase, String participante) {
+    public void enviar(String frase) {
         try {
-
-            
-
-            if (participante == null) {
-                /*
-                 * cria uma instancia da classe Message do JGrupos com a mensagem.
-                 * O primeiro parâmetro é o endereço do destinatário. Caso seja null, a mensagem é enviada para todos do grupo
-                 * O segundo parâmetro é a mensagem enviada através de um buffer de bytes (convertida automaticamente)
-                 */
-                this.mensagem = new Message(null, frase);
-            } else {
-                for (int i = 0; i < this.membros.size(); i++) {
-                    if (participante.equals(membros.get(i).toString())) {
-                        System.out.println("Achouuuu");
-                        this.mensagem = new Message(membros.get(i), frase);
-                        break;
-                    }
-                }                
-            }
+            /*
+            * cria uma instancia da classe Message do JGrupos com a mensagem.
+            * O primeiro parâmetro é o endereço do destinatário. Caso seja null, a mensagem é enviada para todos do grupo
+            * O segundo parâmetro é a mensagem enviada através de um buffer de bytes (convertida automaticamente)
+             */
+            this.mensagem = new Message(null, frase);
             /*
             * envia a mensagem montada acima ao grupo
              */
@@ -91,7 +79,7 @@ public class Comunicador extends ReceiverAdapter {
      */
     @Override
     public void receive(Message msg) {
-        
+
         System.out.println(msg.getSrc()
                 + " disse " + msg.getObject() + "\n");
     }
@@ -112,7 +100,7 @@ public class Comunicador extends ReceiverAdapter {
     public void viewAccepted(View view_atual) {
         this.membros = view_atual.getMembers();
         this.listaMembros = new StringBuffer();
-        
+
         for (int i = 0; i < membros.size(); i++) {
             this.listaMembros.append(membros.get(i) + "\n");
         }
@@ -131,14 +119,15 @@ public class Comunicador extends ReceiverAdapter {
         JOptionPane.showMessageDialog(meuFrame, "PROCESSO SUSPEITO DE FALHA: " + mbr);
     }
 
-    
     private void desenhaJogadores() {
-        Componente c;
-        for (int i = 0; i < this.meuFrame.listaJogadores.size(); i++){
+        Componente c = new Componente();
+        System.out.println("Relacao atualizada.....");
+        for (int i = 0; i < this.meuFrame.listaJogadores.size(); i++) {
             c = this.meuFrame.listaJogadores.get(i);
             this.meuFrame.getjPanel_area().add(c.botao);
             c.botao.setVisible(true);
             c.botao.setBounds(c.x, c.y, c.largura, c.altura);
+            System.out.println(c.toString());
         }
     }
 }

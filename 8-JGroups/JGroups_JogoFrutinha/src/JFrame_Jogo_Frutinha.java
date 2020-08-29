@@ -257,8 +257,8 @@ public class JFrame_Jogo_Frutinha extends javax.swing.JFrame {
    
     
     
-    Comunicador comunicador;
-    List<Componente> listaJogadores = new LinkedList<>();
+    private Comunicador comunicador;
+    public List<Componente> listaJogadores = new LinkedList<>();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_entrarGrupo;

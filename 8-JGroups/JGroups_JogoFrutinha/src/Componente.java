@@ -3,7 +3,6 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.swing.JButton;
 
-
 public class Componente implements Serializable {
     public String apelido;
     public int x;
@@ -19,6 +18,10 @@ public class Componente implements Serializable {
         this.largura = largura;
         this.altura = altura;
         this.botao = new JButton(apelido);
+    }
+    
+    public Componente() {
+        
     }
 
     @Override
