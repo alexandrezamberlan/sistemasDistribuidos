@@ -7,11 +7,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-import java.awt.event.KeyAdapter;
 
 public class InterfaceGraficaPrincipal {
 
@@ -62,7 +60,6 @@ public class InterfaceGraficaPrincipal {
                         System.out.println("Deu pau na concorrência");
                     }
                 }
-
             }
         }.start();
 	}
@@ -86,13 +83,13 @@ public class InterfaceGraficaPrincipal {
 	private void btn_frutinhaKeyPressed(java.awt.event.KeyEvent evt) {                                         
         //System.out.println(evt.getKeyCode() + ", " + evt.getKeyChar());
         synchronized (frmJogoDaFrutinha) {
-            pressed.add(evt.getKeyCode());
+            teclasPressionadas.add(evt.getKeyCode());
         }
     }    
 	
 	private void btn_frutinhaKeyReleased(java.awt.event.KeyEvent evt) {                                          
         synchronized (frmJogoDaFrutinha) {
-            pressed.remove(evt.getKeyCode());
+            teclasPressionadas.remove(evt.getKeyCode());
         }
     }  
 	
@@ -101,7 +98,7 @@ public class InterfaceGraficaPrincipal {
 	 * 
 	 */
 	public void verificaTeclas() {
-        for (Integer c : pressed) {
+        for (Integer c : teclasPressionadas) {
             switch (c) {
                 case KeyEvent.VK_UP:
                     new Thread() {
@@ -220,6 +217,6 @@ public class InterfaceGraficaPrincipal {
 	JButton btn_jogador1 = new JButton("1");
 	JButton btn_jogador2 = new JButton("2");
 	JButton btn_frutinha = new JButton("@");
-	public Set<Integer> pressed = new HashSet<Integer>();
+	public Set<Integer> teclasPressionadas = new HashSet<Integer>();
 	JButton btn_barreira = new JButton("====");
 }
