@@ -9,7 +9,7 @@ public class ClienteTCPBasico {
   public static void main(String[] args) {
     try {
       int porta = 3333;
-      Socket cliente = new Socket("172.25.0.154",porta);
+      Socket cliente = new Socket("localhost",porta);
       
       ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
      

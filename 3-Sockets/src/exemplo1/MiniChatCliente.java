@@ -1,5 +1,3 @@
-package exemplo1;
-
 
 import java.io.*;
 import java.net.*;
@@ -9,40 +7,50 @@ import javax.swing.JOptionPane;
 
 public class MiniChatCliente {
 
+	static Socket socketCliente;
+    static BufferedReader tecladoTerminal;
+    static ObjectOutputStream saida;
+    static ObjectInputStream entrada;
+    
     public static void main(String[] args) throws IOException {
-        String apelido = "Zamber";
+        String apelido = "C2";
         String servidorEndereco = JOptionPane.showInputDialog(null, "Informe o endereco IP do servidor");
         int portaNumero = Integer.parseInt(JOptionPane.showInputDialog(null, "Informe o numero da porta logica do servidor: "));
-
+        
+        
         try {
-            Socket socketCliente = new Socket(servidorEndereco, portaNumero);
-
-            PrintWriter escritor = new PrintWriter(socketCliente.getOutputStream(), true);
-
-            BufferedReader leitor = new BufferedReader(new InputStreamReader(socketCliente.getInputStream()));
-
-            BufferedReader tecladoTerminal = new BufferedReader( new InputStreamReader(System.in) );
+        	socketCliente = new Socket(servidorEndereco, portaNumero);
+        	
+        	saida = new ObjectOutputStream(socketCliente.getOutputStream());
+        	
+        	entrada = new ObjectInputStream(socketCliente.getInputStream());
+	
+	        tecladoTerminal = new BufferedReader( new InputStreamReader(System.in) );
             
             new Thread() {
                 @Override
                 public void run() {
                     String fraseDoServidor;
                     try {
-                        while ((fraseDoServidor = leitor.readLine()) != null) {
-                            //out.println(userInput);
-                            System.out.println("Msg do servidor: " + fraseDoServidor);
-                        }
+                    	while ((fraseDoServidor = (String)entrada.readObject()) != null) {
+                    		System.out.println("Msg do servidor: " + fraseDoServidor);
+                    	}
                     } catch (IOException ex) {
                         Logger.getLogger(MiniChatCliente.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    } catch (ClassNotFoundException e) {
+                    	Logger.getLogger(MiniChatCliente.class.getName()).log(Level.SEVERE, null, e);
+					}
+                    
                 }
             }.start();
             
             String fraseDoCliente;
-            while ((fraseDoCliente = tecladoTerminal.readLine()) != null) {
-                escritor.println(apelido + ": " + fraseDoCliente);
-                //System.out.println("echo: " + in.readLine());
-            }
+            do {
+            	fraseDoCliente = tecladoTerminal.readLine();
+            	saida.flush();
+            	saida.writeObject((apelido + ": " + fraseDoCliente).toString());
+            }  while (fraseDoCliente != null);
+            
         } catch (UnknownHostException e) {
             System.err.println("Nâo reconheço o servidor " + servidorEndereco);
             
@@ -51,6 +59,9 @@ public class MiniChatCliente {
                     + servidorEndereco);
             
         }
+        saida.close();
+        entrada.close();
+        socketCliente.close();
         System.exit(0);
     }
 }

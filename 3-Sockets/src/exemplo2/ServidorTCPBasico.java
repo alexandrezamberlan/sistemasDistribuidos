@@ -12,7 +12,7 @@ public class ServidorTCPBasico {
             int portaServidor = 3333;
             ServerSocket servidor = new ServerSocket(portaServidor);
             System.out.println("Servidor ouvindo a porta: " + portaServidor);
-            Socket cliente;
+            Socket cliente; //procurador do cliente no lado do servidor
             while (true) {
                 // o método accept() bloqueia a execução até que
                 // o servidor receba um pedido de conexão
