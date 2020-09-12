@@ -1,4 +1,4 @@
-package calculadora;
+package exemplo3;
 
 import java.io.Serializable;
 import javax.swing.JOptionPane;

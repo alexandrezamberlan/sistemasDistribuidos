@@ -1,4 +1,4 @@
-package calculadora;
+package exemplo3;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
