@@ -1,3 +1,9 @@
+
+import java.io.IOException;
+import java.net.Socket;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -48,10 +54,23 @@ public class JFrame_Cliente extends javax.swing.JFrame {
         jLabel2.setText("Apelido:");
 
         jButton_conectar.setText("Conectar");
+        jButton_conectar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_conectarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Mensagem: ");
 
+        jTextField_mensagem.setEditable(false);
+
         jButton_enviar.setText("Enviar");
+        jButton_enviar.setEnabled(false);
+        jButton_enviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_enviarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Apelido do servidor: ");
 
@@ -141,6 +160,30 @@ public class JFrame_Cliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_enviarActionPerformed
+        // TODO add your handling code here:
+        if (jTextField_mensagem.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this,"Antes de enviar, é preciso digitar!!");
+        } else {
+            Comunicador.enviarMensagem(cliente, jTextField_mensagem.getText());
+            Date dataAtual = new Date();
+            jTextArea_mensagens.append("["+ dataAtual + "] Você escreveu: " + jTextField_mensagem.getText() + "\n");
+            jTextField_mensagem.setText("");
+        }
+    }//GEN-LAST:event_jButton_enviarActionPerformed
+
+    private void jButton_conectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_conectarActionPerformed
+        // TODO add your handling code here:
+        try {
+            //cria um socket TCP para se conectar ao servidor de ip "localhost" porta 1234
+            cliente = new Socket("localhost", 1234);
+            
+            
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton_conectarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -175,6 +218,8 @@ public class JFrame_Cliente extends javax.swing.JFrame {
             }
         });
     }
+    
+    Socket cliente;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_conectar;
