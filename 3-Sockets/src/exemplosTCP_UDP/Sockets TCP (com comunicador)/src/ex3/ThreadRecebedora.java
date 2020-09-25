@@ -1,5 +1,3 @@
-package ex3;
-
 import java.net.Socket;
 
 public class ThreadRecebedora extends Thread {
@@ -11,11 +9,10 @@ public class ThreadRecebedora extends Thread {
     }
 
     public void run() {
-        Comunicador com = new Comunicador();
         System.out.println("Iniciada a Thread para recebimento de dados");
         try {
             while (true) {
-                String mensagem = com.recebeMensagem(socket); //recebe uma string enviada pela rede
+                String mensagem = Comunicador.recebeMensagem(socket); //recebe uma string enviada pela rede
                 if (mensagem == null) {
                     System.exit(0);
                 }

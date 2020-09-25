@@ -19,7 +19,7 @@ public class MiniChatCliente {
         
         
         try {
-        	socketCliente = new Socket(servidorEndereco, portaNumero);
+            socketCliente = new Socket(servidorEndereco, portaNumero);
         	
         	saida = new ObjectOutputStream(socketCliente.getOutputStream());
         	

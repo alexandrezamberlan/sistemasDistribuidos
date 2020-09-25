@@ -18,9 +18,8 @@ public class Cliente {
 
     public Cliente() {
         criaClientSocket();
-        Comunicador com = new Comunicador();
-        com.enviaMensagem(socket, "Hello world");
-        String mensagem = com.recebeMensagem(socket);
+        Comunicador.enviaMensagem(socket, "oi turma de sistemas distribuídos");
+        String mensagem = Comunicador.recebeMensagem(socket);
         System.out.println("Recebi " + mensagem);
     }
 

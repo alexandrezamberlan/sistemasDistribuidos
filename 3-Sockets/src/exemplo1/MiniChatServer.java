@@ -15,17 +15,20 @@ public class MiniChatServer {
     public static void main(String[] args) throws IOException {
     	String apelido = "A1";
         int portaNumero = Integer.parseInt(JOptionPane.showInputDialog(null, "Informe a porta logica liberada"));
-        
+        long tempoInicio;
         try {
-        	socketServidor = new ServerSocket(portaNumero);
-                       
+            socketServidor = new ServerSocket(portaNumero);
+            System.out.println("Servidor em funcionamento");
+            
+            tempoInicio = System.nanoTime();
         	socketCliente = socketServidor.accept();
-        	
-        	saida = new ObjectOutputStream(socketCliente.getOutputStream());
+        	System.out.println("Tempo de conexão do primeiro cliente ao servidor: " + (System.nanoTime() - tempoInicio)/1000000);
+            
+            saida = new ObjectOutputStream(socketCliente.getOutputStream());
         	
         	entrada = new ObjectInputStream(socketCliente.getInputStream());
         	
-            
+             
             new Thread() {
                 @Override
                 public void run() {

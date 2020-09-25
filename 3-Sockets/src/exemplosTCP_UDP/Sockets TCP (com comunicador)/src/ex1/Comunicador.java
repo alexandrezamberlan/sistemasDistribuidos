@@ -6,11 +6,11 @@ import java.net.Socket;
 
 public class Comunicador {
 
-    public Comunicador() {
+    // public Comunicador() {
 
-    }
+    // }
 
-    public String recebeMensagem(Socket s) {
+    public static String recebeMensagem(Socket s) {
         try {
             //Cria um objeto de fluxo de dados de entrada, para poder receber dados de um socket s
             DataInputStream leitor = new DataInputStream(s.getInputStream());
@@ -21,7 +21,7 @@ public class Comunicador {
         }
     }
 
-    public void enviaMensagem(Socket s, String mensagem) {
+    public static void enviaMensagem(Socket s, String mensagem) {
         try {
             //Cria um objeto de fluxo de dados de de saída, para poder enviar dados pelo socket s
             DataOutputStream escritor = new DataOutputStream(s.getOutputStream());

@@ -5,10 +5,8 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public class ComunicadorUDP {
-    public ComunicadorUDP() {
-    }
-
-    public DatagramPacket montaMensagem(String mensagem, String ip, int porta) {
+    
+    public static DatagramPacket montaMensagem(String mensagem, String ip, int porta) {
         try {
             byte[] buffer = mensagem.getBytes();
             //monta um pacote datagrama com a mensagem, indicando, além dos dados, o endereço e a porta a ser enviado
@@ -19,7 +17,7 @@ public class ComunicadorUDP {
         } 
     }
 
-    public DatagramPacket recebeMensagem(DatagramSocket s) {
+    public static DatagramPacket recebeMensagem(DatagramSocket s) {
         try {
             //cria um pacote vazio de 512 bytes
             DatagramPacket pacote = new DatagramPacket(new byte[512], 512);
@@ -32,7 +30,7 @@ public class ComunicadorUDP {
         }
     }
 
-    public void enviaMensagem(DatagramSocket s, DatagramPacket pacote) {
+    public static void enviaMensagem(DatagramSocket s, DatagramPacket pacote) {
         try {
             //envia o pacote datagrama
             s.send(pacote);

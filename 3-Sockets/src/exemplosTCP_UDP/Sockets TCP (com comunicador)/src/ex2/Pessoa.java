@@ -1,5 +1,3 @@
-package ex2;
-
 import java.io.Serializable;
 
 public class Pessoa implements Serializable {

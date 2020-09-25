@@ -1,5 +1,3 @@
-package ex2;
-
 import java.io.*;
 import java.net.*;
 
@@ -18,10 +16,9 @@ public class Cliente {
 
     public Cliente() {
         criaClientSocket();
-        ComunicadorObjetos com = new ComunicadorObjetos();
         Pessoa p = new Pessoa(23, "José");
-        com.enviaMensagem(socket, p);
-        Pessoa p2 = com.recebeMensagem(socket);
+        ComunicadorObjetos.enviaMensagem(socket, p);
+        Pessoa p2 = ComunicadorObjetos.recebeMensagem(socket);
         System.out.println("Recebi " + p2.getNome() + "," + p2.getIdade());
     }
 

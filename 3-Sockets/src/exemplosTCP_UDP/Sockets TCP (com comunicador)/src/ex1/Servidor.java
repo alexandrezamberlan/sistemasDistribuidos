@@ -5,27 +5,27 @@ import java.net.Socket;
 
 public class Servidor {
 
-    ServerSocket srv;
+    ServerSocket servidor;
 
     private void criaServerSocket() {
         try {
-            srv = new ServerSocket(1234);
+            servidor = new ServerSocket(1234);
             System.out.println("Server escutando na porta 1234");
         } catch (Exception ex) {
+            System.out.println("Erro ao conectar o servidor");
         }
     }
 
     private void aguardaClientes() {
-        Comunicador com = new Comunicador();
         while (true) {
             try {
                 /*Bloqueia esperando por uma conexão através do accept()
                  Ao receber a conexão, ele receberá como retorno uma referência do Socket do cliente*/
-                Socket cliente = srv.accept();
+                Socket cliente = servidor.accept();
                 System.out.println("Recebi uma conexão de um cliente");
-                String mensagem = com.recebeMensagem(cliente);
+                String mensagem = Comunicador.recebeMensagem(cliente);
                 System.out.println("Recebi " + mensagem);
-                com.enviaMensagem(cliente, mensagem.toUpperCase());
+                Comunicador.enviaMensagem(cliente, mensagem.toUpperCase());
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -1,15 +1,13 @@
-package ex3;
-
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Servidor {
 
-    ServerSocket srv;
+    ServerSocket servidor;
 
     private void criaServerSocket() {
         try {
-            srv = new ServerSocket(1234);
+            servidor = new ServerSocket(1234);
             System.out.println("Server escutando na porta 1234");
         } catch (Exception ex) {
         }
@@ -19,7 +17,7 @@ public class Servidor {
         try {
             /*Bloqueia esperando por uma conexão através do accept()
              Ao receber a conexão, ele receberá como retorno uma referência do Socket do cliente*/
-            Socket cliente = srv.accept();
+            Socket cliente = servidor.accept();
             System.out.println("Recebi uma conexão de um cliente");
             ThreadRecebedora tr = new ThreadRecebedora(cliente);
             ThreadEnviadora te = new ThreadEnviadora(cliente);

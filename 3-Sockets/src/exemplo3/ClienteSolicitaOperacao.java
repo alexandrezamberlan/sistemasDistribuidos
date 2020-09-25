@@ -12,6 +12,7 @@ public class ClienteSolicitaOperacao {
             Socket cliente = new Socket("localhost", 12345);
 
             //cliente enviando conta para ser calculada no servidor
+            
             Conta c = new Conta();
             ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
             saida.flush();

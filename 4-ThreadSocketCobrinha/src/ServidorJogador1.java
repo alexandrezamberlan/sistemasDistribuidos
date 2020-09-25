@@ -38,6 +38,7 @@ public class ServidorJogador1 extends javax.swing.JFrame {
                         c = (Componente) entrada.readObject();
                         //se for jogador
                         if (c.tipo == Componente.JOGADOR) {
+                            //redesenha ou reposiciona o jogador2(cliente) no ambiente do jogador1(servidor)
                             jButtonJogador2.setBounds(c.x, c.y, c.largura, c.altura);
                         } //se for fruta
                         else if (c.tipo == Componente.FRUTA) {
@@ -175,7 +176,7 @@ public class ServidorJogador1 extends javax.swing.JFrame {
             saida.writeObject(c);
 
         } catch (Exception e) {
-            System.out.println("Erro ao enviar jogador 1");
+            System.out.println("Erro ao enviar jogador1 ao cliente!!");
         }
     }//GEN-LAST:event_jButtonFrutaKeyPressed
 
