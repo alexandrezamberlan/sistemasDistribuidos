@@ -162,9 +162,9 @@ public class JFrame_Cliente extends javax.swing.JFrame {
         frase = jTextField_Mensagem.getText();
         if (!frase.isEmpty()) {
             try {
-                chat.receberMensagem(frase);
+                chat.receberMensagem(apelido + ": " + frase);
                 jTextField_Mensagem.setText("");
-                jTextArea_Mensagens.append(apelido + ": " + chat.lerMensagem().getLast() + "\n");
+                //jTextArea_Mensagens.append(apelido + ": " + chat.lerMensagem().getLast() + "\n");
             } catch (RemoteException ex) {
             }
         }

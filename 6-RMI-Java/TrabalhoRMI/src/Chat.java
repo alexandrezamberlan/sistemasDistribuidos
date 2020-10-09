@@ -15,7 +15,7 @@ public class Chat extends UnicastRemoteObject implements IChat{
     @Override
     public void receberMensagem(String frase) throws RemoteException{
         listaMensagens.add(frase);
-        System.out.println(frase);
+        //System.out.println(frase);
     }
 
     @Override
