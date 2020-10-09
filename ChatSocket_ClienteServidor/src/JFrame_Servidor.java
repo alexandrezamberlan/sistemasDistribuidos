@@ -1,4 +1,5 @@
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -6,6 +7,8 @@ import javax.swing.JTextField;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -51,6 +54,11 @@ public class JFrame_Servidor extends javax.swing.JFrame {
         jTextArea_mensagens = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Porta do servidor: ");
 
@@ -66,6 +74,11 @@ public class JFrame_Servidor extends javax.swing.JFrame {
         jLabel3.setText("Mensagem: ");
 
         jTextField_mensagem.setEditable(false);
+        jTextField_mensagem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_mensagemKeyPressed(evt);
+            }
+        });
 
         jButton_enviar.setText("Enviar");
         jButton_enviar.setEnabled(false);
@@ -171,8 +184,9 @@ public class JFrame_Servidor extends javax.swing.JFrame {
                 jTextField_portaServidor.setEditable(false);
                 jTextField_apelido.setEditable(false);
                 jButton_conectar.setEnabled(false);
+                
 
-                cliente = servidor.accept();
+                cliente = servidor.accept(); //fecha a conexao cliente-servidor
                 jTextField_enderecoCliente.setText(cliente.getInetAddress().toString());
                 jTextField_mensagem.setEditable(true);
                 jButton_enviar.setEnabled(true);
@@ -182,20 +196,39 @@ public class JFrame_Servidor extends javax.swing.JFrame {
                     public void run() {
                         Date dataAtual = new Date();
                         while (true) {
-                            jTextArea_mensagens.setText("["+ dataAtual + "]: " + Comunicador.receberMensagem(cliente) + "\n");  
+                            jTextArea_mensagens.append("["+ dataAtual + "]: " + Comunicador.receberMensagem(cliente) + "\n");  
                         }
                     }
                 }.start();
 
             } catch (IOException | NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Erro ao conectar o servidor");
+                JOptionPane.showMessageDialog(this, "Erro ao levantar o servidor");
             }
         }
 
     }//GEN-LAST:event_jButton_conectarActionPerformed
 
     private void jButton_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_enviarActionPerformed
-        // TODO add your handling code here:
+        enviar();
+    }//GEN-LAST:event_jButton_enviarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            cliente.close();
+            servidor.close();
+        } catch (IOException ex) {
+            Logger.getLogger(JFrame_Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jTextField_mensagemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_mensagemKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            enviar();
+        }
+    }//GEN-LAST:event_jTextField_mensagemKeyPressed
+
+    private void enviar() {
         if (jTextField_mensagem.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this,"Antes de enviar, é preciso digitar!!");
         } else {
@@ -204,8 +237,8 @@ public class JFrame_Servidor extends javax.swing.JFrame {
             jTextArea_mensagens.append("["+ dataAtual + "] Você escreveu: " + jTextField_mensagem.getText() + "\n");
             jTextField_mensagem.setText("");
         }
-    }//GEN-LAST:event_jButton_enviarActionPerformed
-
+    }
+    
     /**
      * @param args the command line arguments
      */

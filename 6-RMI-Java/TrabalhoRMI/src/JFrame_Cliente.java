@@ -190,7 +190,7 @@ public class JFrame_Cliente extends javax.swing.JFrame {
     String servidor;
     String apelido;
     String frase;
-    LinkedList<String> listaMensagens = new LinkedList<>();
+    LinkedList<String> listaMensagens = new LinkedList<String>();
     Thread thread;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Conectar;

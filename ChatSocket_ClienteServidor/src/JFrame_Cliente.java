@@ -1,7 +1,11 @@
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -17,7 +21,7 @@ import javax.swing.JOptionPane;
 public class JFrame_Cliente extends javax.swing.JFrame {
 
     /**
-     * Creates new form JFrame_Servidor
+     * Creates new form JFrame_Cliente
      */
     public JFrame_Cliente() {
         initComponents();
@@ -48,6 +52,11 @@ public class JFrame_Cliente extends javax.swing.JFrame {
         jTextArea_mensagens = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Porta do servidor: ");
 
@@ -63,6 +72,11 @@ public class JFrame_Cliente extends javax.swing.JFrame {
         jLabel3.setText("Mensagem: ");
 
         jTextField_mensagem.setEditable(false);
+        jTextField_mensagem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_mensagemKeyPressed(evt);
+            }
+        });
 
         jButton_enviar.setText("Enviar");
         jButton_enviar.setEnabled(false);
@@ -106,28 +120,25 @@ public class JFrame_Cliente extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField_apelidoServidor))
+                                .addComponent(jLabel1)
+                                .addGap(27, 27, 27)
+                                .addComponent(jTextField_portaServidor, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField_portaServidor, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(19, 19, 19)
-                                        .addComponent(jTextField_apelido, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField_apelidoServidor)))
+                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField_enderecoServidor, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton_conectar))
-                        .addContainerGap(14, Short.MAX_VALUE))))
+                                .addGap(88, 88, 88)
+                                .addComponent(jLabel2))
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton_conectar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField_enderecoServidor, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                            .addComponent(jTextField_apelido))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,13 +153,12 @@ public class JFrame_Cliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField_apelido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_conectar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField_apelidoServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton_conectar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -160,8 +170,8 @@ public class JFrame_Cliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_enviarActionPerformed
-        // TODO add your handling code here:
+    
+    private void enviar() {
         if (jTextField_mensagem.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this,"Antes de enviar, é preciso digitar!!");
         } else {
@@ -170,19 +180,60 @@ public class JFrame_Cliente extends javax.swing.JFrame {
             jTextArea_mensagens.append("["+ dataAtual + "] Você escreveu: " + jTextField_mensagem.getText() + "\n");
             jTextField_mensagem.setText("");
         }
+    }
+    
+    private void jButton_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_enviarActionPerformed
+        enviar();
+        
     }//GEN-LAST:event_jButton_enviarActionPerformed
 
     private void jButton_conectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_conectarActionPerformed
-        // TODO add your handling code here:
-        try {
-            //cria um socket TCP para se conectar ao servidor de ip "localhost" porta 1234
-            cliente = new Socket("localhost", 1234);
+        if (jTextField_portaServidor.getText().isEmpty() || jTextField_enderecoServidor.getText().isEmpty() || jTextField_apelido.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Para conectar é preciso definir porta, endereço e apelido");
+        } else {
             
-            
-        } catch (IOException ex) {
-            ex.printStackTrace();
+            try {
+                //cria um socket TCP para se conectar ao servidor de ip "localhost" porta 1234
+                cliente = new Socket(jTextField_enderecoServidor.getText(), Integer.parseInt(jTextField_portaServidor.getText()));
+                jTextField_portaServidor.setEditable(false);
+                jTextField_apelido.setEditable(false);
+                jTextField_enderecoServidor.setEditable(false);
+                jButton_conectar.setEnabled(false);
+                
+                jTextField_mensagem.setEditable(true);
+                jButton_enviar.setEnabled(true);
+
+                new Thread() {
+                    @Override
+                    public void run() {
+                        Date dataAtual = new Date();
+                        while (true) {
+                            jTextArea_mensagens.append("["+ dataAtual + "]: " + Comunicador.receberMensagem(cliente) + "\n");  
+                        }
+                    }
+                }.start();
+
+            } catch (IOException | NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Erro ao conectar o servidor");
+            }
         }
     }//GEN-LAST:event_jButton_conectarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            cliente.close();
+        } catch (IOException ex) {
+            Logger.getLogger(JFrame_Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jTextField_mensagemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_mensagemKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            enviar();
+        }
+            
+    }//GEN-LAST:event_jTextField_mensagemKeyPressed
 
     /**
      * @param args the command line arguments
@@ -214,7 +265,7 @@ public class JFrame_Cliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrame_Servidor().setVisible(true);
+                new JFrame_Cliente().setVisible(true);
             }
         });
     }
