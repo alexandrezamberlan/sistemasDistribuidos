@@ -27,52 +27,7 @@ public class JFrameCliente extends javax.swing.JFrame {
      */
     public JFrameCliente() throws RemoteException {
         initComponents();
-        conecta();
     }
-    
-    private void conecta() {
-        servidor = JOptionPane.showInputDialog(null,"Endereço do servidor?");
-        apelido = JOptionPane.showInputDialog(null,"Qual seu apelido?");
-        
-        if (servidor.isEmpty() || apelido.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Alguns dos campos podem estar em branco");
-        } else {
-            try {
-                comunicador = (IComunica) Naming.lookup("rmi://" + servidor + "/Chat");
-                //jTextArea_Mensagens.append("Realizando conexão com o servidor...sucesso\n\n");
-                
-                new Thread() {
-                    public void run() {
-                        do {
-                            try {
-                                //se a lista local ao cliente for menor que a do servidor... 
-                                //entao atualizar a lista local e o jTextArea_Mensagens
-                                if (comunicador.receber().size() > listaBotoesAdversarios.size()) {
-                                    
-                                    listaBotoesAdversarios.clear();
-                                    for (Iterator<Button> iterator = comunicador.receber().iterator(); iterator.hasNext();) {
-                                        Button b = iterator.next();
-                                        b.setBounds(WIDTH, WIDTH, WIDTH, HEIGHT);
-                                        //jTextArea_Mensagens.append(f + "\n");
-                                        listaBotoesAdversarios.add(b);
-                                    }
-                                }
-                                Thread.sleep(2000);
-                            } catch (RemoteException ex) {
-                                Logger.getLogger(JFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
-                            } catch (InterruptedException ex) {
-                                Logger.getLogger(JFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            
-                        }while (true);
-                    }
-                }.start();
-                
-            } catch (MalformedURLException | NotBoundException |  RemoteException e ) {
-                JOptionPane.showMessageDialog(null, "Um erro aconteceu na conexão com o servidor");
-            }
-        }
-     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,10 +39,32 @@ public class JFrameCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton_jogador = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem_apelido = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton_jogador.setText("@");
+        jButton_jogador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton_jogadorKeyPressed(evt);
+            }
+        });
+
+        jMenu1.setText("Arquivo");
+
+        jMenuItem_apelido.setText("Conectar");
+        jMenuItem_apelido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_apelidoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem_apelido);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,19 +72,106 @@ public class JFrameCliente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(329, 329, 329)
-                .addComponent(jButton_jogador, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(458, Short.MAX_VALUE))
+                .addComponent(jButton_jogador, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(416, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(253, 253, 253)
                 .addComponent(jButton_jogador, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addContainerGap(292, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem_apelidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_apelidoActionPerformed
+        
+        this.apelido = JOptionPane.showInputDialog(this,"Informe seu apelido....");
+        this.servidor = JOptionPane.showInputDialog(this, "Informe o endereço do servidor....");
+        
+        if (servidor.isEmpty() || apelido.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Alguns dos campos podem estar em branco");
+        } else {
+            try {
+                comunicador = (IComunica) Naming.lookup("rmi://" + servidor + "/Comunica");
+                JOptionPane.showMessageDialog(this, "Cliente conectou com servidor....");
+//                jButton_jogador.setEnabled(true);
+//                jButton_jogador.setFocusable(true);
+//                jButton_jogador.setText(apelido);
+                
+//                new Thread() {
+//                    public void run() {
+//                        Componente c;
+//                        do {
+//                            try {
+//                                comunicador.receberPosicoesJogadores();
+//                                //se a lista local ao cliente for menor que a do servidor... 
+//                                //entao atualizar a lista local e o jTextArea_Mensagens
+////                                if (comunicador.receberPosicoesJogadores().size() > listaBotoesAdversarios.size()) {
+////                                    
+////                                    listaBotoesAdversarios.clear();
+////                                    for (Iterator<Componente> iterator = comunicador.receberPosicoesJogadores().iterator(); iterator.hasNext();) {
+////                                        c = iterator.next();
+////                                        System.out.println(c.x + "," + c.y + " : " + c.largura + "," + c.altura + "\n");
+////                                        //b.setBounds(WIDTH, WIDTH, WIDTH, HEIGHT);
+////                                        //jTextArea_Mensagens.append(f + "\n");
+////                                        listaBotoesAdversarios.add(c);
+////                                    }
+////                                }
+//                                Thread.sleep(2000);
+//                            } catch (RemoteException ex) {
+//                                Logger.getLogger(JFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
+//                            } catch (InterruptedException ex) {
+//                                Logger.getLogger(JFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
+//                            }
+//                            
+//                        }while (true);
+//                    }
+//                }.start();
+//                
+                
+            } catch (MalformedURLException | NotBoundException |  RemoteException e ) {
+                JOptionPane.showMessageDialog(null, "Um erro aconteceu na conexão com o servidor");
+            }
+        }
+    }//GEN-LAST:event_jMenuItem_apelidoActionPerformed
+
+    private void jButton_jogadorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_jogadorKeyPressed
+        // TODO add your handling code here:
+        
+            switch (evt.getKeyCode()) {
+                case 37:
+                    //System.out.println("indo para esquerda");
+                    Movimenta.irEsquerda(jButton_jogador);
+                    break;
+                case 38:
+                    //System.out.println("indo para cima");
+                    Movimenta.irCima(jButton_jogador);
+                    break;
+                case 39:
+                    //System.out.println("indo para direita");
+                    Movimenta.irDireita(jButton_jogador, 100);
+                    break;
+                case 40:
+                    //System.out.println("indo para baixo");
+                    Movimenta.irBaixo(jButton_jogador, 100);
+                    break;
+            }
+
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(JFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        try {
+//            comunicador.enviarPosicaoJogador(jButton_jogador);
+//        } catch (RemoteException ex) {
+//            System.out.println("tentou movimentar o jogador e enviar ao servidor, mas deu pau...." + ex.getMessage());
+//        }
+    }//GEN-LAST:event_jButton_jogadorKeyPressed
 
     /**
      * @param args the command line arguments
@@ -151,10 +215,13 @@ public class JFrameCliente extends javax.swing.JFrame {
     IComunica comunicador;
     String servidor;
     String apelido;
-    LinkedList<Button> listaBotoesAdversarios;
+    LinkedList<Componente> listaBotoesAdversarios;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_jogador;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem_apelido;
     // End of variables declaration//GEN-END:variables
 }
