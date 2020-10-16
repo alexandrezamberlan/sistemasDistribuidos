@@ -10,16 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author alexandrezamberlan
- */
 public class JFrameCliente extends javax.swing.JFrame {
 
     /**
@@ -98,41 +88,47 @@ public class JFrameCliente extends javax.swing.JFrame {
         } else {
             try {
                 comunicador = (IComunica) Naming.lookup("rmi://" + servidor + "/Comunica");
-                JOptionPane.showMessageDialog(this, "Cliente conectou com servidor....");
-                jButton_jogador.setEnabled(true);
-                jButton_jogador.requestFocus();
-                jButton_jogador.setText(apelido);
                 
-//                new Thread() {
-//                    public void run() {
-//                        Componente c;
-//                        do {
-//                            try {
-//                                comunicador.receberPosicoesJogadores();
-//                                //se a lista local ao cliente for menor que a do servidor... 
-//                                //entao atualizar a lista local e o jTextArea_Mensagens
-////                                if (comunicador.receberPosicoesJogadores().size() > listaBotoesAdversarios.size()) {
-////                                    
-////                                    listaBotoesAdversarios.clear();
-////                                    for (Iterator<Componente> iterator = comunicador.receberPosicoesJogadores().iterator(); iterator.hasNext();) {
-////                                        c = iterator.next();
-////                                        System.out.println(c.x + "," + c.y + " : " + c.largura + "," + c.altura + "\n");
-////                                        //b.setBounds(WIDTH, WIDTH, WIDTH, HEIGHT);
-////                                        //jTextArea_Mensagens.append(f + "\n");
-////                                        listaBotoesAdversarios.add(c);
-////                                    }
-////                                }
+                try {
+                    if (!comunicador.enviarJogador(jogador)) {
+                        JOptionPane.showMessageDialog(this, "Este apelido já existe!! Escolha outro!");
+                        return;
+                    }
+                    JOptionPane.showMessageDialog(this, "Cliente conectou com servidor....");
+                    jButton_jogador.setEnabled(true);
+                    jButton_jogador.requestFocus();
+                    jButton_jogador.setText(apelido);
+                    jogador = new Componente(apelido, jButton_jogador.getBounds().x, jButton_jogador.getBounds().y, jButton_jogador.getBounds().width,
+                           jButton_jogador.getBounds().height);
+                 } catch (RemoteException  ex) {
+                     System.out.println("tentou enviar um jogador/botão, mas deu pau...." + ex.getMessage());
+                }
+                
+                
+                new Thread() {
+                    public void run() {
+                        Componente c;
+                        do {
+                            try {
+                                listaJogadores.clear();
+                                listaJogadores.addAll( comunicador.receberPosicoesJogadores() );
+                                for (Iterator<Componente> i = listaJogadores.iterator(); i.hasNext();) {
+                                    if (!i.next().apelido.equals(jogador.apelido)) {
+                                        //testar se o componente já tem um botão na interface gráfica
+                                        //se o componente já foi instanciado na forma de botão, só movimenta
+                                        
+                                        
+                                        //senão instancia o componente como botão (dá visibilidade)
+                                    }
+                                }
 //                                Thread.sleep(2000);
-//                            } catch (RemoteException ex) {
-//                                Logger.getLogger(JFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
-//                            } catch (InterruptedException ex) {
-//                                Logger.getLogger(JFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
-//                            }
-//                            
-//                        }while (true);
-//                    }
-//                }.start();
-//                
+                            } catch (RemoteException ex) {
+                                Logger.getLogger(JFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }while (true);
+                    }
+                }.start();
+                
                 
             } catch (MalformedURLException | NotBoundException |  RemoteException e ) {
                 JOptionPane.showMessageDialog(null, "Um erro aconteceu na conexão com o servidor");
@@ -162,13 +158,13 @@ public class JFrameCliente extends javax.swing.JFrame {
             default:
         }
         
-        c = new Componente(jButton_jogador.getBounds().x, jButton_jogador.getBounds().y, jButton_jogador.getBounds().width,
-        jButton_jogador.getBounds().height);
-        
+        jogador.x = jButton_jogador.getBounds().x;
+        jogador.y = jButton_jogador.getBounds().y;
+                
         new Thread() {
             public void run() {
                 try {
-                    comunicador.enviarPosicaoJogador(c);
+                    comunicador.atualizarPosicaoJogador(jogador);
                  } catch (RemoteException  ex) {
                      System.out.println("tentou movimentar o jogador e enviar ao servidor, mas deu pau...." + ex.getMessage());
                 }
@@ -219,8 +215,8 @@ public class JFrameCliente extends javax.swing.JFrame {
     IComunica comunicador;
     String servidor;
     String apelido;
-    LinkedList<Componente> listaBotoesAdversarios;
-    Componente c;
+    LinkedList<Componente> listaJogadores;
+    Componente jogador;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
