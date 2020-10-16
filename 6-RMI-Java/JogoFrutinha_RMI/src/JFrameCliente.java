@@ -46,6 +46,8 @@ public class JFrameCliente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton_jogador.setText("@");
+        jButton_jogador.setActionCommand("");
+        jButton_jogador.setEnabled(false);
         jButton_jogador.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jButton_jogadorKeyPressed(evt);
@@ -97,9 +99,9 @@ public class JFrameCliente extends javax.swing.JFrame {
             try {
                 comunicador = (IComunica) Naming.lookup("rmi://" + servidor + "/Comunica");
                 JOptionPane.showMessageDialog(this, "Cliente conectou com servidor....");
-//                jButton_jogador.setEnabled(true);
-//                jButton_jogador.setFocusable(true);
-//                jButton_jogador.setText(apelido);
+                jButton_jogador.setEnabled(true);
+                jButton_jogador.requestFocus();
+                jButton_jogador.setText(apelido);
                 
 //                new Thread() {
 //                    public void run() {
@@ -141,36 +143,38 @@ public class JFrameCliente extends javax.swing.JFrame {
     private void jButton_jogadorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_jogadorKeyPressed
         // TODO add your handling code here:
         
-            switch (evt.getKeyCode()) {
-                case 37:
-                    //System.out.println("indo para esquerda");
-                    Movimenta.irEsquerda(jButton_jogador);
-                    break;
-                case 38:
-                    //System.out.println("indo para cima");
-                    Movimenta.irCima(jButton_jogador);
-                    break;
-                case 39:
-                    //System.out.println("indo para direita");
-                    Movimenta.irDireita(jButton_jogador, 100);
-                    break;
-                case 40:
-                    //System.out.println("indo para baixo");
-                    Movimenta.irBaixo(jButton_jogador, 100);
-                    break;
+        switch (evt.getKeyCode()) {
+            case 37:
+                Movimenta.irEsquerda(jButton_jogador);
+                break;
+            case 38:
+                //System.out.println("indo para cima");
+                Movimenta.irCima(jButton_jogador);
+                break;
+            case 39:
+                //System.out.println("indo para direita");
+                Movimenta.irDireita(jButton_jogador, this.getBounds().width);
+                break;
+            case 40:
+                //System.out.println("indo para baixo");
+                Movimenta.irBaixo(jButton_jogador, this.getBounds().height);
+                break;
+            default:
+        }
+        
+        c = new Componente(jButton_jogador.getBounds().x, jButton_jogador.getBounds().y, jButton_jogador.getBounds().width,
+        jButton_jogador.getBounds().height);
+        
+        new Thread() {
+            public void run() {
+                try {
+                    comunicador.enviarPosicaoJogador(c);
+                 } catch (RemoteException  ex) {
+                     System.out.println("tentou movimentar o jogador e enviar ao servidor, mas deu pau...." + ex.getMessage());
+                }
             }
-
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(JFrameCliente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//        try {
-//            comunicador.enviarPosicaoJogador(jButton_jogador);
-//        } catch (RemoteException ex) {
-//            System.out.println("tentou movimentar o jogador e enviar ao servidor, mas deu pau...." + ex.getMessage());
-//        }
+        }.start();
+       
     }//GEN-LAST:event_jButton_jogadorKeyPressed
 
     /**
@@ -216,6 +220,7 @@ public class JFrameCliente extends javax.swing.JFrame {
     String servidor;
     String apelido;
     LinkedList<Componente> listaBotoesAdversarios;
+    Componente c;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
