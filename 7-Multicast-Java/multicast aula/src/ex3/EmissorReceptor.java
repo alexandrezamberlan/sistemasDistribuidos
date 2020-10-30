@@ -10,10 +10,6 @@ import util.ComunicadorUDP;
 
 public class EmissorReceptor {
 
-    InetAddress group;
-    MulticastSocket s;
-    ComunicadorUDP com = new ComunicadorUDP();
-
     //ESPECIFICO UMA THREAD RECEPTORA DE MENSAGENS DO GRUPO
     class ThreadReceptora extends Thread {
 
@@ -81,6 +77,10 @@ public class EmissorReceptor {
         }
     }
 
+
+    InetAddress group;
+    MulticastSocket s;
+    ComunicadorUDP com = new ComunicadorUDP();
     public static void main(final String args[]) {
         final EmissorReceptor er = new EmissorReceptor();
     }

@@ -1,3 +1,6 @@
+/**
+ * pacote que coordena o frame do chat no que se  refere a interface gráfica e comunicação com o usuário
+ */
 package chatMulticast;
 
 import com.sun.glass.events.KeyEvent;
@@ -21,10 +24,6 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
     public JFrame_chatMulticast() {
         initComponents();
     }
-    InetAddress group;
-    MulticastSocket s;
-    ComunicadorUDP com = new ComunicadorUDP();
-    LinkedList<String> lista = new LinkedList<>();
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -33,13 +32,13 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
         jPanel_Chat = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea_Mensagens = new javax.swing.JTextArea();
-        jTextField_Requisicao = new javax.swing.JTextField();
+        jTextField_textoDeEnvio = new javax.swing.JTextField();
         jButton_Enviar = new javax.swing.JButton();
         jLabel_Porta = new javax.swing.JLabel();
         jTextField_Porta = new javax.swing.JTextField();
         jLabel_ServidorIP = new javax.swing.JLabel();
         jButton_Sair = new javax.swing.JButton();
-        jTextField_ServidorIP = new javax.swing.JTextField();
+        jTextField_GrupoIP = new javax.swing.JTextField();
         jLabel_Nick = new javax.swing.JLabel();
         jTextField_Nick = new javax.swing.JTextField();
         jButton_Conectar = new javax.swing.JButton();
@@ -49,11 +48,12 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
         jTextArea_Mensagens.setEditable(false);
         jTextArea_Mensagens.setColumns(20);
         jTextArea_Mensagens.setRows(5);
+        jTextArea_Mensagens.setFocusable(false);
         jScrollPane1.setViewportView(jTextArea_Mensagens);
 
-        jTextField_Requisicao.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextField_textoDeEnvio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField_RequisicaoKeyPressed(evt);
+                jTextField_textoDeEnvioKeyPressed(evt);
             }
         });
 
@@ -68,7 +68,7 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
 
         jTextField_Porta.setText("3456");
 
-        jLabel_ServidorIP.setText("Servidor IP:");
+        jLabel_ServidorIP.setText("Grupo IP:");
 
         jButton_Sair.setText("Sair");
         jButton_Sair.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +77,7 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
             }
         });
 
-        jTextField_ServidorIP.setText("239.1.2.3");
+        jTextField_GrupoIP.setText("239.1.2.3");
 
         jLabel_Nick.setText("Nick:");
 
@@ -96,7 +96,7 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addComponent(jLabel_ServidorIP)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField_ServidorIP, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField_GrupoIP, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_Porta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -107,16 +107,14 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
                 .addComponent(jTextField_Nick, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jButton_Conectar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jButton_Sair)
                 .addGap(2, 2, 2))
             .addGroup(jPanel_ChatLayout.createSequentialGroup()
-                .addComponent(jTextField_Requisicao)
+                .addComponent(jTextField_textoDeEnvio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_Enviar))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ChatLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel_ChatLayout.setVerticalGroup(
             jPanel_ChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,12 +123,12 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_ChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_Requisicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_textoDeEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_Enviar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel_ChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_ServidorIP)
-                    .addComponent(jTextField_ServidorIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_GrupoIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_Porta)
                     .addComponent(jTextField_Porta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_Nick)
@@ -157,13 +155,16 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * classe interna que garante que o processo de ler/ouvir mensagens seja executado concomitantemente
+     */
     class ThreadReceptora extends Thread {
         @Override
         public void run() {
             JFrame meuFrame = JFrame_chatMulticast.this;
             while (true) {
                 try {
-                    DatagramPacket pacote = com.recebeMensagem(s);
+                    DatagramPacket pacote = ComunicadorUDP.recebeMensagem(socket);
                     String msgRecebida = new String(pacote.getData(), 0, pacote.getLength());
                     lista.add(msgRecebida);
                     Iterator i = lista.iterator();
@@ -178,62 +179,80 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * método privado que avisa que um computador saiu do grupo e encerra a conexão
+     * @throws IOException
+     * @throws NumberFormatException
+     * @throws NullPointerException 
+     */
     private void sairDoSistema() throws IOException, NumberFormatException, NullPointerException {
         try {
             String msg = jTextField_Nick.getText() + " saiu da sala";
-            DatagramPacket pacote = com.montaMensagem(msg, jTextField_ServidorIP.getText(), Integer.parseInt(jTextField_Porta.getText()));
-            s.send(pacote);
-            
+            DatagramPacket pacote = ComunicadorUDP.montaMensagem(msg, jTextField_GrupoIP.getText(), Integer.parseInt(jTextField_Porta.getText()));
+            socket.send(pacote);
+
         } catch (IOException | NumberFormatException | NullPointerException e) {
             if (e.getClass().toString().equals("class java.lang.NullPointerException")) {
                 JOptionPane.showMessageDialog(this, "Você está saindo sem ter se conectado");
             } else {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
-        }  finally {
+        } finally {
             System.exit(0);
-        }      
+        }
     }
 
-    //ESPECIFICO UMA THREAD EMISSORA DE MENSAGENS DO GRUPO
+    /**
+     * método privado que realiza a conexão do computador em um grupo multicast,
+     * tendo como referência endereço virtual do grupo e a porta do socket. O processo de escuta/leitura
+     * é circundado por thread de leitura
+     * @param evt contém o evento recebido pelo tratador
+     */
     private void jButton_ConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ConectarActionPerformed
-        jTextField_ServidorIP.getText();
+        jTextField_GrupoIP.getText();
         jTextField_Porta.getText();
         try {
             if (jTextField_Nick.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Preencha seu nick");
             } else {
                 //DEFINO O IP DO GRUPO
-                group = InetAddress.getByName(jTextField_ServidorIP.getText());
+                grupo = InetAddress.getByName(jTextField_GrupoIP.getText());
                 //CRIO O SOCKET MULTICAST COM A PORTA ESPECIFICADA
-                s = new MulticastSocket(Integer.parseInt(jTextField_Porta.getText()));
+                socket = new MulticastSocket(Integer.parseInt(jTextField_Porta.getText()));
                 //ENTRA NO GRUPO MULTICAST PARA RECEBER AS MENSAGENS
-                s.joinGroup(group);
+                socket.joinGroup(grupo);
                 //CRIO A THREAD PARA RECEBER AS MENSAGENS
                 ThreadReceptora tR = new ThreadReceptora();
                 tR.start();
                 JOptionPane.showMessageDialog(this, "Conectado com sucesso!");
                 jButton_Conectar.setEnabled(false);
                 jTextField_Nick.setEnabled(false);
-                jTextField_ServidorIP.setEnabled(false);
+                jTextField_GrupoIP.setEnabled(false);
                 jTextField_Porta.setEnabled(false);
 
                 String msg = jTextField_Nick.getText() + " entrou na sala";
-                DatagramPacket pacote = com.montaMensagem(msg, jTextField_ServidorIP.getText(), Integer.parseInt(jTextField_Porta.getText()));
-                s.send(pacote);
-                jTextField_Requisicao.requestFocus();
+                DatagramPacket pacote = ComunicadorUDP.montaMensagem(msg, jTextField_GrupoIP.getText(), Integer.parseInt(jTextField_Porta.getText()));
+                socket.send(pacote);
+                jTextField_textoDeEnvio.requestFocus();
             }
         } catch (HeadlessException | IOException | NumberFormatException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_jButton_ConectarActionPerformed
-
+   
+    /**
+     * método privado que captura a mensagem escrita na caixa de texto mais o apelido da caixa de texto nick
+     * monta a mensagem e a envia ao grupo
+     * @throws IOException
+     * @throws NumberFormatException
+     * @throws NullPointerException 
+     */
     private void enviarMsg() throws IOException, NumberFormatException, NullPointerException {
         try {
-            String msg = jTextField_Nick.getText() + ": " + jTextField_Requisicao.getText();
-            DatagramPacket pacote = com.montaMensagem(msg, jTextField_ServidorIP.getText(), Integer.parseInt(jTextField_Porta.getText()));
-            s.send(pacote);
-            jTextField_Requisicao.setText("");
+            String msg = jTextField_Nick.getText() + ": " + jTextField_textoDeEnvio.getText();
+            DatagramPacket pacote = ComunicadorUDP.montaMensagem(msg, jTextField_GrupoIP.getText(), Integer.parseInt(jTextField_Porta.getText()));
+            socket.send(pacote);
+            jTextField_textoDeEnvio.setText("");
         } catch (IOException | NumberFormatException | NullPointerException e) {
             if (e.getClass().toString().equals("class java.lang.NullPointerException")) {
                 JOptionPane.showMessageDialog(this, "Você precisa conectar antes de enviar msgs");
@@ -243,37 +262,53 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * método privado que trata o envio de mensagens escritas na caixa de texto de mensagens 
+     * @param evt contém o evento recebido pelo tratador
+     */
     private void jButton_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EnviarActionPerformed
         try {
-                this.enviarMsg();
-                jTextField_Requisicao.requestFocus();
-            } catch (IOException | NumberFormatException | NullPointerException e) {
-                
-            }
+            this.enviarMsg();
+            jTextField_textoDeEnvio.requestFocus();
+        } catch (IOException | NumberFormatException | NullPointerException e) {
+
+        }
     }//GEN-LAST:event_jButton_EnviarActionPerformed
 
+    /**
+     * método privado que trata o evento do botão sair, ou seja, finaliza o sistema
+     * @param evt contém o evento recebido pelo tratador
+     */
     private void jButton_SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SairActionPerformed
         try {
-            sairDoSistema();
+            this.sairDoSistema();
         } catch (IOException | NumberFormatException | NullPointerException e) {
-            
+
         }
     }//GEN-LAST:event_jButton_SairActionPerformed
 
-    private void jTextField_RequisicaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_RequisicaoKeyPressed
+    /**
+     * método privado que trata o pressionamento das teclas Enter ou Esc quando o foco estiver na caixa de envio de texto
+     * @param evt contém o evento recebido pelo tratador
+     */
+    private void jTextField_textoDeEnvioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_textoDeEnvioKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
                 this.enviarMsg();
             } catch (IOException | NumberFormatException | NullPointerException e) {
-                
+
             }
         }
 
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
+            try {
+                this.sairDoSistema();
+            } catch (IOException | NumberFormatException | NullPointerException e) {
+
+            }
         }
-    }//GEN-LAST:event_jTextField_RequisicaoKeyPressed
+    }//GEN-LAST:event_jTextField_textoDeEnvioKeyPressed
 
     /**
      * @param args the command line arguments
@@ -310,6 +345,10 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
         });
     }
 
+    InetAddress grupo;
+    MulticastSocket socket;
+    LinkedList<String> lista = new LinkedList<>();
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Conectar;
     private javax.swing.JButton jButton_Enviar;
@@ -320,9 +359,9 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_Chat;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea_Mensagens;
+    private javax.swing.JTextField jTextField_GrupoIP;
     private javax.swing.JTextField jTextField_Nick;
     private javax.swing.JTextField jTextField_Porta;
-    private javax.swing.JTextField jTextField_Requisicao;
-    private javax.swing.JTextField jTextField_ServidorIP;
+    private javax.swing.JTextField jTextField_textoDeEnvio;
     // End of variables declaration//GEN-END:variables
 }

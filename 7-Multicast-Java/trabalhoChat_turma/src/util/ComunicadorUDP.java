@@ -1,3 +1,6 @@
+/**
+ * pacote responsável por oferecer os serviços de montar, enviar e receber mensagens
+ */
 package util;
 
 import java.io.IOException;
@@ -8,27 +11,20 @@ import java.net.UnknownHostException;
 import javax.swing.JOptionPane;
 
 /**
- * 
+ *
  * @author Turma Sistemas Distribuídos 2019-2
  */
 public class ComunicadorUDP {
 
     /**
-     * Construtor vazio
-     */
-    public ComunicadorUDP() {
-
-    }
-
-    /**
-     * método de instância que recebe uma mensagem, um endereço de ip e uma porta de comunicação
+     * método de classe que recebe uma mensagem, um endereço de ip e uma porta de comunicação
      * @param mensagem mensagem a ser enviada
      * @param ip endereço do grupo
      * @param porta porta de saída da estação para o grupo
      * @return DatagramPacket
      * @throws UnknownHostException 
      */
-    public DatagramPacket montaMensagem(String mensagem, String ip, int porta) throws UnknownHostException {
+    public static DatagramPacket montaMensagem(String mensagem, String ip, int porta) throws UnknownHostException {
         try {
             byte[] buffer = mensagem.getBytes();
             //monta um pacote datagrama com a mensagem, indicando, além dos dados, o endereço e a porta a ser enviado
@@ -41,12 +37,12 @@ public class ComunicadorUDP {
     }
 
     /**
-     * método de instância que recebe um DatagramSocket e um DatagramPacket
+     * método de classe que recebe um DatagramSocket e um DatagramPacket
      * @param s DatagramSocket
      * @param pacote DatagramPacket
      * @throws IOException 
      */
-    public void enviaMensagem(DatagramSocket s, DatagramPacket pacote) throws IOException {
+    public static void enviaMensagem(DatagramSocket s, DatagramPacket pacote) throws IOException {
         try {
             //envia o pacote datagrama
             s.send(pacote);
@@ -56,14 +52,12 @@ public class ComunicadorUDP {
     }
 
     /**
-     * método de instancia que recebe um DatagramSocket e retorna um
-     * DatagramPacket
-     *
+     * método de classe que recebe um DatagramSocket e retorna um DatagramPacket
      * @param s o DatagramSocket recebido
      * @return DatagramPackt
      * @throws IOException
      */
-    public DatagramPacket recebeMensagem(DatagramSocket s) throws IOException {
+    public static DatagramPacket recebeMensagem(DatagramSocket s) throws IOException {
         try {
             //cria um pacote vazio de 512 bytes
             DatagramPacket pacote = new DatagramPacket(new byte[512], 512);
