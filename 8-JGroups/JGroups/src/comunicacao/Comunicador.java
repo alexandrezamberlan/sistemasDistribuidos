@@ -3,7 +3,7 @@ package comunicacao;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
+
 import org.jgroups.Address;
 import org.jgroups.JChannel;
 import org.jgroups.Message;
@@ -16,10 +16,10 @@ public class Comunicador extends ReceiverAdapter {
     List<Address> listaMembros;
     String frase;
     Message mensagem;
-    JFrame_chatJGROUPS meuFrame;
+    JFrame_jogoDaVelhaJGroups meuFrame;
     StringBuffer membrosStringBuffer;
 
-    public void iniciar(JFrame_chatJGROUPS meuFrame) throws Exception {
+    public void iniciar(JFrame_jogoDaVelhaJGroups meuFrame) throws Exception {
 
         System.setProperty("java.net.preferIPv4Stack", "true");//desabilita ipv6, para que só sejam aceitas conexões via ipv4
         /*
@@ -110,12 +110,7 @@ public class Comunicador extends ReceiverAdapter {
     public void viewAccepted(View view_atual) {
         this.listaMembros = view_atual.getMembers();
         this.membrosStringBuffer = new StringBuffer();
-        this.meuFrame.getjComboBox_listaParticipantesGrupo().removeAllItems();
-        this.meuFrame.getjComboBox_listaParticipantesGrupo().addItem("Selecione o participante");
-        for (int i = 0; i < listaMembros.size(); i++) {
-            this.membrosStringBuffer.append(listaMembros.get(i) + "\n");
-            this.meuFrame.getjComboBox_listaParticipantesGrupo().addItem(listaMembros.get(i).toString());
-        }
+        
         this.meuFrame.getjTextArea_listaMembros().setText(membrosStringBuffer.toString());
     }
 
