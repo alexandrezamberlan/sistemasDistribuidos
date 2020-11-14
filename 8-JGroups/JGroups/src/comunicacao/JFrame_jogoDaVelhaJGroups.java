@@ -28,6 +28,7 @@ public class JFrame_jogoDaVelhaJGroups extends javax.swing.JFrame {
         jTextArea_mensagensGerais.setFocusable(false);
         jTextField_mensagemParaGrupo.setEnabled(false);
         jButton_enviarMensagemGrupo.setEnabled(false);
+        jButton_enviarJogada.setEnabled(false);
     }
 
     /**
@@ -114,11 +115,28 @@ public class JFrame_jogoDaVelhaJGroups extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.setText("-");
+
+        jTextField2.setText("-");
+
+        jTextField3.setText("-");
+
+        jTextField4.setText("-");
+
+        jTextField5.setText("-");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
             }
         });
+
+        jTextField6.setText("-");
+
+        jTextField7.setText("-");
+
+        jTextField8.setText("-");
+
+        jTextField9.setText("-");
 
         javax.swing.GroupLayout jPanel_matrizLayout = new javax.swing.GroupLayout(jPanel_matriz);
         jPanel_matriz.setLayout(jPanel_matrizLayout);
@@ -261,6 +279,7 @@ public class JFrame_jogoDaVelhaJGroups extends javax.swing.JFrame {
             jTextField_apelido.setText(jTextField_apelido.getText().toUpperCase());
             jTextField_apelido.setEditable(false);
             jTextField_apelido.setFocusable(false);
+            jButton_enviarJogada.setEnabled(true);
 
             try {
                 comunicador = new Comunicador();

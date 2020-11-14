@@ -77,8 +77,8 @@ public class Comunicador extends ReceiverAdapter {
                     meuFrame.jTextField4.getText() + meuFrame.jTextField5.getText() + meuFrame.jTextField6.getText() +
                     meuFrame.jTextField7.getText() + meuFrame.jTextField8.getText() + meuFrame.jTextField9.getText());
             System.out.println("Esta foi uma jogada: " + jogadas);
-            this.mensagem = new Message(null, jogadas);
-
+            this.mensagem = new Message(null, jogadas.toString());
+            this.channel.send(this.mensagem);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(meuFrame, "Algo ocorreu de errrado ao enviar sua jogada!!");
         }
@@ -126,6 +126,7 @@ public class Comunicador extends ReceiverAdapter {
     @Override
     public void receive(Message msg) {
         Date dt = new Date();
+        System.out.println("Mensagem chegando de um usuario: " + msg.getObject().toString());
         if (msg.getObject().toString().contains("#")) {
             String msgTratada = msg.getObject().toString().replace("#", "");
             
@@ -163,9 +164,15 @@ public class Comunicador extends ReceiverAdapter {
     @Override
     public void viewAccepted(View view_atual) {
         this.listaMembros = view_atual.getMembers();
+        //System.out.println(listaMembros);
         this.membrosStringBuffer = new StringBuffer();
+        this.meuFrame.getjTextArea_listaMembros().setText("");
+        for (int i = 0; i < listaMembros.size(); i++) {
+            membrosStringBuffer.append(listaMembros.get(i) + "\n");
+        }
 
         this.meuFrame.getjTextArea_listaMembros().setText(membrosStringBuffer.toString());
+        
     }
 
     /*
@@ -175,7 +182,6 @@ public class Comunicador extends ReceiverAdapter {
      */
     @Override
     public void suspect(Address mbr) {
-
         JOptionPane.showMessageDialog(meuFrame, "PROCESSO SUSPEITO DE FALHA: " + mbr);
     }
 
