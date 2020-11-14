@@ -8,6 +8,7 @@ package comunicacao;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -289,7 +290,7 @@ public class JFrame_jogoDaVelhaJGroups extends javax.swing.JFrame {
     private void jButton_enviarMensagemGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_enviarMensagemGrupoActionPerformed
         // TODO add your handling code here:
         if (!jTextField_mensagemParaGrupo.getText().equals("")) {
-            comunicador.enviar(jTextField_mensagemParaGrupo.getText(), null);
+            comunicador.enviar("#" + jTextField_mensagemParaGrupo.getText(), null);
             jTextField_mensagemParaGrupo.setText("");
         } else JOptionPane.showMessageDialog(this, "Antes de enviar, você precisa escrever uma mensagem");
     }//GEN-LAST:event_jButton_enviarMensagemGrupoActionPerformed
@@ -300,7 +301,7 @@ public class JFrame_jogoDaVelhaJGroups extends javax.swing.JFrame {
 
     private void jButton_enviarJogadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_enviarJogadaActionPerformed
         // TODO add your handling code here:
-        //comunicador.enviarJogada(??????????); //enviar toda a matriz
+        comunicador.enviarJogada(JFrame_jogoDaVelhaJGroups.this); //enviar toda a matriz
     }//GEN-LAST:event_jButton_enviarJogadaActionPerformed
 
     /**
@@ -337,35 +338,80 @@ public class JFrame_jogoDaVelhaJGroups extends javax.swing.JFrame {
             }
         });
     }
-    
+
     public JButton getjButton_entrarGrupo() {
         return jButton_entrarGrupo;
+    }
+
+    public void setjButton_entrarGrupo(JButton jButton_entrarGrupo) {
+        this.jButton_entrarGrupo = jButton_entrarGrupo;
+    }
+
+    public JButton getjButton_enviarJogada() {
+        return jButton_enviarJogada;
+    }
+
+    public void setjButton_enviarJogada(JButton jButton_enviarJogada) {
+        this.jButton_enviarJogada = jButton_enviarJogada;
     }
 
     public JButton getjButton_enviarMensagemGrupo() {
         return jButton_enviarMensagemGrupo;
     }
 
+    public void setjButton_enviarMensagemGrupo(JButton jButton_enviarMensagemGrupo) {
+        this.jButton_enviarMensagemGrupo = jButton_enviarMensagemGrupo;
+    }
+
     public JButton getjButton_sairGrupo() {
         return jButton_sairGrupo;
+    }
+
+    public void setjButton_sairGrupo(JButton jButton_sairGrupo) {
+        this.jButton_sairGrupo = jButton_sairGrupo;
+    }
+
+    public JPanel getjPanel_matriz() {
+        return jPanel_matriz;
+    }
+
+    public void setjPanel_matriz(JPanel jPanel_matriz) {
+        this.jPanel_matriz = jPanel_matriz;
+    }
+
+    public JTextArea getjTextArea_listaMembros() {
+        return jTextArea_listaMembros;
+    }
+
+    public void setjTextArea_listaMembros(JTextArea jTextArea_listaMembros) {
+        this.jTextArea_listaMembros = jTextArea_listaMembros;
     }
 
     public JTextArea getjTextArea_mensagensGerais() {
         return jTextArea_mensagensGerais;
     }
 
+    public void setjTextArea_mensagensGerais(JTextArea jTextArea_mensagensGerais) {
+        this.jTextArea_mensagensGerais = jTextArea_mensagensGerais;
+    }
+
     public JTextField getjTextField_apelido() {
         return jTextField_apelido;
+    }
+
+    public void setjTextField_apelido(JTextField jTextField_apelido) {
+        this.jTextField_apelido = jTextField_apelido;
     }
 
     public JTextField getjTextField_mensagemParaGrupo() {
         return jTextField_mensagemParaGrupo;
     }
 
-    public JTextArea getjTextArea_listaMembros() {
-        return jTextArea_listaMembros;
+    public void setjTextField_mensagemParaGrupo(JTextField jTextField_mensagemParaGrupo) {
+        this.jTextField_mensagemParaGrupo = jTextField_mensagemParaGrupo;
     }
     
+   
     
     
     Comunicador comunicador;
@@ -384,15 +430,15 @@ public class JFrame_jogoDaVelhaJGroups extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea_listaMembros;
     private javax.swing.JTextArea jTextArea_mensagensGerais;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField2;
+    public javax.swing.JTextField jTextField3;
+    public javax.swing.JTextField jTextField4;
+    public javax.swing.JTextField jTextField5;
+    public javax.swing.JTextField jTextField6;
+    public javax.swing.JTextField jTextField7;
+    public javax.swing.JTextField jTextField8;
+    public javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTextField_apelido;
     private javax.swing.JTextField jTextField_mensagemParaGrupo;
     // End of variables declaration//GEN-END:variables

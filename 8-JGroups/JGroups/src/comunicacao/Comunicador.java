@@ -3,6 +3,7 @@ package comunicacao;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import org.jgroups.Address;
 import org.jgroups.JChannel;
@@ -18,6 +19,16 @@ public class Comunicador extends ReceiverAdapter {
     Message mensagem;
     JFrame_jogoDaVelhaJGroups meuFrame;
     StringBuffer membrosStringBuffer;
+    JTextField jTextField1;
+    JTextField jTextField2;
+    JTextField jTextField3;
+    JTextField jTextField4;
+    JTextField jTextField5;
+    JTextField jTextField6;
+    JTextField jTextField7;
+    JTextField jTextField8;
+    JTextField jTextField9;
+    
 
     public void iniciar(JFrame_jogoDaVelhaJGroups meuFrame) throws Exception {
 
@@ -44,9 +55,34 @@ public class Comunicador extends ReceiverAdapter {
          * cria o cluster caso este seja o primeiro membro a entrar nele.
          */
         this.meuFrame = meuFrame;
+        jTextField1 = meuFrame.jTextField1;
+        jTextField1 = meuFrame.jTextField2;
+        jTextField1 = meuFrame.jTextField3;
+        jTextField1 = meuFrame.jTextField4;
+        jTextField1 = meuFrame.jTextField5;
+        jTextField1 = meuFrame.jTextField6;
+        jTextField1 = meuFrame.jTextField7;
+        jTextField1 = meuFrame.jTextField8;
+        jTextField1 = meuFrame.jTextField9;
+        
+        
         this.channel.setName(meuFrame.getjTextField_apelido().getText());
         this.channel.connect(meuFrame.getTitle());
         this.meuFrame.getjTextArea_listaMembros().setText(membrosStringBuffer.toString());
+    }
+
+    public void enviarJogada(JFrame_jogoDaVelhaJGroups meuFrame) {
+        try {
+            StringBuilder jogadas = new StringBuilder(meuFrame.jTextField1.getText() + meuFrame.jTextField2.getText() + meuFrame.jTextField3.getText() + 
+                    meuFrame.jTextField4.getText() + meuFrame.jTextField5.getText() + meuFrame.jTextField6.getText() +
+                    meuFrame.jTextField7.getText() + meuFrame.jTextField8.getText() + meuFrame.jTextField9.getText());
+            System.out.println("Esta foi uma jogada: " + jogadas);
+            this.mensagem = new Message(null, jogadas);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(meuFrame, "Algo ocorreu de errrado ao enviar sua jogada!!");
+        }
+
     }
 
     public void enviar(String frase, String participante) {
@@ -65,7 +101,7 @@ public class Comunicador extends ReceiverAdapter {
                         this.mensagem = new Message(listaMembros.get(i), frase);
                         break;
                     }
-                }                
+                }
             }
             /*
             * envia a mensagem montada acima ao grupo
@@ -90,8 +126,26 @@ public class Comunicador extends ReceiverAdapter {
     @Override
     public void receive(Message msg) {
         Date dt = new Date();
-        this.meuFrame.getjTextArea_mensagensGerais().append("[" + dt.toString() + "] " + msg.getSrc()
-                + " disse: " + msg.getObject() + "\n");
+        if (msg.getObject().toString().contains("#")) {
+            String msgTratada = msg.getObject().toString().replace("#", "");
+            
+            this.meuFrame.getjTextArea_mensagensGerais().append("[" + dt.toString() + "] " + msg.getSrc()
+                    + " disse: " + msgTratada + "\n");
+        } else {
+            this.meuFrame.getjTextArea_mensagensGerais().append("[" + dt.toString() + "] " + msg.getSrc()
+                    + " fez uma jogada\n");
+            
+            this.meuFrame.jTextField1.setText(""+msg.getObject().toString().charAt(0));
+            this.meuFrame.jTextField2.setText(""+msg.getObject().toString().charAt(1));
+            this.meuFrame.jTextField3.setText(""+msg.getObject().toString().charAt(2));
+            this.meuFrame.jTextField4.setText(""+msg.getObject().toString().charAt(3));
+            this.meuFrame.jTextField5.setText(""+msg.getObject().toString().charAt(4));
+            this.meuFrame.jTextField6.setText(""+msg.getObject().toString().charAt(5));
+            this.meuFrame.jTextField7.setText(""+msg.getObject().toString().charAt(6));
+            this.meuFrame.jTextField8.setText(""+msg.getObject().toString().charAt(7));
+            this.meuFrame.jTextField9.setText(""+msg.getObject().toString().charAt(8));
+        }
+
     }
 
     /*
@@ -110,7 +164,7 @@ public class Comunicador extends ReceiverAdapter {
     public void viewAccepted(View view_atual) {
         this.listaMembros = view_atual.getMembers();
         this.membrosStringBuffer = new StringBuffer();
-        
+
         this.meuFrame.getjTextArea_listaMembros().setText(membrosStringBuffer.toString());
     }
 
