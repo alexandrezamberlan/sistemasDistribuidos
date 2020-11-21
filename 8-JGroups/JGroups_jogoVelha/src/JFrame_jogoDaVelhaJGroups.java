@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package comunicacao;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -23,7 +18,7 @@ public class JFrame_jogoDaVelhaJGroups extends javax.swing.JFrame {
      */
     public JFrame_jogoDaVelhaJGroups() {
         initComponents();
-         jButton_sairGrupo.setEnabled(false);
+        jButton_sairGrupo.setEnabled(false);
         jTextArea_mensagensGerais.setEditable(false);
         jTextArea_mensagensGerais.setFocusable(false);
         jTextField_mensagemParaGrupo.setEnabled(false);
@@ -286,7 +281,7 @@ public class JFrame_jogoDaVelhaJGroups extends javax.swing.JFrame {
                 comunicador.iniciar(JFrame_jogoDaVelhaJGroups.this);
             } catch (Exception ex) {
                 //                Logger.getLogger(JFrame_chatJGROUPS.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(this,"Problema para entrar no grupo ou channel.....");
+                JOptionPane.showMessageDialog(this, "Problema para entrar no grupo ou channel.....");
             }
 
         }
@@ -311,7 +306,8 @@ public class JFrame_jogoDaVelhaJGroups extends javax.swing.JFrame {
         if (!jTextField_mensagemParaGrupo.getText().equals("")) {
             comunicador.enviar("#" + jTextField_mensagemParaGrupo.getText(), null);
             jTextField_mensagemParaGrupo.setText("");
-        } else JOptionPane.showMessageDialog(this, "Antes de enviar, você precisa escrever uma mensagem");
+        } else
+            JOptionPane.showMessageDialog(this, "Antes de enviar, você precisa escrever uma mensagem");
     }//GEN-LAST:event_jButton_enviarMensagemGrupoActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
@@ -320,7 +316,15 @@ public class JFrame_jogoDaVelhaJGroups extends javax.swing.JFrame {
 
     private void jButton_enviarJogadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_enviarJogadaActionPerformed
         // TODO add your handling code here:
-        comunicador.enviarJogada(JFrame_jogoDaVelhaJGroups.this); //enviar toda a matriz
+
+        JTextField jTextField;
+
+        for (int i = 0; i < jPanel_matriz.getComponents().length; i++) {
+            jTextField = (JTextField) jPanel_matriz.getComponent(i);
+            listaMatrizJogoDaVelha.add(jTextField.getText());
+        }
+
+        comunicador.enviarJogada(listaMatrizJogoDaVelha);
     }//GEN-LAST:event_jButton_enviarJogadaActionPerformed
 
     /**
@@ -357,6 +361,8 @@ public class JFrame_jogoDaVelhaJGroups extends javax.swing.JFrame {
             }
         });
     }
+
+    ArrayList<String> listaMatrizJogoDaVelha = new ArrayList<>();
 
     public JButton getjButton_entrarGrupo() {
         return jButton_entrarGrupo;
@@ -429,10 +435,7 @@ public class JFrame_jogoDaVelhaJGroups extends javax.swing.JFrame {
     public void setjTextField_mensagemParaGrupo(JTextField jTextField_mensagemParaGrupo) {
         this.jTextField_mensagemParaGrupo = jTextField_mensagemParaGrupo;
     }
-    
-   
-    
-    
+
     Comunicador comunicador;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -444,7 +447,7 @@ public class JFrame_jogoDaVelhaJGroups extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel_matriz;
+    public javax.swing.JPanel jPanel_matriz;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea_listaMembros;
