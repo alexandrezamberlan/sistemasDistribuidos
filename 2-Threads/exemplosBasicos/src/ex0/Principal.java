@@ -19,11 +19,13 @@ public class Principal {
     }
 
     public static void main(String a[]) {
-        int n = 10000;
+        int n = 1000;
         LinkedList<Integer> lista1 = new LinkedList<Integer>();
         LinkedList<Integer> lista2 = new LinkedList<Integer>();
+
+        //exemplos de uso de Thread sem compartilhamento de memória
         
-        Thread t1 = new Thread() { //há um objeto t1 que representa a thread1
+        Thread t1 = new Thread() { //há um objeto t1 que representa a thread
             public void run() {
                 System.out.println("Lista 1....");
                 popula(lista1, n);

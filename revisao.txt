@@ -1,0 +1,21 @@
+SISTEMAS DISTRIBUÍDOS
+    - sistemas de processamento de alto desempenho heterogêneos, distribuídos geograficamente e
+      sob regras do modelo TCP/IP (porta lógica, endereço de máquina, MAC, máscara de rede, classe de rede).
+      - Sistema operacional é chave no processo: multitarefa e comunicação entre máquinas
+        - Broadcast, multicast, unicast
+      - Objetivos: compartilhamento de recurso (processador, memória RAM, memória secundária)
+      - Características básicas:
+        - arquitetura:
+            - cliente-servidor
+            - ponto-a-ponto (P2P)
+            - híbrido
+        - comunicação bloqueante
+            - escrever
+            - ler
+        - programação multitarefa (thread)
+            - thread é um mini processo dentro de um processo
+            - thread pode ser com memória compartilhada
+                - sincronismo: monitor, semáforo
+            - thread sem memória compartilhada
+            - importância: execução de processos concomitantemente. E em SD, para liberar
+              comunicação bloqueante

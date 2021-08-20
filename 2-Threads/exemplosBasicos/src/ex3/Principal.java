@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ex3;
+//package ex3;
 
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
@@ -100,7 +100,7 @@ public class Principal extends javax.swing.JFrame {
                 for (int i = 0; i < 10; i++) {
                     jTextArea1.append(i+"\n");
                     try {
-                        sleep(100);
+                        sleep(500);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -113,7 +113,7 @@ public class Principal extends javax.swing.JFrame {
                 for (int i = 0; i < 10; i++) {
                     jTextArea2.append(i+"\n");
                     try {
-                        sleep(100);
+                        sleep(500);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -126,13 +126,16 @@ public class Principal extends javax.swing.JFrame {
                 for (int i = 0; i < 10; i++) {
                     jTextArea3.append(i+"\n");
                     try {
-                        sleep(100);
+                        sleep(500);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
         }.start();
+
+        
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
