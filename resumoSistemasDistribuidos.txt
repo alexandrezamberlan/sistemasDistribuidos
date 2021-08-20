@@ -28,3 +28,12 @@ THREAD:
      - Thread em Java -> é processamento concomitante (JVM)
       Com compartilhamento de memória -> Interface Runnable
       Sem compartilhamento de memória -> Classe Thread
+
+
+
+
+COMPARTILHAMENTO DE RECURSO: processamento, memória principal, memória secundária, impressora, ...
+  - ao compartilhar recurso, é necessário controlar SINCRONISMO:
+    - relógio: lógico e físico
+
+    - recurso: exclusão mútua
