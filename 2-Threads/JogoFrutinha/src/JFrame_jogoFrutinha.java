@@ -19,10 +19,6 @@ import javax.swing.JOptionPane;
  */
 public class JFrame_jogoFrutinha extends javax.swing.JFrame {
 
-    public Set<Integer> pressed = new HashSet<>();
-
-    JFrame meuFrame;
-
     public JFrame_jogoFrutinha() {
         initComponents();
         meuFrame = this;
@@ -294,6 +290,9 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
             }
         });
     }
+    
+    public Set<Integer> pressed = new HashSet<>();
+    JFrame meuFrame;
     int largura;
     int altura;
     int pontosJogador1 = 0;

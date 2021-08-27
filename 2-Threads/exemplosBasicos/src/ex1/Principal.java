@@ -1,4 +1,4 @@
-// package ex1;
+package ex1;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,12 +10,6 @@ import java.util.logging.Logger;
 public class Principal {
     public static void main(String[] args) {
         MinhaRunnable r = new MinhaRunnable();
-        
-		// Thread t = new Thread() {
-		// 	public void run() {
-		// 		System.out.println("oi");
-		// 	}
-		// };
 		
         Thread t1 = new Thread(r);
         Thread t2 = new Thread(r);

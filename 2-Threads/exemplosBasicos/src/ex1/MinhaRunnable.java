@@ -1,3 +1,5 @@
+package ex1;
+
 import java.lang.Thread;// package ex1;
 
 //Com uso de threads sem memória compartilhada, usa-se a classe Thread
@@ -11,7 +13,7 @@ public class MinhaRunnable implements Runnable {
         for (int i = 0; i < 10; i++) {
             synchronized(this){ //
                 x++;
-                System.out.println(" " + this.getName());
+                System.out.println(" ");
             }
             
         }
