@@ -10,11 +10,21 @@ namespace ThreadConsole
 
         public static void Inicia()
         {
-            Thread t = new Thread( () => {
-                Console.WriteLine("Thread secundaria");
-            });
-            t.Start();
-            Console.WriteLine("Thread principal");
+            new Thread( () => {
+                for (int i = 0; i < 10; i++)
+                {
+                    Console.WriteLine("Thread secundaria");
+                    Thread.Sleep(500);
+                }
+            }).Start();
+            
+            new Thread( () => {
+                for (int i = 0; i < 10; i++)
+                {
+                    Console.WriteLine("Thread principal");
+                    Thread.Sleep(1000);
+                }
+            }).Start();
         }
     }
 }

@@ -20,7 +20,6 @@ namespace ThreadConsole
             Parametros p = (Parametros)obj;
 
             Console.WriteLine("Parametro recebido=" + p.valor);
-
         }
 
         public static void Inicia()

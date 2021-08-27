@@ -9,11 +9,11 @@ namespace ThreadConsole
 
         static void Main(string[] args)
         {
-            ThreadSimples.Inicia();
+            //ThreadSimples.Inicia();
 
             //ThreadExemploLambda.Inicia();
 
-            //ThreadComSincronismo.Inicia();
+            ThreadComSincronismo.Inicia();
 
             //ThreadComParametro.Inicia();
         }

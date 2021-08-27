@@ -1,31 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\usrlab01\\Desktop\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\ThreadConsole.csproj": {}
+    "/Volumes/LEVATRAZ/Documents/codigos/sistemasDistribuidos/2-Threads/C#/ThreadConsole/ThreadConsole.csproj": {}
   },
   "projects": {
-    "C:\\Users\\usrlab01\\Desktop\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\ThreadConsole.csproj": {
+    "/Volumes/LEVATRAZ/Documents/codigos/sistemasDistribuidos/2-Threads/C#/ThreadConsole/ThreadConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\usrlab01\\Desktop\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\ThreadConsole.csproj",
+        "projectUniqueName": "/Volumes/LEVATRAZ/Documents/codigos/sistemasDistribuidos/2-Threads/C#/ThreadConsole/ThreadConsole.csproj",
         "projectName": "ThreadConsole",
-        "projectPath": "C:\\Users\\usrlab01\\Desktop\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\ThreadConsole.csproj",
-        "packagesPath": "C:\\Users\\usrlab01\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\usrlab01\\Desktop\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\obj\\",
+        "projectPath": "/Volumes/LEVATRAZ/Documents/codigos/sistemasDistribuidos/2-Threads/C#/ThreadConsole/ThreadConsole.csproj",
+        "packagesPath": "/Users/alexandrezamberlan/.nuget/packages/",
+        "outputPath": "/Volumes/LEVATRAZ/Documents/codigos/sistemasDistribuidos/2-Threads/C#/ThreadConsole/obj/",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\usrlab01\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/alexandrezamberlan/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +39,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -52,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.302/RuntimeIdentifierGraph.json"
         }
       }
     }

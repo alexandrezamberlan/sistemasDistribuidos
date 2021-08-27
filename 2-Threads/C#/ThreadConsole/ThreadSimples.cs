@@ -9,14 +9,22 @@ namespace ThreadConsole
     {
         private static void Executa()
         {
-            Console.WriteLine("Thread secundaria");
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine("Thread secundaria");
+                Thread.Sleep(500);
+            }
         }
 
         public static void Inicia()
         {
             Thread t = new Thread(Executa);
             t.Start();
-            Console.WriteLine("Thread principal");
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine("Thread principal");
+                Thread.Sleep(1000);
+            }
         }
 
     }

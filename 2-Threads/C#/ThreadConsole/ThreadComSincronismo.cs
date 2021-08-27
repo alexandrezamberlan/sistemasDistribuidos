@@ -7,16 +7,17 @@ namespace ThreadConsole
 {
     class ThreadComSincronismo
     {
-
         private static int x = 0;
 
         private static Object locker = new Object();
 
         private static void Executa(){
-            for (int i = 0; i < 10000; i++){
+            
+            for (int i = 0; i < 10; i++){
                 lock (locker)   // garante o sincronismo ao acessar a variavel compartilhada
                 {
                     x = x + 1;
+                    
                 }
             }
         }
