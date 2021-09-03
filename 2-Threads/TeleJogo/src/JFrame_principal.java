@@ -24,37 +24,28 @@ public class JFrame_principal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(meuFrame, "Pronto para começar ????");
         new Thread() {
             public void run() {
-                Movimenta.esquerdaDireita(jButton_bola, meuFrame, jButton_goleiro1, jButton_goleiro2);
+                Movimenta.movimentaBola(jButton_bola, meuFrame, jButton_goleiro1, jButton_goleiro2, jTextField_golsGoleiro1, jTextField_golsGoleiro2);
             }
         }.start();
         
         new Thread() {
             public void run() {
-                
-                
                 while (true) {
                     try {
                         verificaTeclas();
                         try {
                             sleep(10);
                         } catch (InterruptedException ex) {
-                            Logger.getLogger(JFrame_teleJogo.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(JFrame_principal.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     } catch (Exception e) {
                         System.out.println("Deu problema na concorrência");
                     }
                 }
-
             }
         }.start();
-        
-        
     }
     
-    public void movimentaBola() {
-        
-    }
-
     public void verificaTeclas() {
         for (Integer c : pressed) {
             switch (c) {
@@ -116,6 +107,8 @@ public class JFrame_principal extends javax.swing.JFrame {
         jButton_goleiro1 = new javax.swing.JButton();
         jButton_goleiro2 = new javax.swing.JButton();
         jButton_bola = new javax.swing.JButton();
+        jTextField_golsGoleiro1 = new javax.swing.JTextField();
+        jTextField_golsGoleiro2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,25 +127,43 @@ public class JFrame_principal extends javax.swing.JFrame {
             }
         });
 
+        jTextField_golsGoleiro1.setText("0");
+        jTextField_golsGoleiro1.setFocusable(false);
+
+        jTextField_golsGoleiro2.setText("0");
+        jTextField_golsGoleiro2.setFocusable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jButton_goleiro1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTextField_golsGoleiro1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton_goleiro1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(263, 263, 263)
                 .addComponent(jButton_bola, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 459, Short.MAX_VALUE)
-                .addComponent(jButton_goleiro2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_goleiro2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_golsGoleiro2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField_golsGoleiro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jTextField_golsGoleiro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton_goleiro1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton_goleiro2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -229,5 +240,7 @@ public class JFrame_principal extends javax.swing.JFrame {
     public javax.swing.JButton jButton_bola;
     public javax.swing.JButton jButton_goleiro1;
     public javax.swing.JButton jButton_goleiro2;
+    public javax.swing.JTextField jTextField_golsGoleiro1;
+    public javax.swing.JTextField jTextField_golsGoleiro2;
     // End of variables declaration//GEN-END:variables
 }
