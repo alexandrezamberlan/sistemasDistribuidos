@@ -1,0 +1,45 @@
+Comunicação entre máquinas -> 'foco' de sistemas distribuídos
+    - compartilhamento de recursos: memória e processador
+    - modelo TCP/IP: camadas de funcionamento de uma rede de computadores -> foco na camada de transporte
+        - pacote: remetente, destinatário, conteúdo
+        - endereço de rede (IP), porta lógica, endereço de servidor e cliente
+        - enlace, rede, transporte, sessão, apresentação, aplicação, midleware (xodó da programação, pois tem APIs facilitadoras de programação)
+    - exemplos de comunicação
+        - orientada a mensagem -> socket
+        - chamada de procedimento remoto: objeto -> serialização
+            - RPC - Python
+            - RMI - Java
+            - SOAP - XML
+            ... 
+    - tipos de comunicação
+        - em relação a sincronismo
+            - síncrona - void - TCP (camada de transporte) -> texto
+                - bloqueante -> esperar a confirmação do destinatário
+                - buffer 
+            - assíncrona - return - UDP (camada de transporte) -> áudio e vídeo (streamming)
+                - não bloqueante
+        - em relação a persistência
+            - transiente
+                msg só é enviada se o destinatário estiver online ou ligado (destinatário precisa existir)
+            - persistente
+                msg é enviada, mesmo o destinatário desligado ou offline (arquitetura cliente-servidor)
+    
+    - tratamento de sincronismo: semáforo/monitor (SO)
+
+
+Sockets
+    - todo sistema computacional tem sockets 
+    - 1980
+    - foco na camada de transporte: TCP (síncrona) e UDP (assíncrona)
+    - baseado na arquitetura cliente-servidor
+    - Classes, interfaces, métodos, atributos para comunicação entre máquinas de forma EXPLÍCITA
+        - o programador deve tratar tudo: conexão (endereço e portas lógica), objetos para ler e escrever no meio (socket), tratar sincronismo (thread)
+    - Principais funcionalidades
+        - classe Socket 
+        - método bind (endereço de uma máquina IP+porta com um socket)
+        - método listen (socket pode ficar escutando pra 'sempre' - thread)
+        - método accept (bloqueia ou garante que o servidor responda uma requisição)
+        - método connect (inicia a conexão)
+        - método read (ler os dados que estão no socket -> recebendo)
+        - método write (escrever algum dado no socket -> enviando)
+        - método close (fechar a conexão)
