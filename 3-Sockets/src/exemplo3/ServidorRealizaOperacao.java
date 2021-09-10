@@ -1,5 +1,6 @@
 package exemplo3;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -17,11 +18,11 @@ public class ServidorRealizaOperacao {
 
             while (true) {
                 cliente = servidor.accept();
-                // o método accept() bloqueia a execução até que
-                // o servidor receba um pedido de conexão
-                System.out.println("Cliente conectado: " + cliente.getInetAddress().getHostAddress());                
                 ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
                 ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
+                // o método accept() bloqueia a execução até que
+                // o servidor receba um pedido de conexão
+                System.out.println("Cliente conectado: " + cliente.getInetAddress().getHostAddress());
 
                 //servidor recebe a solicitacao de calculo de operacao
                 Conta c = (Conta) entrada.readObject();
@@ -49,10 +50,12 @@ public class ServidorRealizaOperacao {
                 saida.flush();
                 saida.writeObject(c);
                 saida.close();
-                cliente.close();  
+                cliente.close();
+
             }
-        } catch (Exception e) {
+        } catch (IOException | ClassNotFoundException e) {
             System.out.println("Erro: " + e.getMessage());
         }
+
     }
 }

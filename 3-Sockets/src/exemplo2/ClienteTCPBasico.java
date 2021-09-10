@@ -1,5 +1,7 @@
 package exemplo2;
 
+import java.awt.HeadlessException;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.Date;
@@ -18,7 +20,7 @@ public class ClienteTCPBasico {
       entrada.close();
       System.out.println("Conexão encerrada");
     }
-    catch(Exception e) {
+    catch(HeadlessException | IOException | ClassNotFoundException e) {
       System.out.println("Erro: " + e.getMessage());
     }
   }

@@ -21,8 +21,8 @@ public class ClienteJogador2 extends javax.swing.JFrame {
             @Override
             public void run() {
                 try {
-                    String host = JOptionPane.showInputDialog(null, "Endereço do servidor");
-                    int porta = Integer.parseInt(JOptionPane.showInputDialog(null, "Porta lógica do servidor (padrão 12345)"));
+                    String host = "localhost"; //JOptionPane.showInputDialog(null, "Endereço do servidor");
+                    int porta = 12345; //Integer.parseInt(JOptionPane.showInputDialog(null, "Porta lógica do servidor (padrão 12345)"));
                     socket_jogador1 = new Socket(host, porta);
                     
                     //para enviar ao jogador 1

@@ -1,5 +1,7 @@
 package exemplo3;
 
+import java.awt.HeadlessException;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -38,7 +40,7 @@ public class ClienteSolicitaOperacao {
             saida.close();
             cliente.close();
             System.out.println("Conexão encerrada");
-        } catch (Exception e) {
+        } catch (HeadlessException | IOException | ClassNotFoundException | NumberFormatException e) {
             System.out.println("Erro: " + e.getMessage());
         }
     }

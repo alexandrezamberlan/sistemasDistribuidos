@@ -1,5 +1,6 @@
 package exemplo2;
 
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -24,7 +25,7 @@ public class ServidorTCPBasico {
                 saida.close();
                 cliente.close();
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Erro: " + e.getMessage());
         } 
     }

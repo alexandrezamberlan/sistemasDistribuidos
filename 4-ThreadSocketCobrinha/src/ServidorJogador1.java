@@ -23,9 +23,9 @@ public class ServidorJogador1 extends javax.swing.JFrame {
                     System.out.println("Servidor esperando o cliente conectar-se...porta 12345");
                     servidor = new ServerSocket(12345);
 
-                    Socket socket_jogador2 = servidor.accept();
+                    socket_jogador2 = servidor.accept();
                     // o método accept() bloqueia a execução até que
-                    // o servidor receba um pedido de conexão
+                    // o servidor receba um pedido de conexão do cliente
                     
                     //ATENÇAO... a sequencia de instanciacao dever ser 1o o saida e 2o o entrada
                     saida = new ObjectOutputStream(socket_jogador2.getOutputStream());
@@ -215,6 +215,7 @@ public class ServidorJogador1 extends javax.swing.JFrame {
         });
     }
     ServerSocket servidor;
+    Socket socket_jogador2;
     ObjectOutputStream saida;
     ObjectInputStream entrada;
     Componente c;

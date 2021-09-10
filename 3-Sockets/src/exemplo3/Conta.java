@@ -3,7 +3,7 @@ package exemplo3;
 import java.io.Serializable;
 import javax.swing.JOptionPane;
 
-class Conta implements Serializable{
+class Conta implements Serializable {
 
     int n1;
     int n2;
