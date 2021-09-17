@@ -1,11 +1,18 @@
-package ex1;
+// package ex1;
 
 import java.io.*;
-import java.net.*;
+import java.net.Socket;
 
 public class Cliente {
 
     Socket socket;
+
+    public Cliente() {
+        criaClientSocket();
+        Comunicador.enviaMensagem(socket, "oi turma de sistemas distribuídos");
+        String mensagem = Comunicador.recebeMensagem(socket);
+        System.out.println("Recebi " + mensagem);
+    }
 
     private void criaClientSocket() {
         try {
@@ -14,13 +21,6 @@ public class Cliente {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    }
-
-    public Cliente() {
-        criaClientSocket();
-        Comunicador.enviaMensagem(socket, "oi turma de sistemas distribuídos");
-        String mensagem = Comunicador.recebeMensagem(socket);
-        System.out.println("Recebi " + mensagem);
     }
 
     public static void main(String[] args) {

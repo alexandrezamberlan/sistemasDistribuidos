@@ -5,6 +5,14 @@ public class Cliente {
 
     Socket socket;
 
+    public Cliente() {
+        criaClientSocket();
+        ThreadRecebedora tr = new ThreadRecebedora(socket);
+        ThreadEnviadora te = new ThreadEnviadora(socket);
+        tr.start();
+        te.start();
+    }
+
     private void criaClientSocket() {
         try {
             //cria um socket TCP para se conectar ao servidor de ip "localhost" porta 1234
@@ -12,14 +20,6 @@ public class Cliente {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    }
-
-    public Cliente() {
-        criaClientSocket();
-        ThreadRecebedora tr = new ThreadRecebedora(socket);
-        ThreadEnviadora te = new ThreadEnviadora(socket);
-        tr.start();
-        te.start();
     }
 
     public static void main(String[] args) {

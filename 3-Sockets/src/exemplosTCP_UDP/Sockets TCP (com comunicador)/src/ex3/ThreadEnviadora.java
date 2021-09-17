@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class ThreadEnviadora extends Thread {
 
-    private Socket socket;
+    Socket socket;
 
     public ThreadEnviadora(Socket socket) {
         this.socket = socket;

@@ -1,11 +1,16 @@
-package ex1;
-
+// package ex1;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Servidor {
 
     ServerSocket servidor;
+    Socket cliente;
+
+    public Servidor() {
+        criaServerSocket();
+        aguardaClientes();
+    }
 
     private void criaServerSocket() {
         try {
@@ -21,7 +26,7 @@ public class Servidor {
             try {
                 /*Bloqueia esperando por uma conexão através do accept()
                  Ao receber a conexão, ele receberá como retorno uma referência do Socket do cliente*/
-                Socket cliente = servidor.accept();
+                cliente = servidor.accept();
                 System.out.println("Recebi uma conexão de um cliente");
                 String mensagem = Comunicador.recebeMensagem(cliente);
                 System.out.println("Recebi " + mensagem);
@@ -32,10 +37,7 @@ public class Servidor {
         }
     }
 
-    public Servidor() {
-        criaServerSocket();
-        aguardaClientes();
-    }
+    
 
     public static void main(String[] args) {
         Servidor s = new Servidor();

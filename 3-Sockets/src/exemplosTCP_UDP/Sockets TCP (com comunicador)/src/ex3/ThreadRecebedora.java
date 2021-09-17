@@ -2,7 +2,7 @@ import java.net.Socket;
 
 public class ThreadRecebedora extends Thread {
 
-    private Socket socket;
+    Socket socket;
 
     public ThreadRecebedora(Socket socket) {
         this.socket = socket;

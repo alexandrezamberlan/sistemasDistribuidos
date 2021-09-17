@@ -5,6 +5,11 @@ public class Servidor {
 
     ServerSocket servidor;
 
+    public Servidor() {
+        criaServerSocket();
+        aguardaClientes();
+    }
+
     private void criaServerSocket() {
         try {
             servidor = new ServerSocket(1234);
@@ -26,11 +31,6 @@ public class Servidor {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public Servidor() {
-        criaServerSocket();
-        aguardaClientes();
     }
 
     public static void main(String[] args) {

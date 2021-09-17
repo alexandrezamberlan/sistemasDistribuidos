@@ -1,9 +1,17 @@
 import java.io.*;
-import java.net.*;
+import java.net.Socket;
 
 public class Cliente {
 
     Socket socket;
+
+    public Cliente() {
+        criaClientSocket();
+        Pessoa p = new Pessoa(23, "José");
+        ComunicadorObjetos.enviaObjeto(socket, p);
+        Pessoa p2 = ComunicadorObjetos.recebeObjeto(socket);
+        System.out.println("Recebi " + p2.getNome() + "," + p2.getIdade());
+    }
 
     private void criaClientSocket() {
         try {
@@ -12,14 +20,6 @@ public class Cliente {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    }
-
-    public Cliente() {
-        criaClientSocket();
-        Pessoa p = new Pessoa(23, "José");
-        ComunicadorObjetos.enviaMensagem(socket, p);
-        Pessoa p2 = ComunicadorObjetos.recebeMensagem(socket);
-        System.out.println("Recebi " + p2.getNome() + "," + p2.getIdade());
     }
 
     public static void main(String[] args) {
