@@ -86,6 +86,8 @@ public class JFrameCliente extends javax.swing.JFrame {
         if (servidor.isEmpty() || apelido.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Alguns dos campos podem estar em branco");
         } else {
+            jogador = new Componente(this.apelido, jButton_jogador.getBounds().x, jButton_jogador.getBounds().y,
+                                     jButton_jogador.getBounds().width, jButton_jogador.getBounds().height);
             try {
                 comunicador = (IComunica) Naming.lookup("rmi://" + servidor + "/Comunica");
                 
