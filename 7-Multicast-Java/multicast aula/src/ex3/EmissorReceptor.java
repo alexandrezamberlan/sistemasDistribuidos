@@ -13,6 +13,7 @@ public class EmissorReceptor {
     //ESPECIFICO UMA THREAD RECEPTORA DE MENSAGENS DO GRUPO
     class ThreadReceptora extends Thread {
 
+        @Override
         public void run() {
             /*
              * PARTE RESPONSAVEL POR RECEBER AS MENSAGENS DO GRUPO
@@ -34,6 +35,7 @@ public class EmissorReceptor {
     // ESPECIFICO UMA THREAD EMISSORA DE MENSAGENS DO GRUPO
     class ThreadEmissora extends Thread {
 
+        @Override
         public void run() {
             /*
              * PARTE RESPONSAVEL POR ENVIAR MENSAGENS AO GRUPO
@@ -81,6 +83,7 @@ public class EmissorReceptor {
     InetAddress group;
     MulticastSocket s;
     ComunicadorUDP com = new ComunicadorUDP();
+    
     public static void main(final String args[]) {
         final EmissorReceptor er = new EmissorReceptor();
     }

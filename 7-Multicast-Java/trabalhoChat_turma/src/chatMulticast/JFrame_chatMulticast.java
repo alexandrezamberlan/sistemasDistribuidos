@@ -3,8 +3,8 @@
  */
 package chatMulticast;
 
-import com.sun.glass.events.KeyEvent;
 import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;

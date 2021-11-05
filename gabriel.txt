@@ -1,0 +1,8 @@
+A comunicação entre o simulador em Unity e o SMA em JASON ocorre por socket, pelo protocolo
+TCP (ou UDP ... o que ficar mais rápido) e na arquitetura cliente-servidor. O SMA é o servidor 
+em Java com as classes ServerSocket (representando o servidor) e Socket (representando o cliente), dentro do pacote
+java.net. Enquanto o simulador em C# é o cliente com as classes XXXXX. Outro ponto importante do lado servidor,
+é a utilização explícita de Thread para liberar o comunicação socket que é bloqueante, tornando-a mais dinâmica. 
+Já do lado do simulador em Unity, o uso de Thread é implícito, pois o ambiente garante programação concorrente nativamente.
+
+

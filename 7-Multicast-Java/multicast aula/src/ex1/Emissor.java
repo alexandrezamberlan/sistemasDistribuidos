@@ -10,7 +10,7 @@ public class Emissor {
         ComunicadorUDP com = new ComunicadorUDP();
         try {
             //criação do pacote multicast (mesmo que pacote UDP)
-            DatagramPacket pacote = com.montaMensagem("Olá", "239.1.2.3", 3456);
+            DatagramPacket pacote = com.montaMensagem("Turma de Sistemas Distribuídos", "239.1.2.3", 3456);
             //criação do socket multicast
             MulticastSocket s = new MulticastSocket();
             //envio do pacote

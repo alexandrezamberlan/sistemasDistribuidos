@@ -1,4 +1,4 @@
-package ex2;
+// package ex2;
 
 import ex1.*;
 import java.net.DatagramPacket;

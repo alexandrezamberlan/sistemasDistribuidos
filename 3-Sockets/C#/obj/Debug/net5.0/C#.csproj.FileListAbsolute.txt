@@ -1,0 +1,15 @@
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/obj/Debug/net5.0/C#.csproj.AssemblyReference.cache
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/obj/Debug/net5.0/C#.GeneratedMSBuildEditorConfig.editorconfig
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/obj/Debug/net5.0/C#.AssemblyInfoInputs.cache
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/obj/Debug/net5.0/C#.AssemblyInfo.cs
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/obj/Debug/net5.0/C#.csproj.CoreCompileInputs.cache
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/bin/Debug/net5.0/C#.deps.json
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/bin/Debug/net5.0/C#.runtimeconfig.json
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/bin/Debug/net5.0/C#.runtimeconfig.dev.json
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/bin/Debug/net5.0/C#.dll
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/bin/Debug/net5.0/ref/C#.dll
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/bin/Debug/net5.0/C#.pdb
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/obj/Debug/net5.0/C#.dll
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/obj/Debug/net5.0/ref/C#.dll
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/obj/Debug/net5.0/C#.pdb
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/obj/Debug/net5.0/C#.genruntimeconfig.cache
