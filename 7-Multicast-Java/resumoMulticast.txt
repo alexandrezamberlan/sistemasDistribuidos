@@ -1,17 +1,12 @@
 Multicast
 	- comunicação em grupo (um endereço virtual em que computadores que quiserem compartilhar informações devem acessar)
-	- linguagem Java
 	- modos de comunicação: unicast (um para um), multicast (um para vários do mesmo grupo), broadcast (um para todos)
 	- Modelo TCP/IP: endereço de rede; endereço de grupo (classe D); roteamento no grupo
 	- Protocolo UDP
-	- arquitetura clássica multicast é ponto-a-ponto, pelo conceito de grupo (só recebe mensagem quem estiver no grupo
-
+	- arquitetura clássica multicast é ponto-a-ponto, pelo conceito de grupo (só recebe/envia mensagem quem estiver no grupo)
 	- conexão simultânea/online
-
 	- Exemplos
 		- TEAMS
-
-
 
 SISTEMAS DISTRIBUÍDOS:
 	- O que são?

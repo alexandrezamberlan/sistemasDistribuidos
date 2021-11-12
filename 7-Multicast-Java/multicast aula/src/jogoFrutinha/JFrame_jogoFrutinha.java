@@ -31,7 +31,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel_ServidorIP = new javax.swing.JLabel();
-        jTextField_ServidorIP = new javax.swing.JTextField();
+        jTextField_GrupoIP = new javax.swing.JTextField();
         jTextField_Porta = new javax.swing.JTextField();
         jLabel_Porta = new javax.swing.JLabel();
         jLabel_Nick = new javax.swing.JLabel();
@@ -44,7 +44,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
 
         jLabel_ServidorIP.setText("Servidor IP:");
 
-        jTextField_ServidorIP.setText("224.0.0.1");
+        jTextField_GrupoIP.setText("224.0.0.1");
 
         jTextField_Porta.setText("3456");
 
@@ -96,7 +96,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel_ServidorIP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_ServidorIP, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_GrupoIP, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_Porta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -115,7 +115,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_ServidorIP)
-                    .addComponent(jTextField_ServidorIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_GrupoIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_Nick)
                     .addComponent(jTextField_Apelido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_Conectar)
@@ -135,7 +135,6 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                     DatagramPacket pacote = com.recebeComponente(s);
                     System.out.println(pacote.toString());
                     System.out.println("Chegou informações de um componente... precisamos redesenha-lo no frame");
-                    //Componente c = new Com(pacote.getData(), 0, pacote.getLength());
 //                    lista.add(msgRecebida);
 //                    Iterator i = lista.iterator();
 //                    jTextArea_Mensagens.setText("");
@@ -163,7 +162,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                 jButton_jogador.requestFocus();
 
                 //DEFINO O IP DO GRUPO
-                String servidor = jTextField_ServidorIP.getText();
+                String servidor = jTextField_GrupoIP.getText();
                 int porta = Integer.parseInt(jTextField_Porta.getText()); 
                 System.out.println(servidor + ":" + porta);
                 
@@ -183,7 +182,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
 
                 //mandando a posição atual do jogador a todos os integrantes do grupo
                 Componente jogador = new Componente(jButton_jogador.getText(), jButton_jogador.getWidth(), jButton_jogador.getHeight());
-                DatagramPacket pacote = com.montaComponente(jogador, jTextField_ServidorIP.getText(), Integer.parseInt(jTextField_Porta.getText()));
+                DatagramPacket pacote = com.montaComponente(jogador, jTextField_GrupoIP.getText(), Integer.parseInt(jTextField_Porta.getText()));
                 s.send(pacote);
             }
         } catch (Exception e) {
@@ -216,7 +215,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
 
         //mandando a posição atual do jogador a todos os integrantes do grupo
         Componente jogador = new Componente(jButton_jogador.getText(), jButton_jogador.getWidth(), jButton_jogador.getHeight());
-        DatagramPacket pacote = com.montaComponente(jogador, jTextField_ServidorIP.getText(), Integer.parseInt(jTextField_Porta.getText()));
+        DatagramPacket pacote = com.montaComponente(jogador, jTextField_GrupoIP.getText(), Integer.parseInt(jTextField_Porta.getText()));
         try {
             s.send(pacote);
         } catch (IOException ex) {
@@ -267,7 +266,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_ServidorIP;
     private javax.swing.JPanel jPanel_fundo;
     private javax.swing.JTextField jTextField_Apelido;
+    private javax.swing.JTextField jTextField_GrupoIP;
     private javax.swing.JTextField jTextField_Porta;
-    private javax.swing.JTextField jTextField_ServidorIP;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,6 +1,8 @@
 package jogoFrutinha;
 
-public class Componente {
+import java.io.Serializable;
+
+public class Componente implements Serializable {
     public String texto;
     public int largura;
     public int altura;
