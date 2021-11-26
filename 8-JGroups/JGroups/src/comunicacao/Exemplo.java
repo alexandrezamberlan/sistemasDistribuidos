@@ -65,12 +65,13 @@ public class Exemplo extends ReceiverAdapter {
                 /*
                  * bloqueia aguardando uma leitura do teclado
                  */
+                System.out.print("Digite algo: ");
                 String linha = scanner.nextLine();
 
                 /*
                  * caso tenha digitado quit ou exit, termina o laço, e consequentemente o método
                  */
-                if (linha.equals("quit") || linha.equals("exit")) {
+                if (linha.equals("quit") || linha.equals("exit") || linha.equals("sair")) {
                     break;
                 }
 
