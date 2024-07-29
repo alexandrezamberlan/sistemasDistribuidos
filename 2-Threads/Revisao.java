@@ -34,8 +34,6 @@ public class Revisao {
                 }
                 System.out.println("DONE! " + getName());
             } 
-        }.start();
-
-        
+        }.start();        
     }
 }
