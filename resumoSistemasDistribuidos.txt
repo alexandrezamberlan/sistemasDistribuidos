@@ -29,11 +29,20 @@ THREAD:
       Com compartilhamento de memória -> Interface Runnable
       Sem compartilhamento de memória -> Classe Thread
 
-
-
-
 COMPARTILHAMENTO DE RECURSO: processamento, memória principal, memória secundária, impressora, ...
   - ao compartilhar recurso, é necessário controlar SINCRONISMO:
     - relógio: lógico e físico
 
     - recurso: exclusão mútua
+
+SISTEMAS PARALELOS
+    - Homogêneos: arquiteturas de hardware, sistema operacional e linguagens de programação idênticas
+    - Fortemente acoplados (fixos em um mesmo lugar via protocolos do modelo TCP/IP: endereço de rede, porta lógica, máscara de rede, protocolos de transporte)
+    - CLUSTER computacional
+    - Arquiteturas: Ponto-a-Ponto
+        - Tolerância a falhas
+        - Escalabilidade
+        - Segurança
+        - Manutenção/atualização
+
+    - Objetivo: compartilhar recursos (processador e memória)
