@@ -1,8 +1,8 @@
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+
 /**
  *
  * @author usrlab25
@@ -21,15 +21,10 @@ public class Principal {
             System.out.println("Conta já cadastrada!");
         }
         
-        
-        
         for (Iterator it = c1.contasBancarias.iterator(); it.hasNext();) {
             ContaCorrente conta = (ContaCorrente)it.next();
             System.out.println("Agencia: " + conta.numeroAgencia + 
                         "\nConta: " + conta.numeroConta + "\nSaldo: " + conta.saldo);
         }
-            
-            
-         
     }
 }
