@@ -1,4 +1,3 @@
-
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +14,5 @@ public class Correntista {
     public Correntista(String nome, HashSet<Conta> contasBancarias) {
         this.nome = nome;
         //this.contasBancarias.addAll(contasBancarias);
-    }
-    
-    
+    }    
 }
