@@ -1,7 +1,5 @@
 public class ContaCorrente extends Conta{
-    double limite;
-
-    
+    double limite; 
     
     /**
      * Construtor que instancia contas do tipo corrente
@@ -15,17 +13,9 @@ public class ContaCorrente extends Conta{
         this.limite = limite;
     }
     
-    
-
     @Override
     public String toString() {
         return "ContaCorrente{Agencia=" + numeroAgencia +
                 "Conta=" + numeroConta + "limite=" + limite + '}';
-    }
-
-
-    
-    
-    
-    
+    }   
 }
