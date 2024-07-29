@@ -1,4 +1,3 @@
-
 import java.util.Date;
 
 /**
@@ -24,7 +23,5 @@ public class ContaPoupanca extends Conta {
     public String toString() {
         return "ContaPopupanca{Agencia=" + numeroAgencia +
                 "Conta=" + numeroConta + "aniversario=" + aniversario + '}';
-    }
-       
-    
+    }   
 }
