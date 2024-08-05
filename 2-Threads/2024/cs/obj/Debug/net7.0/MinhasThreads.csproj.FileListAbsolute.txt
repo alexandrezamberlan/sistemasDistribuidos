@@ -1,0 +1,15 @@
+C:\Users\laboratorio\Desktop\MinhasThreads\bin\Debug\net7.0\MinhasThreads.exe
+C:\Users\laboratorio\Desktop\MinhasThreads\bin\Debug\net7.0\MinhasThreads.deps.json
+C:\Users\laboratorio\Desktop\MinhasThreads\bin\Debug\net7.0\MinhasThreads.runtimeconfig.json
+C:\Users\laboratorio\Desktop\MinhasThreads\bin\Debug\net7.0\MinhasThreads.dll
+C:\Users\laboratorio\Desktop\MinhasThreads\bin\Debug\net7.0\MinhasThreads.pdb
+C:\Users\laboratorio\Desktop\MinhasThreads\obj\Debug\net7.0\MinhasThreads.csproj.AssemblyReference.cache
+C:\Users\laboratorio\Desktop\MinhasThreads\obj\Debug\net7.0\MinhasThreads.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\laboratorio\Desktop\MinhasThreads\obj\Debug\net7.0\MinhasThreads.AssemblyInfoInputs.cache
+C:\Users\laboratorio\Desktop\MinhasThreads\obj\Debug\net7.0\MinhasThreads.AssemblyInfo.cs
+C:\Users\laboratorio\Desktop\MinhasThreads\obj\Debug\net7.0\MinhasThreads.csproj.CoreCompileInputs.cache
+C:\Users\laboratorio\Desktop\MinhasThreads\obj\Debug\net7.0\MinhasThreads.dll
+C:\Users\laboratorio\Desktop\MinhasThreads\obj\Debug\net7.0\refint\MinhasThreads.dll
+C:\Users\laboratorio\Desktop\MinhasThreads\obj\Debug\net7.0\MinhasThreads.pdb
+C:\Users\laboratorio\Desktop\MinhasThreads\obj\Debug\net7.0\MinhasThreads.genruntimeconfig.cache
+C:\Users\laboratorio\Desktop\MinhasThreads\obj\Debug\net7.0\ref\MinhasThreads.dll
