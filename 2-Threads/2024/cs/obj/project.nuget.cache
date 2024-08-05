@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Gcy6O87IRF9jqacDYSxywMWk5StVShJ1e9PEYWm6QZVOQ/0WIpl0S8iTPYK7LqGnVeSQ9xOTOxxTx5rxiSr7lA==",
+  "dgSpecHash": "wB47Uqzvqr5A0IFYaZUq/T53Jo3w4mSWzcg34jL72kqDhW1GOHjVlsQ9xaxK9SnGP9KBK73tJT/mC+JHcPTXow==",
   "success": true,
-  "projectFilePath": "C:\\Users\\laboratorio\\Desktop\\MinhasThreads\\MinhasThreads.csproj",
+  "projectFilePath": "C:\\Users\\laboratorio\\sistemasDistribuidos\\2-Threads\\2024\\cs\\MinhasThreads.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

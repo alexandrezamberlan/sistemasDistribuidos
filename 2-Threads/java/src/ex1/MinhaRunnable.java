@@ -1,4 +1,4 @@
-package ex1;
+//package ex1;
 
 import java.lang.Thread;// package ex1;
 
@@ -11,10 +11,11 @@ public class MinhaRunnable implements Runnable {
     @Override
     public void run(){
         for (int i = 0; i < 10; i++) {
-            synchronized(this){ //
+            // synchronized(this){ //
                 x++;
-                System.out.println(" ");
-            }
+                Thread currentThread = Thread.currentThread();
+                System.out.println(x + " | " + currentThread.getName());
+            // }
             
         }
     }

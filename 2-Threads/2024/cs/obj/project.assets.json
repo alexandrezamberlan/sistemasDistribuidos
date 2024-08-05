@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\laboratorio\\Desktop\\MinhasThreads\\MinhasThreads.csproj",
+      "projectUniqueName": "C:\\Users\\laboratorio\\sistemasDistribuidos\\2-Threads\\2024\\cs\\MinhasThreads.csproj",
       "projectName": "MinhasThreads",
-      "projectPath": "C:\\Users\\laboratorio\\Desktop\\MinhasThreads\\MinhasThreads.csproj",
+      "projectPath": "C:\\Users\\laboratorio\\sistemasDistribuidos\\2-Threads\\2024\\cs\\MinhasThreads.csproj",
       "packagesPath": "C:\\Users\\laboratorio\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\laboratorio\\Desktop\\MinhasThreads\\obj\\",
+      "outputPath": "C:\\Users\\laboratorio\\sistemasDistribuidos\\2-Threads\\2024\\cs\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
