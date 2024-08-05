@@ -9,4 +9,10 @@ public class Numeros {
         }
         System.out.println("Feito...." + frase);
     }
+
+    public static void exibir(ArrayList<Integer> lista){
+        for (Object item : lista) {
+            System.out.println(item);
+        }
+    }
 }

@@ -35,6 +35,10 @@ public class Principal {
         } catch (Exception e) {
             // TODO: handle exception
         }
+
+        Numeros.exibir(lista1);
+        Numeros.exibir(lista2);
+        Numeros.exibir(lista3);
         
         System.out.println("Programa encerrado!!!");
     }
