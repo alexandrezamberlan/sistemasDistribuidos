@@ -21,3 +21,17 @@ C:/Users/usrlab01/Desktop/sistemasDistribuidos/2-Threads/C#/ThreadConsole/obj/De
 /Volumes/LEVATRAZ/Documents/codigos/sistemasDistribuidos/2-Threads/C#/ThreadConsole/obj/Debug/netcoreapp3.1/ThreadConsole.dll
 /Volumes/LEVATRAZ/Documents/codigos/sistemasDistribuidos/2-Threads/C#/ThreadConsole/obj/Debug/netcoreapp3.1/ThreadConsole.pdb
 /Volumes/LEVATRAZ/Documents/codigos/sistemasDistribuidos/2-Threads/C#/ThreadConsole/obj/Debug/netcoreapp3.1/ThreadConsole.genruntimeconfig.cache
+C:\Users\laboratorio\Downloads\sistemasDistribuidos\2-Threads\C#\ThreadConsole\bin\Debug\netcoreapp3.1\ThreadConsole.exe
+C:\Users\laboratorio\Downloads\sistemasDistribuidos\2-Threads\C#\ThreadConsole\bin\Debug\netcoreapp3.1\ThreadConsole.deps.json
+C:\Users\laboratorio\Downloads\sistemasDistribuidos\2-Threads\C#\ThreadConsole\bin\Debug\netcoreapp3.1\ThreadConsole.runtimeconfig.json
+C:\Users\laboratorio\Downloads\sistemasDistribuidos\2-Threads\C#\ThreadConsole\bin\Debug\netcoreapp3.1\ThreadConsole.runtimeconfig.dev.json
+C:\Users\laboratorio\Downloads\sistemasDistribuidos\2-Threads\C#\ThreadConsole\bin\Debug\netcoreapp3.1\ThreadConsole.dll
+C:\Users\laboratorio\Downloads\sistemasDistribuidos\2-Threads\C#\ThreadConsole\bin\Debug\netcoreapp3.1\ThreadConsole.pdb
+C:\Users\laboratorio\Downloads\sistemasDistribuidos\2-Threads\C#\ThreadConsole\obj\Debug\netcoreapp3.1\ThreadConsole.csproj.AssemblyReference.cache
+C:\Users\laboratorio\Downloads\sistemasDistribuidos\2-Threads\C#\ThreadConsole\obj\Debug\netcoreapp3.1\ThreadConsole.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\laboratorio\Downloads\sistemasDistribuidos\2-Threads\C#\ThreadConsole\obj\Debug\netcoreapp3.1\ThreadConsole.AssemblyInfoInputs.cache
+C:\Users\laboratorio\Downloads\sistemasDistribuidos\2-Threads\C#\ThreadConsole\obj\Debug\netcoreapp3.1\ThreadConsole.AssemblyInfo.cs
+C:\Users\laboratorio\Downloads\sistemasDistribuidos\2-Threads\C#\ThreadConsole\obj\Debug\netcoreapp3.1\ThreadConsole.csproj.CoreCompileInputs.cache
+C:\Users\laboratorio\Downloads\sistemasDistribuidos\2-Threads\C#\ThreadConsole\obj\Debug\netcoreapp3.1\ThreadConsole.dll
+C:\Users\laboratorio\Downloads\sistemasDistribuidos\2-Threads\C#\ThreadConsole\obj\Debug\netcoreapp3.1\ThreadConsole.pdb
+C:\Users\laboratorio\Downloads\sistemasDistribuidos\2-Threads\C#\ThreadConsole\obj\Debug\netcoreapp3.1\ThreadConsole.genruntimeconfig.cache

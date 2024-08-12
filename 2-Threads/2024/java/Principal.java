@@ -6,6 +6,8 @@ public class Principal {
         ArrayList<Integer> lista2 = new ArrayList<Integer>();
         ArrayList<Integer> lista3 = new ArrayList<Integer>();
 
+
+
         Thread t1 = new Thread() {
             public void run() {
                 Numeros.popularAleatorio(lista1,1000000,"lista1");

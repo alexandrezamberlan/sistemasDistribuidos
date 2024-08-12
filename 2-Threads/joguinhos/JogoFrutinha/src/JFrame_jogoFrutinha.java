@@ -34,7 +34,7 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                     try {
                         verificaTeclas();
                         try {
-                            sleep(10);
+                            sleep(5);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(JFrame_jogoFrutinha.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -42,7 +42,6 @@ public class JFrame_jogoFrutinha extends javax.swing.JFrame {
                         System.out.println("Deu pau na concorrência");
                     }
                 }
-
             }
         }.start();
     }

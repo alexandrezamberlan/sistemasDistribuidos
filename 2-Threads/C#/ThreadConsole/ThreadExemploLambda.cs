@@ -5,9 +5,15 @@ using System.Threading;
 
 namespace ThreadConsole
 {
+    /// <summary>
+    /// Classe que exemplifica uso de threads com a função lambda
+    /// </summary>
     class ThreadExemploLambda
     {
 
+        /// <summary>
+        /// Método que inicia duas threads sem nome e com lambda
+        /// </summary>
         public static void Inicia()
         {
             new Thread( () => {

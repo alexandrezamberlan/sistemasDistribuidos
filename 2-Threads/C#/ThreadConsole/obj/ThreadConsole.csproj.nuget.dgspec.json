@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\laboratorio\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\ThreadConsole.csproj": {}
+    "C:\\Users\\laboratorio\\Downloads\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\ThreadConsole.csproj": {}
   },
   "projects": {
-    "C:\\Users\\laboratorio\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\ThreadConsole.csproj": {
+    "C:\\Users\\laboratorio\\Downloads\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\ThreadConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\laboratorio\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\ThreadConsole.csproj",
+        "projectUniqueName": "C:\\Users\\laboratorio\\Downloads\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\ThreadConsole.csproj",
         "projectName": "ThreadConsole",
-        "projectPath": "C:\\Users\\laboratorio\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\ThreadConsole.csproj",
+        "projectPath": "C:\\Users\\laboratorio\\Downloads\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\ThreadConsole.csproj",
         "packagesPath": "C:\\Users\\laboratorio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\laboratorio\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\obj\\",
+        "outputPath": "C:\\Users\\laboratorio\\Downloads\\sistemasDistribuidos\\2-Threads\\C#\\ThreadConsole\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

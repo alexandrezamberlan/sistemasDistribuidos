@@ -3,8 +3,15 @@ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+/**
+ * Classe com métodos estáticos para movimentar botão nas 4 direções
+ * @author laboratorio
+ */
 public class Movimenta {
-    
+    /**
+     * Método estático que leva o botão 5 pixels para cima
+     * @param botao 
+     */
     public static void irCima(JButton botao) {
         if (botao.getY() > 0) {
             botao.setBounds(botao.getX(), botao.getY() - 5, botao.getWidth(), botao.getHeight());

@@ -16,6 +16,8 @@ namespace ThreadConsole
             for (int i = 0; i < 10; i++){
                 lock (locker)   // garante o sincronismo ao acessar a variavel compartilhada
                 {
+                    Console.WriteLine(x + Thread.CurrentThread.Name);
+                    Thread.Sleep(500);
                     x = x + 1;
                     
                 }
@@ -26,7 +28,8 @@ namespace ThreadConsole
             
             Thread t1 = new Thread(Executa);
             Thread t2 = new Thread(Executa);
-            
+            t1.Name = "t1";
+            t2.Name = "t2";
             t1.Start();
             t2.Start();
 

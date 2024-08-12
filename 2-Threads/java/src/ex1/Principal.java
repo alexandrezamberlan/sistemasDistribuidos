@@ -1,4 +1,4 @@
-//package ex1;
+package ex1;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,8 +25,6 @@ public class Principal {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        System.out.println("Valor do x ao final dos processos " + r.x);
-        
-        
+        System.out.println("Valor do x ao final dos processos " + r.x);        
     }
 }

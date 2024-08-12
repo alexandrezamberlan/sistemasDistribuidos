@@ -1,7 +1,6 @@
+package ex2;
 
-//package ex2;
-
-//import ex1.*;
+import ex1.*;
 
 public class MinhaThread extends Thread {
     int x = 0;
