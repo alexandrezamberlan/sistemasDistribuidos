@@ -21,8 +21,11 @@ public class ServidorTCPBasico {
                 encontrado = false;
                 // o método accept() bloqueia a execução até que
                 // o servidor receba um pedido de conexão
-                cliente = servidor.accept();                
-                System.out.println("Cliente conectado: " + cliente.getInetAddress().getHostAddress());
+                cliente = servidor.accept();       
+                String enderecoIP = cliente.getInetAddress().getHostAddress();
+                int portaCliente = cliente.getPort();
+                System.out.println("Cliente conectado no IP: " + enderecoIP);
+                System.out.println("Cliente conectado via porta: " + portaCliente);
                 ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());               
                 //receber o nome completo do lado do cliente   
                 String nomePessoa = (String)entrada.readObject();                    
@@ -52,6 +55,11 @@ public class ServidorTCPBasico {
                 saida.close();
                 cliente.close();
                 System.gc();
+                
+                System.out.println("Clientes na base....");
+                for (Pessoa pessoa : lista) {
+                    System.out.println(pessoa);                    
+                }
             }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Erro: " + e.getMessage());

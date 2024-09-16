@@ -12,9 +12,11 @@ public class ClienteTCPBasico {
   public static void main(String[] args) {
     try {
       int porta = 50000;      
+      String nome = JOptionPane.showInputDialog(null,"Nome completo");
+      
       Socket cliente = new Socket("localhost",porta);   
       //enviar o nome do cliente
-      String nome = JOptionPane.showInputDialog(null,"Nome completo");
+      
       ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
       saida.flush();
       saida.writeObject(nome);
