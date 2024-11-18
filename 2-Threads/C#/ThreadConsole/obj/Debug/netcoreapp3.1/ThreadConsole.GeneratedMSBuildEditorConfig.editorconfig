@@ -1,5 +1,3 @@
 is_global = true
 build_property.RootNamespace = ThreadConsole
-build_property.ProjectDir = c:\Users\laboratorio\sistemasDistribuidos\2-Threads\C#\ThreadConsole\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = /Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/C#/ThreadConsole/
