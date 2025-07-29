@@ -10,10 +10,28 @@ SISTEMAS DISTRIBUÍDOS
         - Manutenção/atualização
 
     - Objetivo: compartilhar recursos (processador e memória)
+      - ao compartilhar recurso, é necessário controlar SINCRONISMO:
+      - relógio: lógico e físico
+      - recurso: exclusão mútua
 
     - SD são fortemente dependente de Sistemas Operacional: gestor de processamento; gestor de comunicação, ou um gestor das camadas de serviço;
         Observação: Sistemas distribuídos, na essência, têm comunicação via SOCKET (ip, porta, márcara, objetos escritores/leitores) que é BLOQUEANTE.
                     SOLUÇÃO COMPUTACIONAL EM TEMPO DE PROGRAMAÇÃO é o uso de THREADS.
+
+    - Características básicas:
+      - arquitetura:
+          - cliente-servidor
+          - ponto-a-ponto (P2P)
+          - híbrido
+      - comunicação bloqueante
+          - escrever
+          - ler
+      - programação multitarefa (thread)
+          - thread é um mini processo dentro de um processo
+          - thread pode ser com memória compartilhada
+              - sincronismo: monitor, semáforo
+          - thread sem memória compartilhada
+          - importância: execução de processos concomitantemente. E em SD, para liberar comunicação bloqueante
 
 THREAD:
     - um subprocesso ou um miniprocesso pertencente a um processo (identificador, nome, endereço, tamanho, tempo, instruções) criado em tempo
@@ -29,11 +47,7 @@ THREAD:
       Com compartilhamento de memória -> Interface Runnable
       Sem compartilhamento de memória -> Classe Thread
 
-COMPARTILHAMENTO DE RECURSO: processamento, memória principal, memória secundária, impressora, ...
-  - ao compartilhar recurso, é necessário controlar SINCRONISMO:
-    - relógio: lógico e físico
 
-    - recurso: exclusão mútua
 
 SISTEMAS PARALELOS
     - Homogêneos: arquiteturas de hardware, sistema operacional e linguagens de programação idênticas
