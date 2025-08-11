@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "avpSbFqpDxAA6FrcKcOMYMiX4bq9uF1qltEizASEuoi5ueubeIay9TMiPJhkhxY+0lgyGjDRCHwahTeP8kkTsg==",
+  "dgSpecHash": "3yYo17nzL0YpYYrN5290rU5xNiOeX911O+TSrYhN3zAFahAzf36vN8xc0fK0uik/vcWTORHRYvRvgi+yrjnQ2A==",
   "success": true,
   "projectFilePath": "/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/3-Sockets/C#/C#.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/alexandrezamberlan/.nuget/packages/microsoft.netcore.app.ref/5.0.0/microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
+    "/Users/alexandrezamberlan/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "/Users/alexandrezamberlan/.nuget/packages/microsoft.netcore.app.host.osx-x64/5.0.16/microsoft.netcore.app.host.osx-x64.5.0.16.nupkg.sha512"
+  ],
   "logs": []
 }

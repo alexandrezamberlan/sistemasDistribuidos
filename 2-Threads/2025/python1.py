@@ -2,12 +2,10 @@ import threading
 import random
 import time
  
-def popular_lista_intervalo(lista, inicio, fim, tamanho_lista):
-    tamanho_intervalo = fim - inicio + 1
-    if tamanho_intervalo <= tamanho_lista:
-        lista.extend(range(inicio, fim + 1))
-    else:
-        lista.extend(random.sample(range(inicio, fim + 1), tamanho_lista))
+def popular_lista_intervalo(lista, tamanho_lista):
+    for _ in range(tamanho_lista):
+        lista.append( random.randint(1000,10000) )
+    
  
 def ordenar_bolha(lista):
     houve_troca = True
@@ -17,8 +15,12 @@ def ordenar_bolha(lista):
             if lista[i] > lista[i + 1]:
                 lista[i], lista[i + 1] = lista[i + 1], lista[i]
                 houve_troca = True
+                
+    print('Bolha finalizado...')
  
 def ordenar_pente(lista):
+    print(lista)
+    
     n = len(lista)
     distancia = n
     fator = 1.3
@@ -34,45 +36,33 @@ def ordenar_pente(lista):
             if lista[i] > lista[i + distancia]:
                 lista[i], lista[i + distancia] = lista[i + distancia], lista[i]
                 houve_troca = True
+    
+    print('Pente finalizado...')
  
-def sort_timing(lista, sort, name, resultados):
-    inicio = time.time()
-    sort(lista)
-    fim = time.time()
-    resultados[name] = fim - inicio
  
 if __name__ == "__main__":
     lista1 = []
     lista2 = []
-    tamanho_lista = 2000
  
-    t1 = threading.Thread(target=popular_lista_intervalo,args=(lista1, 3001, 10000, tamanho_lista))
-    t2 = threading.Thread(target=popular_lista_intervalo,args=(lista2, 0, 3000, tamanho_lista))
+    popula_lista1 = threading.Thread(target=popular_lista_intervalo,args=(lista1, 5))
+    popula_lista2 = threading.Thread(target=popular_lista_intervalo,args=(lista2, 10))
  
-    t1.start()
-    t2.start()
-    t1.join()
-    t2.join()
+    popula_lista1.start()
+    popula_lista2.start()
+    
+    popula_lista1.join()
+    popula_lista2.join()
+ 
     print(f"Listas populadas.")
+    
+    ordenar_pente(lista2)
+    print(lista2)
  
-    resultados = {}
+    # ordena_pente = threading.Thread(target=ordenar_pente,args=(lista2))
+    # ordena_bolha = threading.Thread(target=ordenar_bolha,args=(lista1))
  
-    t3 = threading.Thread(target=sort_timing,args=(lista1, ordenar_pente, 'pente', resultados))
-    t4 = threading.Thread(target=sort_timing,args=(lista2, ordenar_bolha, 'bolha', resultados))
+    # ordena_pente.start()
+    # ordena_bolha.start()
+    
  
-    t3.start()
-    t4.start()
-    # t3.join()
-    t4.join()
- 
-    tempo_pente = resultados['pente']
-    tempo_bolha = resultados['bolha']
-    print(f"Tempo ordenação Pente: {tempo_pente:.3f} s")
-    print(f"Tempo ordenação Bolha:  {tempo_bolha:.3f} s")
- 
-    if tempo_pente < tempo_bolha:
-        print(">> Ordenação por Pente terminou primeiro!")
-    elif tempo_bolha < tempo_pente:
-        print(">> Ordenação por Bolha terminou primeiro!")
-    else:
-        print(">> Ambos terminaram exatamente ao mesmo tempo!")
+    
