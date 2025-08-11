@@ -1,0 +1,15 @@
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/bin/Debug/net6.0/csharp
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/bin/Debug/net6.0/csharp.deps.json
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/bin/Debug/net6.0/csharp.runtimeconfig.json
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/bin/Debug/net6.0/csharp.dll
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/bin/Debug/net6.0/csharp.pdb
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/obj/Debug/net6.0/csharp.csproj.AssemblyReference.cache
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/obj/Debug/net6.0/csharp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/obj/Debug/net6.0/csharp.AssemblyInfoInputs.cache
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/obj/Debug/net6.0/csharp.AssemblyInfo.cs
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/obj/Debug/net6.0/csharp.csproj.CoreCompileInputs.cache
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/obj/Debug/net6.0/csharp.dll
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/obj/Debug/net6.0/refint/csharp.dll
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/obj/Debug/net6.0/csharp.pdb
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/obj/Debug/net6.0/csharp.genruntimeconfig.cache
+/Users/alexandrezamberlan/Documents/_codigos/sistemasDistribuidos/2-Threads/2025/csharp/obj/Debug/net6.0/ref/csharp.dll
