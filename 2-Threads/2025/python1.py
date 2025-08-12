@@ -58,8 +58,8 @@ if __name__ == "__main__":
     ordenar_pente(lista2)
     print(lista2)
  
-    # ordena_pente = threading.Thread(target=ordenar_pente,args=(lista2))
-    # ordena_bolha = threading.Thread(target=ordenar_bolha,args=(lista1))
+    # ordena_pente = threading.Thread(target=ordenar_pente,args=(lista2,))
+    # ordena_bolha = threading.Thread(target=ordenar_bolha,args=(lista1,))
  
     # ordena_pente.start()
     # ordena_bolha.start()
