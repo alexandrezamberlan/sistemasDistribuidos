@@ -3,20 +3,19 @@
 Quando se dispara *threads* nas linguagens Java, C# e Python, mesmo sem usar memória compartilhada, ainda é possível **identificar** e **monitorar** qual thread está executando por meio de informações como:
 
 * **ID da thread** (número único no processo)
-* **Nome da thread** (se definido manualmente ou pelo sistema)
+* **Nome da thread** (definido manualmente ou pelo sistema)
 
 Isso é útil para debug, logging e até sincronização.
-
-
 
 ## Java
 
 Em Java, cada *thread* tem métodos para obter ID e nome:
 
 ```java
-class MinhaTarefa implements Runnable {
+class MinhaTarefa implements Runnable { //permite o uso de memória compartilhada
     @Override
     public void run() {
+        //aqui está o código a ser concomitado
         Thread t = Thread.currentThread();
         System.out.println("Executando na Thread: " + t.getName() + " | ID: " + t.getId());
     }

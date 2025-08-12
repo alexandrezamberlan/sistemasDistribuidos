@@ -4,7 +4,7 @@
 ## Java
 
 ```java
-class MinhaTarefa implements Runnable {
+class MinhaTarefa implements Runnable { //uso de threads com memória compartilhada
     private String parametro;
 
     public MinhaTarefa(String parametro) {
