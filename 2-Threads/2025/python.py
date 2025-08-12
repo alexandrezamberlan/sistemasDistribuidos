@@ -5,6 +5,7 @@ import time
 def popular_lista(lista, tamanho_lista):
     for _ in range(tamanho_lista):
         lista.append( random.randint(1000,10000) )
+        
     
  
 def ordenar_bolha(lista):

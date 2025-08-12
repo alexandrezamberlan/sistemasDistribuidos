@@ -21,7 +21,6 @@ class PopulaLista extends Thread { //uso de threads sem memória compartilhada
         for (int i = 0; i < tamanho; i++) {
             lista.add(random.nextInt(tamanho));
         }
-        System.out.println("lista populada: ");
     }
 }
 
