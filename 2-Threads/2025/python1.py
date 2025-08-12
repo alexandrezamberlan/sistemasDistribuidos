@@ -2,7 +2,7 @@ import threading
 import random
 import time
  
-def popular_lista_intervalo(lista, tamanho_lista):
+def popular_lista(lista, tamanho_lista):
     for _ in range(tamanho_lista):
         lista.append( random.randint(1000,10000) )
     
@@ -18,9 +18,7 @@ def ordenar_bolha(lista):
                 
     print('Bolha finalizado...')
  
-def ordenar_pente(lista):
-    print(lista)
-    
+def ordenar_pente(lista):    
     n = len(lista)
     distancia = n
     fator = 1.3
@@ -43,26 +41,27 @@ def ordenar_pente(lista):
 if __name__ == "__main__":
     lista1 = []
     lista2 = []
+    lista3 = []
  
-    popula_lista1 = threading.Thread(target=popular_lista_intervalo,args=(lista1, 5))
-    popula_lista2 = threading.Thread(target=popular_lista_intervalo,args=(lista2, 10))
+    thread_popula_lista1 = threading.Thread(target=popular_lista,args=(lista1, 5000))
+    thread_popula_lista2 = threading.Thread(target=popular_lista,args=(lista2, 1000))
+    thread_popula_lista3 = threading.Thread(target=popular_lista,args=(lista3, 500))
  
-    popula_lista1.start()
-    popula_lista2.start()
+    thread_popula_lista1.start()
+    thread_popula_lista2.start()
+    thread_popula_lista3.start()
     
-    popula_lista1.join()
-    popula_lista2.join()
+    thread_popula_lista1.join()
+    thread_popula_lista2.join()
+    thread_popula_lista3.join()
  
-    print(f"Listas populadas.")
-    
-    ordenar_pente(lista2)
-    print(lista2)
+    thread_ordena_pente = threading.Thread(target=ordenar_pente,args=(lista1,))
+    thread_ordena_bolha3 = threading.Thread(target=ordenar_bolha,args=(lista3,))
+    thread_ordena_bolha2 = threading.Thread(target=ordenar_bolha,args=(lista2,))
  
-    # ordena_pente = threading.Thread(target=ordenar_pente,args=(lista2,))
-    # ordena_bolha = threading.Thread(target=ordenar_bolha,args=(lista1,))
- 
-    # ordena_pente.start()
-    # ordena_bolha.start()
+    thread_ordena_pente.start()
+    thread_ordena_bolha2.start()
+    thread_ordena_bolha3.start()
     
  
     
