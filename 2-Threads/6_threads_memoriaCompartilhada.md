@@ -8,30 +8,32 @@ Em Java a memória é compartilhada entre threads na mesma JVM. Além disso, dev
 import java.util.ArrayList;
 import java.util.List;
 
-class SharedList {
-    private final List<Integer> numbers = new ArrayList<>();
+class ListaCompartilhada {
+    private final List<Integer> numeros = new ArrayList<>(); //observem a visibilidade final
 
-    public synchronized void addNumber(int num) {
-        numbers.add(num);
-        System.out.println(Thread.currentThread().getName() + " adicionou: " + num);
+    public synchronized void adicionarNumero(int umNumero) {
+        numeros.add(umNumero);
+        System.out.println(Thread.currentThread().getName() + " adicionou: " + umNumero);
     }
 
-    public synchronized List<Integer> getNumbers() {
-        return new ArrayList<>(numbers);
+    public synchronized List<Integer> retornarNumeros() { //metodo get de acesso tipo leitura da lista numeros
+        return new ArrayList<>(numeros);
     }
 }
 
-class Worker extends Thread {
-    private final SharedList sharedList;
+class ThreadDeTrabalho extends Thread {
+    private final ListaCompartilhada listaCompartilhada;
+    int quantidadeNumeros;
 
-    public Worker(SharedList sharedList) {
-        this.sharedList = sharedList;
+    public ThreadDeTrabalho(ListaCompartilhada lista, int quantidadeNumeros) {
+        this.listaCompartilhada = lista;
+        this.quantidadeNumeros = quantidadeNumeros;
     }
 
     @Override
     public void run() {
-        for (int i = 1; i <= 5; i++) {
-            sharedList.addNumber(i);
+        for (int i = 1; i <= this.quantidadeNumeros; i++) {
+            listaCompartilhada.adicionarNumero(i);
             try {
                 Thread.sleep(50);
             } catch (InterruptedException ignored) {}
@@ -41,10 +43,11 @@ class Worker extends Thread {
 
 public class Principal {
     public static void main(String[] args) throws InterruptedException {
-        SharedList listaCompartilhada = new SharedList();
+        ListaCompartilhada listaCompartilhada = new ListaCompartilhada();
 
-        Thread t1 = new Worker(sharedList);
-        Thread t2 = new Worker(sharedList);
+        //ha duas threads que populam números inteiros na mesma thread
+        Thread t1 = new ThreadDeTrabalho(listaCompartilhada, 5);
+        Thread t2 = new ThreadDeTrabalho(listaCompartilhada, 5);
 
         t1.start();
         t2.start();
@@ -52,100 +55,98 @@ public class Principal {
         t1.join();
         t2.join();
 
-        System.out.println("Lista final: " + listaCompartilhada.getNumbers());
+        System.out.println("Lista final: " + listaCompartilhada.retornarNumeros());
     }
 }
 ```
 
----
 
-# 🔹 C# – Threads com Memória Compartilhada
+## C#
 
-Em C#, também é possível compartilhar memória entre threads. Aqui usamos **lock** para proteger a lista compartilhada.
+Em C#, também é possível compartilhar memória entre threads. Contudo, é utilizado **lock** para proteger a lista compartilhada, ao invés de **sincronização do Java**.
 
 ```csharp
 using System;
 using System.Collections.Generic;
 using System.Threading;
 
-class SharedList {
-    private List<int> numbers = new List<int>();
+class ListaCompartilhada {
+    private List<int> numeros = new List<int>();
     private readonly object lockObj = new object();
 
-    public void AddNumber(int num) {
+    public void AdicionarNumeros(int umNumero) {
         lock (lockObj) {
-            numbers.Add(num);
-            Console.WriteLine(Thread.CurrentThread.ManagedThreadId + " adicionou: " + num);
+            numeros.Add(umNumero);
+            Console.WriteLine(Thread.CurrentThread.ManagedThreadId + " adicionou: " + umNumero);
         }
     }
 
-    public List<int> GetNumbers() {
+    public List<int> RetornarNumeros() {
         lock (lockObj) {
-            return new List<int>(numbers);
+            return new List<int>(numeros);
         }
     }
 }
 
 class Program {
-    static void Worker(object obj) {
-        SharedList sharedList = (SharedList)obj;
+    static void ThreadDeTrabalho(object objeto) {
+        ListaCompartilhada listaCompartilhada = (ListaCompartilhada)objeto;
         for (int i = 1; i <= 5; i++) {
-            sharedList.AddNumber(i);
+            listaCompartilhada.AdicionarNumeros(i);
             Thread.Sleep(50);
         }
     }
 
     static void Main() {
-        SharedList sharedList = new SharedList();
+        ListaCompartilhada listaCompartilhada = new ListaCompartilhada();
 
-        Thread t1 = new Thread(Worker);
-        Thread t2 = new Thread(Worker);
+        Thread t1 = new Thread(ThreadDeTrabalho);
+        Thread t2 = new Thread(ThreadDeTrabalho);
 
-        t1.Start(sharedList);
-        t2.Start(sharedList);
+        t1.Start(listaCompartilhada);
+        t2.Start(listaCompartilhada);
 
         t1.Join();
         t2.Join();
 
-        Console.WriteLine("Lista final: " + string.Join(", ", sharedList.GetNumbers()));
+        Console.WriteLine("Lista final: " + string.Join(", ", listaCompartilhada.RetornarNumeros()));
     }
 }
 ```
 
----
 
-# 🔹 Python – Threads com Memória Compartilhada
+## Python
 
-No Python, threads também compartilham memória, mas precisamos usar **Lock** para proteger a lista.
+No Python, threads também compartilham memória, mas é preciso, também, usar **Lock** para proteger a lista.
 
 ```python
 import threading
 import time
 
-class SharedList:
+class ListaCompartilhada:
     def __init__(self):
-        self.numbers = []
+        self.numeros = []
         self.lock = threading.Lock()
 
-    def add_number(self, num):
+    def adicionar_numeros(self, um_numero):
         with self.lock:
-            self.numbers.append(num)
-            print(f"{threading.current_thread().name} adicionou: {num}")
+            self.numeros.append(um_numero)
+            print(f"{threading.current_thread().name} adicionou: {um_numero}")
 
-    def get_numbers(self):
+    def retornar_numeros(self):
         with self.lock:
-            return list(self.numbers)
+            return list(self.numeros)
 
-def worker(shared_list):
-    for i in range(1, 6):
-        shared_list.add_number(i)
+def operacao_trabalho(lista, quantidade_numeros):
+    for i in range(1, quantidade_numeros):
+        lista.adicionar_numeros(i)
         time.sleep(0.05)
 
 if __name__ == "__main__":
-    shared_list = SharedList()
+    lista_compartilhada = ListaCompartilhada()
 
-    t1 = threading.Thread(target=worker, args=(shared_list,))
-    t2 = threading.Thread(target=worker, args=(shared_list,))
+    t1 = threading.Thread(target=operacao_trabalho, args=(lista_compartilhada,5))
+    t2 = threading.Thread(target=operacao_trabalho, args=(lista_compartilhada,5))
 
     t1.start()
     t2.start()
@@ -153,14 +154,13 @@ if __name__ == "__main__":
     t1.join()
     t2.join()
 
-    print("Lista final:", shared_list.get_numbers())
+    print("Lista final:", lista_compartilhada.retornar_numeros())
 ```
 
----
 
-# 🔹 Resumo: Threads sem x com Memória Compartilhada
+## Threads sem x com Memória Compartilhada
 
-* **Threads sem memória compartilhada**
+* **Threads SEM memória compartilhada**
 
   * Cada thread recebe **parâmetros próprios** (ex.: números, strings, objetos independentes).
   * As variáveis **não são acessadas em comum**.
@@ -171,8 +171,6 @@ if __name__ == "__main__":
 
   * Duas ou mais threads acessam a **mesma estrutura de dados** (lista, dicionário, objeto).
   * Necessário uso de **mecanismos de sincronização** (Java `synchronized`, C# `lock`, Python `threading.Lock`).
-  * Mais eficientes em alguns casos, mas requerem **cuidado com concorrência** (deadlocks, race conditions).
+  * Mais eficientes em alguns casos, MAS REQUEREM **cuidado com concorrência** (deadlocks, race conditions).
 
----
 
-👉 Quer que eu faça também uma **variação sem Lock**, para você ver na prática o problema da condição de corrida em cada linguagem?
