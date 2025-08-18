@@ -11,11 +11,13 @@ import java.util.List;
 class ListaCompartilhada {
     private final List<Integer> numeros = new ArrayList<>(); //observem a visibilidade final
 
+    //método set da variavel numeros que é private final
     public synchronized void adicionarNumero(int umNumero) {
         numeros.add(umNumero);
         System.out.println(Thread.currentThread().getName() + " adicionou: " + umNumero);
     }
 
+    //metodo get da variavel numeros que é private final
     public synchronized List<Integer> retornarNumeros() { //metodo get de acesso tipo leitura da lista numeros
         return new ArrayList<>(numeros);
     }

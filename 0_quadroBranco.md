@@ -1,6 +1,16 @@
 # Quadro Branco
 
-## Aula 12/08 - Threads
+## Aula 18/08 - Threads
+    - Revisão
+        - passagem de parâmetro Java (construtor), C# (construtor) e Python (args)
+        - quando threads NÃO DEVEM ser utilizadas
+            - baixa complexidade das rotinas ou tarefas envolvidas
+            - seção crítica:
+                - não há possibilidade de gerenciar via sincronismo (java) e lock (C# e Python)
+    - Identificação de Thread - id  e nome/identificação
+        
+
+## Aula 11/08 - Threads
 
 Threads
     - o que são?
