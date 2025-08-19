@@ -11,13 +11,13 @@ import java.util.List;
 class ListaCompartilhada {
     private final List<Integer> numeros = new ArrayList<>(); //observem a visibilidade final
 
-    //método set da variavel numeros que é private final
+    //método set da variavel numeros que é private final - operacao escrever
     public synchronized void adicionarNumero(int umNumero) {
         numeros.add(umNumero);
         System.out.println(Thread.currentThread().getName() + " adicionou: " + umNumero);
     }
 
-    //metodo get da variavel numeros que é private final
+    //metodo get da variavel numeros que é private final - operacao leitura
     public synchronized List<Integer> retornarNumeros() { //metodo get de acesso tipo leitura da lista numeros
         return new ArrayList<>(numeros);
     }
@@ -46,6 +46,7 @@ class ThreadDeTrabalho extends Thread {
 public class Principal {
     public static void main(String[] args) throws InterruptedException {
         ListaCompartilhada listaCompartilhada = new ListaCompartilhada();
+        
 
         //ha duas threads que populam números inteiros na mesma thread
         Thread t1 = new ThreadDeTrabalho(listaCompartilhada, 5);
@@ -176,3 +177,7 @@ if __name__ == "__main__":
   * Mais eficientes em alguns casos, MAS REQUEREM **cuidado com concorrência** (deadlocks, race conditions).
 
 
+### Exercicio
+    Baseado no código exemplo Java ou Python, fazer uma pequena alteração nas responsabilidades das threads.
+    Thread t1 só poderá adicionar números pares entre 100 a 200
+    Thread t2 só poderá adicionar números impares entre 1 a 99
