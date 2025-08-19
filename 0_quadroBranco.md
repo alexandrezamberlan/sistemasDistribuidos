@@ -1,16 +1,17 @@
 # Quadro Branco
 
-## Aula 18/08 - Threads
+## Aula 4 - Threads
+    - Entrega do desafio 2
     - Revisão
         - passagem de parâmetro Java (construtor), C# (construtor) e Python (args)
         - quando threads NÃO DEVEM ser utilizadas
             - baixa complexidade das rotinas ou tarefas envolvidas
             - seção crítica:
                 - não há possibilidade de gerenciar via sincronismo (java) e lock (C# e Python)
-    - Identificação de Thread - id  e nome/identificação
-        
+    - Threads com memória compartilhada
 
-## Aula 11/08 - Threads
+        
+## Aula 3 - Threads
 
 Threads
     - o que são?
@@ -21,6 +22,7 @@ Threads
         - mineração
             - tratamento de dados
             - análise de dados
+        - rotinas que não possuam seção crítica 
     - em quais tarefas ou situações threads NÃO SÃO adequadas?
         - de interação com o usuário
 
@@ -50,6 +52,13 @@ Desafio para depois do intervalo:
                     new PopulaLista(listaDeListas.get(i), tamanhoLista).start();
                 }
 
+## Aula 2
+    - Threads nas 3 linguagens: ideia geral
+    - Desafio 1: Jogo da cobrinha
+
+## Aula 1
+    - Apresentação e discussão do plano de ensino
+    - Conceitos básicos de SD: comunicação, arquitetura, 
 
 
                 
