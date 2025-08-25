@@ -1,5 +1,29 @@
 # Quadro Branco
 
+## Aula 5 - Sincronização Distribuída – Relógios Físicos e Lógicos. Exclusão Mútua e Eleição.
+    - Teoria básica de sistemas distribuídos
+        - o que é e para que serve -> compartilhar recurso (cpu, ram, memória secundária)
+        - diferenças entre grid (computação concomitante) e cluster (computação paralela)
+        - comunicação entre computadores ou equipamentos em sistemas distribuídos
+            - model TCP/IP: endereço, porta, máscara de rede, socket, camada de transporte (UDP e TCP)
+        - comunicação é leitura (consumidor) ou é escrita (produtor) - É BLOQUEANTE
+            - THREADS: mini processos concomitantes -> desbloquear a comunicação
+                - sem memória compartilhada
+                - com memória compartilhada
+                - delegar uma rotina para thread; passar parâmetros; identificação
+            - SINCRONISMO -> acesso a seção crítica -> memória compartilhada
+                - java: sincronized
+                - c# e python: lock
+                - via relógio: físico e lógico
+                - exclusão mútua - lock ou relógio ou eleição
+
+    - Poll de Threads - Matheus vai enviar o link dos exemplos
+
+    - Atividades:
+        - pesquisar, compilar e disponibilizar nos githubs pessoais sobre Relógios Físicos e Lógicos. Exclusão Mútua e Eleição
+        - refazer ou compreender o Tele Jogo com uso de threads (sem e com compartilhamento de recurso)
+
+
 ## Aula 4 - Threads
     - Entrega do desafio 2
     - Revisão

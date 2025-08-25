@@ -83,16 +83,6 @@ public class JFrame_principal extends javax.swing.JFrame {
                     break;
             }
         }
-//        if (Movimenta.pegou(jButton_fruta, jButton_jogador1)) {
-//            Movimenta.sorteiaPosicao(jButton_fruta, meuFrame);
-//            pontosJogador1++;
-//            jTextField_jogador1.setText("" + pontosJogador1);
-//        }
-//        if (Movimenta.pegou(jButton_fruta, jButton_jogador2)) {
-//            Movimenta.sorteiaPosicao(jButton_fruta, meuFrame);
-//            pontosJogador2++;
-//            jTextField_jogador2.setText("" + pontosJogador2);
-//        }
     }
 
     /**
@@ -180,7 +170,6 @@ public class JFrame_principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         largura = this.getWidth();
         altura = this.getHeight();
-//        System.out.println(evt.getKeyCode() + ", " + evt.getKeyChar());
         synchronized (meuFrame) {
             pressed.add(evt.getKeyCode());
             //verificaTeclas();
