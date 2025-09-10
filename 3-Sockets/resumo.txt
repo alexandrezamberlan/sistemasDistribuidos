@@ -1,5 +1,5 @@
 Comunicação entre máquinas -> 'foco' de sistemas distribuídos
-    - compartilhamento de recursos: memória e processador
+    - compartilhamento de recursos: memória, processador e gpu
     - modelo TCP/IP: camadas de funcionamento de uma rede de computadores -> foco na camada de transporte
         - pacote: remetente, destinatário, conteúdo
         - endereço de rede (IP), porta lógica, endereço de servidor e cliente
@@ -13,10 +13,10 @@ Comunicação entre máquinas -> 'foco' de sistemas distribuídos
             ... 
     - tipos de comunicação
         - em relação a sincronismo
-            - síncrona - void - TCP (camada de transporte) -> texto
+            - síncrona - return - TCP (camada de transporte) -> texto
                 - bloqueante -> esperar a confirmação do destinatário
                 - buffer 
-            - assíncrona - return - UDP (camada de transporte) -> áudio e vídeo (streamming)
+            - assíncrona - void - UDP (camada de transporte) -> áudio e vídeo (streamming)
                 - não bloqueante
         - em relação a persistência
             - transiente
@@ -32,7 +32,7 @@ Sockets
     - 1980
     - foco na camada de transporte: TCP (síncrona) e UDP (assíncrona)
     - baseado na arquitetura cliente-servidor
-    - Classes, interfaces, métodos, atributos para comunicação entre máquinas de forma EXPLÍCITA
+    - Classes, interfaces, métodos, atributos para comunicação entre máquinas de forma EXPLÍCITA - JAVA
         - o programador deve tratar tudo: conexão (endereço e portas lógica), objetos para ler e escrever no meio (socket), tratar sincronismo (thread)
     - Principais funcionalidades
         - classe Socket 
@@ -40,6 +40,6 @@ Sockets
         - método listen (socket pode ficar escutando pra 'sempre' - thread)
         - método accept (bloqueia ou garante que o servidor responda uma requisição)
         - método connect (inicia a conexão)
-        - método read (ler os dados que estão no socket -> recebendo)
-        - método write (escrever algum dado no socket -> enviando)
+        - método read/INPUT (ler os dados que estão no socket -> recebendo)
+        - método write/OUTPUT (escrever algum dado no socket -> enviando)
         - método close (fechar a conexão)
