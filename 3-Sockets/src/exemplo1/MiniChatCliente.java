@@ -24,8 +24,6 @@ public class MiniChatCliente {
             saida = new ObjectOutputStream(socketCliente.getOutputStream());
             entrada = new ObjectInputStream(socketCliente.getInputStream());
 
-            
-
             new Thread() {
                 @Override
                 public void run() {

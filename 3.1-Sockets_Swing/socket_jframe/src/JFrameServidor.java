@@ -9,7 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
 public class JFrameServidor extends javax.swing.JFrame {
 
     /**
@@ -38,6 +37,7 @@ public class JFrameServidor extends javax.swing.JFrame {
         jTextFieldTextoMensagem = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaMensagensRecebidas = new javax.swing.JTextArea();
+        jButtonEncerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,6 +97,13 @@ public class JFrameServidor extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jButtonEncerrar.setText("Encerrar");
+        jButtonEncerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEncerrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,7 +120,10 @@ public class JFrameServidor extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldPorta, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
-                    .addComponent(jButtonIniciar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jButtonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonEncerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -126,7 +136,9 @@ public class JFrameServidor extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldPorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonIniciar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonIniciar)
+                    .addComponent(jButtonEncerrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelCamposMensagens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -148,34 +160,25 @@ public class JFrameServidor extends javax.swing.JFrame {
                 socketServidor = new ServerSocket(Integer.parseInt(jTextFieldPorta.getText())); //CONSTRUTOR DO SERVERSOCKT RECEBE A PORTA DE TRABALHO                
                 socketCliente = socketServidor.accept(); //ACAO BLOQUEANTE QUE O SERVIDOR SÓ LIBERA QUANDO UM CLIENTE FIZER CONEXÃO                
                 JOptionPane.showMessageDialog(this, "Servidor em funcionamento");
-                
-                try {
-                    new Thread() {
-                        public void run() {
-                            String fraseDoCliente;
-                            
-                            try {
-                                saida = new ObjectOutputStream(socketCliente.getOutputStream()); //INSTANCIAR PRIMEIRO O ESCRITOR
-                                entrada = new ObjectInputStream(socketCliente.getInputStream()); 
-                                //ENQUANTO O CLIENTE ENVIAR TEXTO, EXIBIR NA TELA
-                                while ((fraseDoCliente = (String) entrada.readObject()) != null) {
-                                    jTextAreaMensagensRecebidas.setText(fraseDoCliente + "\n");
-                                }
-                            } catch (IOException ex) {
-                                Logger.getLogger(JFrameServidor.class.getName()).log(Level.SEVERE, null, ex);
-                            } catch (ClassNotFoundException ex) {
-                                Logger.getLogger(JFrameServidor.class.getName()).log(Level.SEVERE, null, ex);
+
+                new Thread() {
+                    public void run() {
+                        String fraseDoCliente;
+
+                        try {
+                            saida = new ObjectOutputStream(socketCliente.getOutputStream()); //INSTANCIAR PRIMEIRO O ESCRITOR
+                            entrada = new ObjectInputStream(socketCliente.getInputStream());
+                            //ENQUANTO O CLIENTE ENVIAR TEXTO, EXIBIR NA TELA
+                            while ((fraseDoCliente = (String) entrada.readObject()) != null) {
+                                jTextAreaMensagensRecebidas.setText(fraseDoCliente + "\n");
                             }
+                        } catch (IOException ex) {
+                            Logger.getLogger(JFrameServidor.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(JFrameServidor.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    }.start();
-                    saida.close();
-                    entrada.close();
-                    socketCliente.close();
-                    socketServidor.close();
-                    System.exit(0);
-                } catch (IOException ex) {
-                    Logger.getLogger(JFrameServidor.class.getName()).log(Level.SEVERE, null, ex);
-                } 
+                    }
+                }.start();
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(this, "Exceção capturada ao ouvir/ler a porta " + jTextFieldPorta.getText() + " ou ao tentar conectar");
                 //System.out.println(e.getMessage());
@@ -187,7 +190,7 @@ public class JFrameServidor extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String fraseDoServidor;
-            
+
             fraseDoServidor = jTextFieldTextoMensagem.getText();
             try {
                 saida.flush();
@@ -195,9 +198,22 @@ public class JFrameServidor extends javax.swing.JFrame {
                 jTextFieldTextoMensagem.setText("");
             } catch (IOException ex) {
                 Logger.getLogger(JFrameServidor.class.getName()).log(Level.SEVERE, null, ex);
-            }            
+            }
         }
     }//GEN-LAST:event_jTextFieldTextoMensagemKeyPressed
+
+    private void jButtonEncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncerrarActionPerformed
+        // TODO add your handling code here:
+        try {
+            saida.close();
+            entrada.close();
+            socketCliente.close();
+            socketServidor.close();
+            System.exit(0);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Problemas de conexão ou socket");
+        }
+    }//GEN-LAST:event_jButtonEncerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,6 +256,7 @@ public class JFrameServidor extends javax.swing.JFrame {
     static ObjectInputStream entrada;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonEncerrar;
     private javax.swing.JButton jButtonIniciar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

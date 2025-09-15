@@ -46,6 +46,7 @@ public class JFrameCliente extends javax.swing.JFrame {
         jTextFieldTextoMensagem = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaMensagensRecebidas = new javax.swing.JTextArea();
+        jButtonEncerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +102,13 @@ public class JFrameCliente extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jButtonEncerrar.setText("Encerrar");
+        jButtonEncerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEncerrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,7 +116,6 @@ public class JFrameCliente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonConectar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -123,7 +130,11 @@ public class JFrameCliente extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextFieldPorta, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jPanelCamposMensagens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelCamposMensagens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonEncerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -140,7 +151,9 @@ public class JFrameCliente extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldPorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonConectar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonConectar)
+                    .addComponent(jButtonEncerrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanelCamposMensagens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -191,15 +204,23 @@ public class JFrameCliente extends javax.swing.JFrame {
 
                     }
                 }.start();
-                saida.close();
-                entrada.close();
-                socketCliente.close();
-                System.exit(0);
             } catch (IOException ex) {
                 java.util.logging.Logger.getLogger(JFrameServidor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jButtonConectarActionPerformed
+
+    private void jButtonEncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncerrarActionPerformed
+        // TODO add your handling code here:
+        try {
+            saida.close();
+            entrada.close();
+            socketCliente.close();
+            System.exit(0);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Problemas de conexão ou socket");
+        }
+    }//GEN-LAST:event_jButtonEncerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,6 +263,7 @@ public class JFrameCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConectar;
+    private javax.swing.JButton jButtonEncerrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

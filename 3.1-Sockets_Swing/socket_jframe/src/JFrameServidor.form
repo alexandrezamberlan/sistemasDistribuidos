@@ -36,7 +36,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextFieldPorta" pref="90" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jButtonIniciar" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jButtonIniciar" min="-2" pref="238" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonEncerrar" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -53,7 +57,10 @@
                   <Component id="jTextFieldPorta" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButtonIniciar" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonIniciar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonEncerrar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanelCamposMensagens" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -149,5 +156,13 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="jButtonEncerrar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Encerrar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEncerrarActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
