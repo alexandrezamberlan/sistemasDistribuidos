@@ -16,6 +16,7 @@ public class JFrameServidor extends javax.swing.JFrame {
      */
     public JFrameServidor() {
         initComponents();
+        jButtonEncerrar.setEnabled(false);
     }
 
     /**
@@ -160,6 +161,10 @@ public class JFrameServidor extends javax.swing.JFrame {
                 socketServidor = new ServerSocket(Integer.parseInt(jTextFieldPorta.getText())); //CONSTRUTOR DO SERVERSOCKT RECEBE A PORTA DE TRABALHO                
                 socketCliente = socketServidor.accept(); //ACAO BLOQUEANTE QUE O SERVIDOR SÓ LIBERA QUANDO UM CLIENTE FIZER CONEXÃO                
                 JOptionPane.showMessageDialog(this, "Servidor em funcionamento");
+                jButtonEncerrar.setEnabled(true);
+                jButtonIniciar.setEnabled(false);
+                jTextFieldApelido.setEnabled(false);
+                jTextFieldPorta.setEnabled(false);
 
                 new Thread() {
                     public void run() {

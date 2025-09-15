@@ -162,19 +162,34 @@ public class JFrameCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void enviarMensagem() {
+        String fraseDoCliente;
+
+        fraseDoCliente = jTextFieldTextoMensagem.getText();
+        try {
+            saida.flush();
+            saida.writeObject((jTextFieldApelido.getText() + ": " + fraseDoCliente));
+            jTextFieldTextoMensagem.setText("");
+        } catch (IOException ex) {
+            //Logger.getLogger(JFrameServidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void enviarMensagem(String frase) {
+        
+        try {
+            saida.flush();
+            saida.writeObject((jTextFieldApelido.getText() + ": " + frase));
+            jTextFieldTextoMensagem.setText("");
+        } catch (IOException ex) {
+            //Logger.getLogger(JFrameServidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     private void jTextFieldTextoMensagemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTextoMensagemKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            String fraseDoCliente;
-
-            fraseDoCliente = jTextFieldTextoMensagem.getText();
-            try {
-                saida.flush();
-                saida.writeObject((jTextFieldApelido.getText() + ": " + fraseDoCliente));
-                jTextFieldTextoMensagem.setText("");
-            } catch (IOException ex) {
-                //Logger.getLogger(JFrameServidor.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            enviarMensagem();
         }
     }//GEN-LAST:event_jTextFieldTextoMensagemKeyPressed
 
@@ -213,6 +228,8 @@ public class JFrameCliente extends javax.swing.JFrame {
     private void jButtonEncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncerrarActionPerformed
         // TODO add your handling code here:
         try {
+            //enviar pro outro lado que encerrei.....
+            enviarMensagem("Finalizei minha conexão....");
             saida.close();
             entrada.close();
             socketCliente.close();
