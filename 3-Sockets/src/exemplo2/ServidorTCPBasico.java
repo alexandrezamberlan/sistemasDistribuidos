@@ -10,7 +10,7 @@ public class ServidorTCPBasico {
 
     public static void main(String[] args) {
         try {
-            int portaServidor = 3333;
+            int portaServidor = 8888;
             ServerSocket servidor = new ServerSocket(portaServidor);
             System.out.println("Servidor ouvindo a porta: " + portaServidor);
             Socket cliente; //procurador do cliente no lado do servidor

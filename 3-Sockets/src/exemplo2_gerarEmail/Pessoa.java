@@ -1,4 +1,4 @@
-package exemplo2;
+package exemplo2_gerarEmail;
 
 import java.io.Serializable;
 import java.util.Objects;

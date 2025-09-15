@@ -1,4 +1,4 @@
-package exemplo2;
+package exemplo2_gerarEmail;
 
 import java.awt.HeadlessException;
 import java.io.IOException;
@@ -24,7 +24,11 @@ public class ClienteTCPBasico {
       //receber o objeto criado
       ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
       Pessoa p = (Pessoa)entrada.readObject();
-      JOptionPane.showMessageDialog(null,"Pessoa criada e recebida: " + p);
+      if (p == null) {
+        JOptionPane.showMessageDialog(null, "Seu nome já está na lista com um email gerado");
+      } else {
+        JOptionPane.showMessageDialog(null,"Pessoa criada e recebida: " + p);
+      }
       entrada.close();
       System.out.println("Conexão encerrada");
     }

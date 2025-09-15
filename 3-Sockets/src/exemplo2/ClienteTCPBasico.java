@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class ClienteTCPBasico {
   public static void main(String[] args) {
     try {
-      int porta = 3333;
+      int porta = 8888;
       Socket cliente = new Socket("localhost",porta);
       
       ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
