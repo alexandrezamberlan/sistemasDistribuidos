@@ -1,8 +1,17 @@
+
+import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+import java.net.Socket;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author laboratorio
@@ -25,21 +34,172 @@ public class JFrameCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldApelido = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldEnderecoServidor = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldPorta = new javax.swing.JTextField();
+        jButtonConectar = new javax.swing.JButton();
+        jPanelCamposMensagens = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldTextoMensagem = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaMensagensRecebidas = new javax.swing.JTextArea();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Apelido:");
+
+        jLabel2.setText("Endereço Servidor:");
+
+        jLabel3.setText("Porta autorizada:");
+
+        jButtonConectar.setText("Conectar");
+        jButtonConectar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConectarActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Texto para enviar:");
+
+        jTextFieldTextoMensagem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldTextoMensagemKeyPressed(evt);
+            }
+        });
+
+        jTextAreaMensagensRecebidas.setEditable(false);
+        jTextAreaMensagensRecebidas.setColumns(20);
+        jTextAreaMensagensRecebidas.setRows(5);
+        jTextAreaMensagensRecebidas.setEnabled(false);
+        jScrollPane1.setViewportView(jTextAreaMensagensRecebidas);
+
+        javax.swing.GroupLayout jPanelCamposMensagensLayout = new javax.swing.GroupLayout(jPanelCamposMensagens);
+        jPanelCamposMensagens.setLayout(jPanelCamposMensagensLayout);
+        jPanelCamposMensagensLayout.setHorizontalGroup(
+            jPanelCamposMensagensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCamposMensagensLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelCamposMensagensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jTextFieldTextoMensagem))
+                .addContainerGap())
+        );
+        jPanelCamposMensagensLayout.setVerticalGroup(
+            jPanelCamposMensagensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCamposMensagensLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelCamposMensagensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextFieldTextoMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonConectar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldApelido, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldEnderecoServidor)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextFieldPorta, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jPanelCamposMensagens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldApelido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldEnderecoServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextFieldPorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonConectar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanelCamposMensagens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldTextoMensagemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTextoMensagemKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String fraseDoCliente;
+
+            fraseDoCliente = jTextFieldTextoMensagem.getText();
+            try {
+                saida.flush();
+                saida.writeObject((jTextFieldApelido.getText() + ": " + fraseDoCliente));
+                jTextFieldTextoMensagem.setText("");
+            } catch (IOException ex) {
+                //Logger.getLogger(JFrameServidor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jTextFieldTextoMensagemKeyPressed
+
+    private void jButtonConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConectarActionPerformed
+        if (jTextFieldApelido.getText().equals("") || jTextFieldEnderecoServidor.getText().equals("")
+                || jTextFieldPorta.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Campos incompletos para conexão");
+        } else {
+            try {
+                socketCliente = new Socket(jTextFieldEnderecoServidor.getText(), Integer.parseInt(jTextFieldPorta.getText()));//CONSTRUTOR DO CLIENTE CONECTANDO COM O SERVIDOR
+
+                new Thread() {
+                    @Override
+                    public void run() {
+                        String fraseDoServidor;
+                        try {
+                            saida = new ObjectOutputStream(socketCliente.getOutputStream()); //INSTANCIAR PRIMEIRO O ESCRITOR
+                            entrada = new ObjectInputStream(socketCliente.getInputStream());
+                            while ((fraseDoServidor = (String) entrada.readObject()) != null) {
+                                jTextAreaMensagensRecebidas.setText(fraseDoServidor + "\n");
+                            }
+                        } catch (IOException ex) {
+                            java.util.logging.Logger.getLogger(JFrameCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                        } catch (ClassNotFoundException e) {
+                            java.util.logging.Logger.getLogger(JFrameCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+                        }
+
+                    }
+                }.start();
+                saida.close();
+                entrada.close();
+                socketCliente.close();
+                System.exit(0);
+            } catch (IOException ex) {
+                java.util.logging.Logger.getLogger(JFrameServidor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButtonConectarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -76,6 +236,22 @@ public class JFrameCliente extends javax.swing.JFrame {
         });
     }
 
+    static Socket socketCliente;
+    static ObjectOutputStream saida;
+    static ObjectInputStream entrada;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonConectar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanelCamposMensagens;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextAreaMensagensRecebidas;
+    private javax.swing.JTextField jTextFieldApelido;
+    private javax.swing.JTextField jTextFieldEnderecoServidor;
+    private javax.swing.JTextField jTextFieldPorta;
+    private javax.swing.JTextField jTextFieldTextoMensagem;
     // End of variables declaration//GEN-END:variables
 }

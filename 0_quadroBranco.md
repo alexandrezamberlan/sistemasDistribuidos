@@ -1,5 +1,17 @@
 # Quadro Branco
 
+## Aula 8 - Programação Socket em Java + modo gráfico
+
+## Aula 7 - Correção e Discussão da Prova + Socket
+    - Socket é um recurso de baixo nível
+    - Conecta 2 máquinas
+    - Usa o modelo TCP/IP: endereço IP, porta lógica
+    - Estrutura clássica para a arquitetura cliente-servidor
+        - servidor (java): ServerSocket (porta logica autorizada) + Socket (representando o cliente) + leitor (input) e escritor (output) de socket + threads para não bloquear a comunicação
+        - cliente: Socket (endereço ip + porta lógica do servidor) + leitor (input) e escritor (output)
+
+## Aula 6 - Avaliação
+
 ## Aula 5 - Sincronização Distribuída – Relógios Físicos e Lógicos. Exclusão Mútua e Eleição.
     - Teoria básica de sistemas distribuídos
         - o que é e para que serve -> compartilhar recurso (cpu, ram, memória secundária)

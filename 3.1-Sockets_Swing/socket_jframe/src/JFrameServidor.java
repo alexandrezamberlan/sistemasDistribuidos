@@ -9,14 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-/**
- *
- * @author laboratorio
- */
+
 public class JFrameServidor extends javax.swing.JFrame {
 
     /**
@@ -24,7 +17,6 @@ public class JFrameServidor extends javax.swing.JFrame {
      */
     public JFrameServidor() {
         initComponents();
-//        jPanelCamposMensagens.setVisible(false);
     }
 
     /**
@@ -153,13 +145,11 @@ public class JFrameServidor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Campos incompletos para conexão");
         } else {
             try {
-                socketServidor = new ServerSocket(Integer.parseInt(jTextFieldPorta.getText())); //CONSTRUTOR DO SERVERSOCKT RECEBE A PORTA DE TRABALHO
-                //INSTANCIAR EM SEGUNDO O LEITOR
+                socketServidor = new ServerSocket(Integer.parseInt(jTextFieldPorta.getText())); //CONSTRUTOR DO SERVERSOCKT RECEBE A PORTA DE TRABALHO                
                 socketCliente = socketServidor.accept(); //ACAO BLOQUEANTE QUE O SERVIDOR SÓ LIBERA QUANDO UM CLIENTE FIZER CONEXÃO                
                 JOptionPane.showMessageDialog(this, "Servidor em funcionamento");
                 
                 try {
-                    
                     new Thread() {
                         public void run() {
                             String fraseDoCliente;

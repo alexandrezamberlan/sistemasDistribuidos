@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 public class MiniChatCliente {
 
-    static BufferedReader tecladoTerminal;
+    static BufferedReader tecladoTerminal = new BufferedReader(new InputStreamReader(System.in));
     static Socket socketCliente;
     static ObjectOutputStream saida;
     static ObjectInputStream entrada;
@@ -24,7 +24,7 @@ public class MiniChatCliente {
             saida = new ObjectOutputStream(socketCliente.getOutputStream());
             entrada = new ObjectInputStream(socketCliente.getInputStream());
 
-            tecladoTerminal = new BufferedReader(new InputStreamReader(System.in));
+            
 
             new Thread() {
                 @Override
