@@ -1,6 +1,12 @@
 # Quadro Branco
 
+## Aula 9 - Programação Socket com Classe Comunicador
+    - Diferença entre TCP e UDP
+
 ## Aula 8 - Programação Socket em Java + modo gráfico
+    - Uso de sockets
+        - arquitetura cliente-servidor: chat (tanto servidor, quanto cliente escreviam e liam no socket)
+        - arquitetura cliente-servidor: servidor é um prestador de serviço. Instancia/conecta, recebe cliente, processa, devolve, fecha e recomeça o ciclo
 
 ## Aula 7 - Correção e Discussão da Prova + Socket
     - Socket é um recurso de baixo nível
