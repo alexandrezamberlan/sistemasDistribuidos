@@ -35,6 +35,9 @@ public class Cliente {
             System.out.println("A soma é "+res.getValor());
             
             s.close();
+            out.close();
+            in.close();
+            System.gc();
             
             
         } catch (Exception e) {
@@ -42,3 +45,4 @@ public class Cliente {
         }
     }
 }
+
