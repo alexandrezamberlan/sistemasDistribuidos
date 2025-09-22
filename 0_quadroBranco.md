@@ -2,6 +2,9 @@
 
 ## Aula 9 - Programação Socket com Classe Comunicador
     - Diferença entre TCP e UDP
+    - Atividade avaliativa:
+        - Refatorar o código Socket do Gerar Email: https://github.com/alexandrezamberlan/sistemasDistribuidos/tree/master/3-Sockets/src/exemplo2_gerarEmail
+            - incluir modo gráfico e classe Comunicador
 
 ## Aula 8 - Programação Socket em Java + modo gráfico
     - Uso de sockets
