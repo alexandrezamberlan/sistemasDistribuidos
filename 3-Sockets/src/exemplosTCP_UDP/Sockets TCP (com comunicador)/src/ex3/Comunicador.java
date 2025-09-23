@@ -9,6 +9,7 @@ public class Comunicador {
             //Cria um objeto de fluxo de dados de entrada, para poder receber dados de um socket s
             ObjectInputStream leitor = new ObjectInputStream(s.getInputStream());
             String mensagem = (String)leitor.readObject();
+            leitor.close();
             return mensagem;
         } catch (Exception e) {
             return null;
@@ -20,6 +21,7 @@ public class Comunicador {
             //Cria um objeto de fluxo de dados de de saída, para poder enviar dados pelo socket s
             ObjectOutputStream escritor = new ObjectOutputStream(s.getOutputStream());
             escritor.writeObject(mensagem);
+            escritor.close();
         } catch (Exception e) {
         }
     }

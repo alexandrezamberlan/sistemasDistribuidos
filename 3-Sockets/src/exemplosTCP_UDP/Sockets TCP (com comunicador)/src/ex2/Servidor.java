@@ -32,6 +32,7 @@ public class Servidor {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            System.gc();
         }
     }
 

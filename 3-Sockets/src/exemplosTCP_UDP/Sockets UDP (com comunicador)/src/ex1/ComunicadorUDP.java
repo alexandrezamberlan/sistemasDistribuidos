@@ -1,9 +1,10 @@
+package ex1;
+
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 public class ComunicadorUDP {
     
     public static DatagramPacket montaMensagem(String mensagem, String ip, int porta) {

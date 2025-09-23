@@ -9,7 +9,7 @@ public class EnviadorUDP {
         DatagramPacket pacote;
 
         for (int i = 0; i < 10; i++) {
-                pacote = ComunicadorUDP.montaMensagem("Msg: " + (i+1) + " Ola mundo", "localhost", 1234);
+                pacote = ComunicadorUDP.montaMensagem("Msg: " + (i+1) + " Ola mundo\0", "localhost", 1234);
                 try {
                     Thread.sleep(2000);
                 } catch (Exception e) {

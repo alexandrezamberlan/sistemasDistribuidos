@@ -25,4 +25,37 @@ public class Pessoa implements Serializable {
         this.idade = idade;
         this.nome = nome;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + this.idade;
+        hash = 47 * hash + (this.nome != null ? this.nome.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pessoa other = (Pessoa) obj;
+        if (this.idade != other.idade) {
+            return false;
+        }
+        return (this.nome == null) ? (other.nome == null) : this.nome.equals(other.nome);
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" + "idade=" + idade + ", nome=" + nome + '}';
+    }
+    
+    
 }
