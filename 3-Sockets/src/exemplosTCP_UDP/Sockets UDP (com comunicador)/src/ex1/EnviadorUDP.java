@@ -1,5 +1,8 @@
+package ex1;
 import java.io.*; 
 import java.net.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class EnviadorUDP {
     DatagramSocket socket;
@@ -7,11 +10,13 @@ public class EnviadorUDP {
     public EnviadorUDP() {
         criaClientSocket();
         DatagramPacket pacote;
-
-        for (int i = 0; i < 10; i++) {
-                pacote = ComunicadorUDP.montaMensagem("Msg: " + (i+1) + " Ola mundo\0", "localhost", 1234);
+        
+        ArrayList<String> lista = new ArrayList<>(Arrays.asList("maça", "banana", "pera", "abacaxi", "goiaba"));
+        
+        for (String fruta : lista) {
+                pacote = ComunicadorUDP.montaMensagem(fruta, "localhost", 1234);
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(5000);
                 } catch (Exception e) {
 
                 }

@@ -1,3 +1,4 @@
+package ex1;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.ServerSocket;
@@ -10,7 +11,8 @@ public class RecebedorUDP {
         criaServerSocket();
         System.out.println("Servidor ativo à espera do cliente/enviador");
         DatagramPacket pacote = ComunicadorUDP.recebeMensagem(socket);//aguarda um pacote datagrama chegar de um cliente pela porta 1234
-        String mensagem;
+        String mensagem;               
+        
         while (pacote != null) {
             mensagem = new String(pacote.getData());//monta uma string com os dados (bytes) que vieram no pacote
             System.out.println("Recebi " + mensagem);

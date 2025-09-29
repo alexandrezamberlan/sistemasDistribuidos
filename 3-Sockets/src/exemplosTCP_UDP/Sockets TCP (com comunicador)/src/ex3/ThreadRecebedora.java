@@ -1,3 +1,5 @@
+package ex3;
+
 import java.net.Socket;
 
 public class ThreadRecebedora extends Thread {

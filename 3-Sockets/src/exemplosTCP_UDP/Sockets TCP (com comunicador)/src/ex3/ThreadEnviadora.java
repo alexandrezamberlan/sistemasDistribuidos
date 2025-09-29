@@ -1,3 +1,6 @@
+package ex3;
+
+
 import java.net.Socket;
 import java.util.Scanner;
 
