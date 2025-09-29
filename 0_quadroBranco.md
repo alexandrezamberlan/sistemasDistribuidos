@@ -1,5 +1,10 @@
 # Quadro Branco
 
+## Aula 10 - Programação Socket UDP
+    - Exemplo de código UDP
+    - Jogo da cobrinha com sockets
+    - Gerador de códigos (como o Google Authenticator)
+
 ## Aula 9 - Programação Socket com Classe Comunicador
     - Diferença entre TCP e UDP
     - Atividade avaliativa:
