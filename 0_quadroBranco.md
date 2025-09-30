@@ -3,8 +3,12 @@
 ## Aula 10 - Programação Socket UDP
     - Exemplo de código UDP
     - Jogo da cobrinha com sockets: adaptar o jogo da pasta https://github.com/alexandrezamberlan/sistemasDistribuidos/tree/master/4-ThreadSocketCobrinha
-        - No cliente, adicionar informações no form de: ip e porta do servidor; placar do jogo
-        - No servidor, adicionar informações do form de: placar do jogo; jogar novamente
+        - **Ciência da Computação**
+            - No cliente, adicionar informações no form de: ip e porta do servidor; placar do jogo; obstáculos (usar matriz ou compononente gráfico equivalente)
+            - No servidor, adicionar informações do form de: placar do jogo; jogar novamente; obstáculos (usar matriz ou compononente gráfico equivalente)
+        - **Sistemas de Informação**
+            - No cliente, adicionar informações no form de: ip e porta do servidor; placar do jogo
+            - No servidor, adicionar informações do form de: placar do jogo; jogar novamente
     - Gerador de códigos (como o Google Authenticator)
         - em algum lado (servidor ou cliente) ter uma lista de frutas (8 frutas)
         - toda vez que alguem conectar envvia um fruta sorteada a quem se conectou
