@@ -1,5 +1,10 @@
 # Quadro Branco
 ## Aula 11 - Remote Procedure Call (RPC)
+    - Exercício de fixação RMI Java
+        - Ter como base os códigos trabalhados em laboratório
+        - Refatorar os códigos para que os serviços do servidor sejam:
+            - receber um nome completo e devolver um email (nome.sobrenome@ufn.edu.br)
+            - receber um nome completo e devolver uma chave hash 
     - Tecnologia ou um recurso em que máquinas (sem poder computacional | clientes) solicitam processos em outra máquina (com poder computacional | servidor)
     - A relação entre clientes e servidor vai se dar por serviços via Interface
     - Exemplo:
