@@ -1,4 +1,18 @@
 # Quadro Branco
+## Aula 11 - Remote Procedure Call (RPC)
+    - Tecnologia ou um recurso em que máquinas (sem poder computacional | clientes) solicitam processos em outra máquina (com poder computacional | servidor)
+    - A relação entre clientes e servidor vai se dar por serviços via Interface
+    - Exemplo:
+        Cliente                                 Servidor
+         - Classe Client                         - Classe Server: ip, porta, socket, ...
+         - 'Menu' de Serviços                        - IServicos - ou a implementação dos serviços/métodos
+                                                     - servico1()
+                                                     - servico2()
+    - RPC é técnica ou o recurso
+        Python: RPC
+        C#: xmlRpc
+        Java: Remote Method Invocation
+
 
 ## Aula 10 - Programação Socket UDP
     - Exemplo de código UDP
