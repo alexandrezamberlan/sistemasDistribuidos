@@ -14,9 +14,9 @@
                                                      - servico1()
                                                      - servico2()
     - RPC é técnica ou o recurso
+        Java: Remote Method Invocation - RMI
         Python: RPC
-        C#: xmlRpc
-        Java: Remote Method Invocation
+        C#: xmlRPC
 
 
 ## Aula 10 - Programação Socket UDP

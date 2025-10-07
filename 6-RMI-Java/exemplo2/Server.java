@@ -3,7 +3,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class Server {
-    String HOST_URL = "rmi://10.103.16.8/GeraDados";
+    String HOST_URL = "rmi://10.104.12.12/GeraDados";
     
     public Server() {
         try {

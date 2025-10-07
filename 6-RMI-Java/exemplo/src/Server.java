@@ -10,6 +10,7 @@ public class Server {
         try {
             LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
             Hoje_eh objetoRemoto = new Hoje_eh();
+            System.out.println("Servidor pronto para atender clientes....");
             Naming.bind(HOST_URL, objetoRemoto);
         } catch (Exception e) {
             System.out.println("Error: " + e);

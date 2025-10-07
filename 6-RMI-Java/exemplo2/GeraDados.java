@@ -1,7 +1,7 @@
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class GeraDados extends UnicastRemoteObject implements IGeraDados{
+public class GeraDados extends UnicastRemoteObject implements IGeraDados {
     public GeraDados() throws RemoteException {
     }
 
