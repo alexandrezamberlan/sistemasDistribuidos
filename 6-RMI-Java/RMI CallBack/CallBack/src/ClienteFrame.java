@@ -1,4 +1,7 @@
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 public class ClienteFrame extends javax.swing.JFrame {
 
@@ -10,8 +13,8 @@ public class ClienteFrame extends javax.swing.JFrame {
         try {
             com = (IComunicacaoServidor) Naming.lookup("rmi://localhost/Comunicacao");
             c = new ComunicacaoCliente(this);
-            com.recebeCilente(c);
-        } catch (Exception ex) {
+            com.receberCliente(c);
+        } catch (MalformedURLException | NotBoundException | RemoteException ex) {
         }
     }
 
@@ -77,9 +80,9 @@ public class ClienteFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            com.recebeMensagemDoCliente(jTextField1.getText());
+            com.receberMensagemDoCliente(jTextField1.getText());
             jTextField1.setText("");
-        } catch (Exception ex) {
+        } catch (RemoteException ex) {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
