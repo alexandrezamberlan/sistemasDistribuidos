@@ -21,9 +21,11 @@ public class EmissorReceptor {
             while (true) {
                 try {
                     //BLOQUEIO ATÉ RECEBER A MENSAGEM
-                    final DatagramPacket pacote = com.recebeMensagem(s);
+                    final DatagramPacket pacote = ComunicadorUDP.recebeMensagem(socket);
+                    
                     // TRANSFORMO A MENSAGEM EM STRING (POIS ELA VEM EM BYTES)
                     final String msgRecebida = new String(pacote.getData(), 0, pacote.getLength());
+                    
                     // MOSTRO A MENASGEM NA TELA
                     System.out.println(msgRecebida);
                 } catch (final Exception e) {
@@ -43,12 +45,15 @@ public class EmissorReceptor {
             // PREPARO A LEITURA DO TECLADO
             String msg = "";
             final Scanner scanner = new Scanner(System.in);
+            
             while (true) {
                 try {
                     // LE A MENSAGEM DO TECLADO
                     msg = scanner.nextLine();
+                    
                     // CRIA O PACOTE DATAGRAMA
                     final DatagramPacket pacote = com.montaMensagem(msg, "239.1.2.3", 3456);
+                    
                     // ENVIA A MENSAGEM PRO GRUPO MULTICAST
                     s.send(pacote);
                 } catch (final Exception e) {
@@ -65,14 +70,18 @@ public class EmissorReceptor {
              * CONFIGURAÇÃO DO EMISSOR/RECEPTOR
              */
             // DEFINO O IP DO GRUPO
-            group = InetAddress.getByName("239.1.2.3");
+            grupo = InetAddress.getByName(enderecoGrupo);
+            
             // CRIO O SOCKET MULTICAST COM A PORTA ESPECIFICADA
-            s = new MulticastSocket(3456);
+            socket = new MulticastSocket(porta);
+            
             // ENTRA NO GRUPO MULTICAST PARA RECEBER AS MENSAGENS
-            s.joinGroup(group);
+            socket.joinGroup(grupo);
+            
             // CRIO A THREAD PARA RECEBER AS MENSAGENS
             final ThreadReceptora tR = new ThreadReceptora();
             tR.start();
+            
             final ThreadEmissora tE = new ThreadEmissora();
             tE.start();
         } catch (final Exception e) {
@@ -80,9 +89,10 @@ public class EmissorReceptor {
     }
 
 
-    InetAddress group;
-    MulticastSocket s;
-    ComunicadorUDP com = new ComunicadorUDP();
+    InetAddress grupo;
+    MulticastSocket socket;
+    int porta = 3456;
+    String enderecoGrupo = "239.1.2.3";
     
     public static void main(final String args[]) {
         final EmissorReceptor er = new EmissorReceptor();
