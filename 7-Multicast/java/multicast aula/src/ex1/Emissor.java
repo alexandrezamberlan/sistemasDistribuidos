@@ -14,10 +14,12 @@ public class Emissor {
             DatagramPacket pacote = ComunicadorUDP.montaMensagem("Turma de Sistemas Distribuídos", enderecoGrupo, porta);
             
             //criação do socket multicast
-            MulticastSocket s = new MulticastSocket();
+            MulticastSocket socket = new MulticastSocket();
+            
             //envio do pacote
-            s.send(pacote);
-            s.close();
+            socket.send(pacote);
+            
+            socket.close();
         } catch (IOException ex) {
         }
     }
