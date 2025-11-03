@@ -10,21 +10,27 @@ import util.ComunicadorUDP;
 public class Emissor {
 
     public Emissor() {
-        ComunicadorUDP com = new ComunicadorUDP();
         try {
+            int porta = 3456;
+            String enderecoGrupo = "239.1.2.3";
             String msg = "";
+            
             //criação do Scanner para leitura do teclado
             Scanner scanner = new Scanner(System.in);
+            
             //criação do socket multicast
-            MulticastSocket s = new MulticastSocket();
+            MulticastSocket socket = new MulticastSocket();
             do {
                 //leitura do teclado
                 System.out.println("Digite: ");
                 msg = scanner.nextLine();
+                
                 //criação do pacote multicast (mesmo que pacote UDP)
-                DatagramPacket pacote = com.montaMensagem(msg, "239.1.2.3", 3456);
+                DatagramPacket pacote = com.montaMensagem(msg, enderecoGrupo, porta);
+                
                 //envio do pacote
                 s.send(pacote);
+                
                 System.out.println("Mensagem enviada");
             } while (!msg.equals("sair"));
             s.close();
