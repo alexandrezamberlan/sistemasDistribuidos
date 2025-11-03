@@ -18,7 +18,7 @@ public class Emissor {
             
             //envio do pacote
             socket.send(pacote);
-            
+            socket.leaveGroup(enderecoGrupo);
             socket.close();
         } catch (IOException ex) {
         }
