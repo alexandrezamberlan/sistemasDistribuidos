@@ -7,10 +7,12 @@ import util.ComunicadorUDP;
 public class Emissor {
 
     public Emissor() {
-        ComunicadorUDP com = new ComunicadorUDP();
         try {
+            int porta = 3456;
+            String enderecoGrupo = "239.1.2.3";
             //criação do pacote multicast (mesmo que pacote UDP)
-            DatagramPacket pacote = com.montaMensagem("Turma de Sistemas Distribuídos", "239.1.2.3", 3456);
+            DatagramPacket pacote = ComunicadorUDP.montaMensagem("Turma de Sistemas Distribuídos", enderecoGrupo, porta);
+            
             //criação do socket multicast
             MulticastSocket s = new MulticastSocket();
             //envio do pacote
