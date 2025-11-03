@@ -217,13 +217,17 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
             } else {
                 //DEFINO O IP DO GRUPO
                 grupo = InetAddress.getByName(jTextField_GrupoIP.getText());
+                
                 //CRIO O SOCKET MULTICAST COM A PORTA ESPECIFICADA
                 socket = new MulticastSocket(Integer.parseInt(jTextField_Porta.getText()));
+                
                 //ENTRA NO GRUPO MULTICAST PARA RECEBER AS MENSAGENS
                 socket.joinGroup(grupo);
+                
                 //CRIO A THREAD PARA RECEBER AS MENSAGENS
                 ThreadReceptora tR = new ThreadReceptora();
                 tR.start();
+                
                 JOptionPane.showMessageDialog(this, "Conectado com sucesso!");
                 jButton_Conectar.setEnabled(false);
                 jTextField_Nick.setEnabled(false);

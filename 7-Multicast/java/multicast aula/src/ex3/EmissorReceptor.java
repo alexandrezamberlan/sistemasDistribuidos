@@ -52,7 +52,7 @@ public class EmissorReceptor {
                     msg = scanner.nextLine();
                     
                     // CRIA O PACOTE DATAGRAMA
-                    final DatagramPacket pacote = com.montaMensagem(msg, enderecoGrupo, porta);
+                    final DatagramPacket pacote = ComunicadorUDP.montaMensagem(msg, enderecoGrupo, porta);
                     
                     // ENVIA A MENSAGEM PRO GRUPO MULTICAST
                     socket.send(pacote);
