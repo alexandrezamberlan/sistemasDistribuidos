@@ -52,10 +52,10 @@ public class EmissorReceptor {
                     msg = scanner.nextLine();
                     
                     // CRIA O PACOTE DATAGRAMA
-                    final DatagramPacket pacote = com.montaMensagem(msg, "239.1.2.3", 3456);
+                    final DatagramPacket pacote = com.montaMensagem(msg, enderecoGrupo, porta);
                     
                     // ENVIA A MENSAGEM PRO GRUPO MULTICAST
-                    s.send(pacote);
+                    socket.send(pacote);
                 } catch (final Exception e) {
 
                 }
