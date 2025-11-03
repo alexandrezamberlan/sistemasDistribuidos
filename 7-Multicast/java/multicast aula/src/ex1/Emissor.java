@@ -10,14 +10,22 @@ public class Emissor {
         try {
             int porta = 3456;
             String enderecoGrupo = "239.1.2.3";
+            
+            //especificação do endereço do grupo multicast
+            InetAddress grupo = InetAddress.getByName(enderecoGrupo);
+            
+            //criação do socket multicast
+            MulticastSocket socket = new MulticastSocket(porta);
+            
+            //processo entra no grupo multicast
+            socket.joinGroup(grupo);
+            
             //criação do pacote multicast (mesmo que pacote UDP)
             DatagramPacket pacote = ComunicadorUDP.montaMensagem("Turma de Sistemas Distribuídos", enderecoGrupo, porta);
             
-            //criação do socket multicast
-            MulticastSocket socket = new MulticastSocket();
-            
             //envio do pacote
             socket.send(pacote);
+            
             socket.leaveGroup(enderecoGrupo);
             socket.close();
         } catch (IOException ex) {
