@@ -18,7 +18,7 @@ public class Receptor {
             
             //processo entra no grupo multicast
             socket.joinGroup(grupo);
-            
+                        
             //aguarda um pacote datagrama chegar de um cliente pela porta 3456
             DatagramPacket pacote  = ComunicadorUDP.recebeMensagem(socket);
             

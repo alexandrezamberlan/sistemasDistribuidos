@@ -42,6 +42,8 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
         jLabel_Nick = new javax.swing.JLabel();
         jTextField_Nick = new javax.swing.JTextField();
         jButton_Conectar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList_usuariosOnline = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,6 +90,13 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
             }
         });
 
+        jList_usuariosOnline.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Todos" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList_usuariosOnline);
+
         javax.swing.GroupLayout jPanel_ChatLayout = new javax.swing.GroupLayout(jPanel_Chat);
         jPanel_Chat.setLayout(jPanel_ChatLayout);
         jPanel_ChatLayout.setHorizontalGroup(
@@ -115,13 +124,16 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_Enviar))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2)
         );
         jPanel_ChatLayout.setVerticalGroup(
             jPanel_ChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_ChatLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_ChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField_textoDeEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_Enviar))
@@ -360,8 +372,10 @@ public class JFrame_chatMulticast extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_Nick;
     private javax.swing.JLabel jLabel_Porta;
     private javax.swing.JLabel jLabel_ServidorIP;
+    private javax.swing.JList<String> jList_usuariosOnline;
     private javax.swing.JPanel jPanel_Chat;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea_Mensagens;
     private javax.swing.JTextField jTextField_GrupoIP;
     private javax.swing.JTextField jTextField_Nick;

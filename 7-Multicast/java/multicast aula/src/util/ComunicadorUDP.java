@@ -17,22 +17,22 @@ public class ComunicadorUDP {
             return null;
         }
     }
-	
-	public static void enviaMensagem(DatagramSocket s, DatagramPacket pacote) {
+
+    public static void enviaMensagem(DatagramSocket socket, DatagramPacket pacote) {
         try {
             //envia o pacote datagrama
-            s.send(pacote);
+            socket.send(pacote);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static DatagramPacket recebeMensagem(DatagramSocket s) {
+    public static DatagramPacket recebeMensagem(DatagramSocket socket) {
         try {
             //cria um pacote vazio de 512 bytes
             DatagramPacket pacote = new DatagramPacket(new byte[512], 512);
             //bloqueia aguardando um pacote datagrama do servidor
-            s.receive(pacote);
+            socket.receive(pacote);
             return pacote;
         } catch (Exception e) {
             e.printStackTrace();
