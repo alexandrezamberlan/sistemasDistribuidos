@@ -22,45 +22,44 @@ class ThreadReceptora(threading.Thread):
 
 # Classe para o comportamento de envio de mensagens
 class ThreadEmissora(threading.Thread):
-    def __init__(self, multicast_socket, group_ip, group_port):
+    def __init__(self, multicast_socket, ip_grupo, porta_grupo):
         super().__init__()
         self.socket = multicast_socket
-        self.group_ip = group_ip
-        self.group_port = group_port
-
+        self.ip_grupo = ip_grupo
+        self.porta_grupo = porta_grupo
     def run(self):
         while True:
             try:
                 # Lê a mensagem do teclado
-                msg = input()
+                msg = input('Digite a mensagem a ser enviada: ')
                 # Envia a mensagem ao grupo multicast
-                self.socket.sendto(msg.encode('utf-8'), (self.group_ip, self.group_port))
+                self.socket.sendto(msg.encode('utf-8'), (self.ip_grupo, self.porta_grupo))
             except Exception as e:
                 pass
 
 
 class EmissorReceptor:
     def __init__(self):
-        self.group_ip = "239.1.2.3"
-        self.group_port = 3456
+        self.ip_grupo = "239.1.2.3"
+        self.porta_grupo = 3456
 
         # Configura o socket multicast
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
         self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         # Vincula o socket à porta especificada
-        self.socket.bind(('', self.group_port))
+        self.socket.bind(('', self.porta_grupo))
 
         # Junta-se ao grupo multicast
         self.socket.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP,
-                               socket.inet_aton(self.group_ip) + socket.inet_aton("0.0.0.0"))
+                               socket.inet_aton(self.ip_grupo) + socket.inet_aton("0.0.0.0"))
 
         # Cria e inicia a thread receptora
         tR = ThreadReceptora(self.socket)
         tR.start()
 
         # Cria e inicia a thread emissora
-        tE = ThreadEmissora(self.socket, self.group_ip, self.group_port)
+        tE = ThreadEmissora(self.socket, self.ip_grupo, self.porta_grupo)
         tE.start()
 
 
