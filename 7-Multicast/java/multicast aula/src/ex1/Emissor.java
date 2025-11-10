@@ -10,7 +10,6 @@ public class Emissor {
         int porta = 3456;
         String enderecoGrupo = "239.1.2.3";
         try {
-
             //especificação do endereço do grupo multicast
             InetAddress grupo = InetAddress.getByName(enderecoGrupo);
 

@@ -1,4 +1,22 @@
 # Quadro Branco
+## Aula X - JGroups
+    - Desafio (2 pts). Melhorias no sistema JGroups_Aula
+        - ao lado dos membros (modo gráfico, mostrar IP)
+        - quando um membro sair do grupo, gerar notificação na área de msg coletiva
+        - quando um usuário entrar atrasado, atualizar as msg para ele
+
+## Aula X - Multicast Java
+    - Tecnologia Multicast
+        - arquitetura ponto-a-ponto
+            - máquina/estação é servidor e cliente
+        - protocolo de transporte padrão: UDP
+            - montar mensagem + enviar mensagem (bloqueantes)
+            - receber (bloqueante)
+        - conceitos:
+            - IP do Grupo (ip falso, na convenção 239.X.Y.W)
+            - Porta de conexão (saída da estação)
+            - Threads 'ouvidora' ou 'receptora' + 'falante' ou 'enviadora' ('quebrar' as ações bloqueantes)
+
 ## Aula 11 - Remote Procedure Call (RPC)
     - Exercício de fixação RMI Java
         - Ter como base os códigos trabalhados em laboratório
