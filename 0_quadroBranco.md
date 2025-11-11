@@ -1,11 +1,11 @@
 # Quadro Branco
-## Aula X - JGroups
-    - Desafio (2 pts). Melhorias no sistema JGroups_Aula
+## Aula 16 - JGroups
+    - Desafio (2 pts). Melhorias no sistema JGroups_Aula - https://github.com/alexandrezamberlan/sistemasDistribuidos/tree/master/8-JGroups/JGroups
         - ao lado dos membros (modo gráfico, mostrar IP)
         - quando um membro sair do grupo, gerar notificação na área de msg coletiva
         - quando um usuário entrar atrasado, atualizar as msg para ele
 
-## Aula X - Multicast Java
+## Aula 15 - Multicast Java
     - Tecnologia Multicast
         - arquitetura ponto-a-ponto
             - máquina/estação é servidor e cliente
