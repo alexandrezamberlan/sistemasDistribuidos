@@ -1,4 +1,20 @@
 # Quadro Branco
+## Aula 18 - Atividades de recuperação
+    - Usando a tecnologia RPC ou RMI, construir um sistema que:
+        - receba uma string com fundamentos do padel e retorne um objeto
+            - string a ser enviada ao servidor: nomeFundamento;zonaEmQueOcorreuFundamento;resultado
+                vo;z2;e
+                vo;z1;p
+                vo;z3;e
+                sm;z1;p
+                - fundamentos: voleio (vo), smash (sm), bandeja (ba)
+                - zonas: zona1 (z1); zona2 (z2); zona3 (z3)
+                - resultado: ponto (p); erro (e)
+            - objeto do tipo Jogada(nomeFundamento, zona, resultado)
+
+## Aula 17 - JGroups
+    - Apresentação de trabalhos
+
 ## Aula 16 - JGroups
     - Desafio (2 pts). Melhorias no sistema JGroups_Aula - https://github.com/alexandrezamberlan/sistemasDistribuidos/tree/master/8-JGroups/JGroups
         - ao lado dos membros (modo gráfico, mostrar IP)
