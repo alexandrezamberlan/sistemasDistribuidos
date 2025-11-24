@@ -11,6 +11,7 @@
                 - zonas: zona1 (z1); zona2 (z2); zona3 (z3)
                 - resultado: ponto (p); erro (e)
             - objeto do tipo Jogada(nomeFundamento, zona, resultado)
+                - string é "sm;z1;p" o objeto de retorno é Jogada("Smash","Zona1","Ponto")
 
 ## Aula 17 - JGroups
     - Apresentação de trabalhos
