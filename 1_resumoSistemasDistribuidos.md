@@ -37,11 +37,11 @@ SISTEMAS DISTRIBUÍDOS
 THREAD:
     - um subprocesso ou um miniprocesso pertencente a um processo (identificador, nome, endereço, tamanho, tempo, instruções) criado em tempo
       de programação/execução
-    - finalidade de threads é garantir processamento concomitante/paralelo
+    - finalidade de threads é garantir processamento concomitante
     - estados de uma thread: execução, finalizado/pronto, espera/aguardando, parado, dormindo, cancelado, ...
     - há comandos que garantem SINCRONISMO de processamento.
 
-    - Thread com compartilhamento de memória/recurso (o processamento é bloqueante). Fica de responsabilidade do PROGRAMADOR garantir SINCRONISMO
+    - Thread com compartilhamento de memória/recurso (o processamento é bloqueante). Fica de responsabilidade do PROGRAMADOR garantir SINCRONISMO (tempo)
     - Thread sem compartilhamento de memória/recurso
 
      - Thread em Java -> é processamento concomitante (JVM)
