@@ -26,6 +26,7 @@ SISTEMAS DISTRIBUÍDOS
       - comunicação bloqueante
           - escrever
           - ler
+========================================================================
       - programação multitarefa (thread)
           - thread é um mini processo dentro de um processo
           - thread pode ser com memória compartilhada

@@ -172,8 +172,27 @@ Desafio para depois do intervalo:
     - Desafio 1: Jogo da cobrinha
 
 ## Aula 1
+    - Alexandre Zamberlan - alexz@ufn.edu.br
+    - github.com/alexandrezamberlan/sistemasDistribuidos
+        - Processo de avaliação
+            - 20% nota é a participação efetiva
+            - 20% nota são as notas de aula (no github pessoal)
+                - criar um arquivo chamado notas_aula.md
+            - 60% nota entre prova e trabalhos práticos
     - Apresentação e discussão do plano de ensino
-    - Conceitos básicos de SD: comunicação, arquitetura, 
+    - Conceitos básicos de SD: comunicação, arquitetura, processamento concomitante versus paralelo, cluster versus grid.
+
+        - COMUNICAÇÃO
+            - broadcast, multicast, unicast
+            - é bloqueante: escrever (writer ou sender) e ler (reader ou receiver)
+            - respeita ou segue o modelo TCP/IP (aplicação, transporte, interface, rede)
+                - endereço IP: servidor, cliente, grupo
+                - máscara ou classe de rede e domínio
+                - socket
+                - porta lógica
+        - ARQUITETURA
+            - cliente-servidor                
+            - ponto-a-ponto
 
 
                 
