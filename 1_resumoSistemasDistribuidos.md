@@ -1,7 +1,6 @@
 SISTEMAS DISTRIBUÍDOS
     - Heterogêneos: diferentes arquiteturas de hardware, sistema operacional e linguagens de programação
-    - Fracamente acoplados (distribuídos geograficamente via protocolos do modelo TCP/IP: endereço de rede, porta lógica, máscara de rede, protocolos
-      de transporte)
+    - Fracamente acoplados (distribuídos geograficamente via protocolos do modelo TCP/IP: endereço de rede, porta lógica, máscara de rede, protocolos de transporte)
     - GRID computacional
     - Arquiteturas: Cliente-Servidor; Ponto-a-Ponto
         - Tolerância a falhas
