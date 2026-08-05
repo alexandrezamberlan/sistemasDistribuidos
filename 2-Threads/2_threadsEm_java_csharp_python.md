@@ -48,7 +48,6 @@ def tarefa():
 
 t = threading.Thread(target=tarefa)
 t.start()
-t.join()  # espera a thread terminar
 ```
 
 ---
@@ -75,7 +74,6 @@ class Program {
     static void Main() {
         Thread t = new Thread(new ThreadStart(MinhaThread));
         t.Start();
-        t.Join();
     }
 }
 ```

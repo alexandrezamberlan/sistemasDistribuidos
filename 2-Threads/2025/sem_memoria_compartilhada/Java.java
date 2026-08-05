@@ -1,4 +1,4 @@
-package org.example;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,7 @@ class PopulaLista extends Thread { //uso de threads sem memória compartilhada
         for (int i = 0; i < tamanho; i++) {
             lista.add(random.nextInt(tamanho));
         }
+        System.out.println("Lista populada com " + tamanho + " elementos.");
     }
 }
 
@@ -47,13 +48,14 @@ class OrdenaBolha extends Thread { //uso de threads sem memória compartilhada
                 }
             }
         } while (houveTroca);
+        System.out.println("Lista ordenada Bolha com " + lista.size() + " elementos.");
     }
 }
 
 class OrdenaPente extends Thread { //uso de threads sem memória compartilhada
     private List<Integer> lista;
 
-    public OrdenaBolha(List<Integer> lista) {
+    public OrdenaPente(List<Integer> lista) {
         this.lista = lista;
     }
 
@@ -63,7 +65,7 @@ class OrdenaPente extends Thread { //uso de threads sem memória compartilhada
         int tmp;
         int distancia = lista.size();
         do {
-            distancia = (int)distancia / 1.3;
+            distancia = (int)(distancia / 1.3);
             houveTroca = false;
             for (int i = 0; i < lista.size() - distancia; i++) {
                 if (lista.get(i) > lista.get(i+distancia)) {
@@ -74,6 +76,7 @@ class OrdenaPente extends Thread { //uso de threads sem memória compartilhada
                 }
             }
         } while (distancia > 1 || houveTroca);
+        System.out.println("Lista ordenada Pente com " + lista.size() + " elementos.");
     }
 }
 

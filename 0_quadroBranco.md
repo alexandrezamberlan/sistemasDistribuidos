@@ -168,6 +168,10 @@ Desafio para depois do intervalo:
                 }
 
 ## Aula 2
+    - Revisão:
+        - Sistemas Distribuídos
+        - Comunicação
+        - Modelo TCP/IP
     - Threads nas 3 linguagens: ideia geral
     - Desafio 1: Jogo da cobrinha
 
