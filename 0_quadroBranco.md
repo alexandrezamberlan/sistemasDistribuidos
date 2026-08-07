@@ -1,5 +1,5 @@
 # Quadro Branco
-## Aula 18 - Atividades de recuperação
+## Aula Semana 18 - Atividades de recuperação
     - Usando a tecnologia RPC ou RMI, construir um sistema que:
         - receba uma string com fundamentos do padel e retorne um objeto
             - string a ser enviada ao servidor: nomeFundamento;zonaEmQueOcorreuFundamento;resultado
@@ -13,16 +13,16 @@
             - objeto do tipo Jogada(nomeFundamento, zona, resultado)
                 - string é "sm;z1;p" o objeto de retorno é Jogada("Smash","Zona1","Ponto")
 
-## Aula 17 - JGroups
+## Aula Semana 17 - JGroups
     - Apresentação de trabalhos
 
-## Aula 16 - JGroups
+## Aula Semana 16 - JGroups
     - Desafio (2 pts). Melhorias no sistema JGroups_Aula - https://github.com/alexandrezamberlan/sistemasDistribuidos/tree/master/8-JGroups/JGroups
         - ao lado dos membros (modo gráfico, mostrar IP)
         - quando um membro sair do grupo, gerar notificação na área de msg coletiva
         - quando um usuário entrar atrasado, atualizar as msg para ele
 
-## Aula 15 - Multicast Java
+## Aula Semana 15 - Multicast Java
     - Tecnologia Multicast
         - arquitetura ponto-a-ponto
             - máquina/estação é servidor e cliente
@@ -34,7 +34,7 @@
             - Porta de conexão (saída da estação)
             - Threads 'ouvidora' ou 'receptora' + 'falante' ou 'enviadora' ('quebrar' as ações bloqueantes)
 
-## Aula 11 - Remote Procedure Call (RPC)
+## Aula Semana 11 - Remote Procedure Call (RPC)
     - Exercício de fixação RMI Java
         - Ter como base os códigos trabalhados em laboratório
         - Refatorar os códigos para que os serviços do servidor sejam:
@@ -54,7 +54,7 @@
         C#: xmlRPC
 
 
-## Aula 10 - Programação Socket UDP
+## Aula Semana 10 - Programação Socket UDP
     - Exemplo de código UDP
     - Jogo da cobrinha com sockets: adaptar o jogo da pasta https://github.com/alexandrezamberlan/sistemasDistribuidos/tree/master/4-ThreadSocketCobrinha
         **Ciência da Computação**
@@ -67,18 +67,18 @@
         - em algum lado (servidor ou cliente) ter uma lista de frutas (8 frutas)
         - toda vez que alguem conectar envvia um fruta sorteada a quem se conectou
 
-## Aula 9 - Programação Socket com Classe Comunicador
+## Aula Semana 9 - Programação Socket com Classe Comunicador
     - Diferença entre TCP e UDP
     - Atividade avaliativa:
         - Refatorar o código Socket do Gerar Email: https://github.com/alexandrezamberlan/sistemasDistribuidos/tree/master/3-Sockets/src/exemplo2_gerarEmail
             - incluir modo gráfico e classe Comunicador
 
-## Aula 8 - Programação Socket em Java + modo gráfico
+## Aula Semana 8 - Programação Socket em Java + modo gráfico
     - Uso de sockets
         - arquitetura cliente-servidor: chat (tanto servidor, quanto cliente escreviam e liam no socket)
         - arquitetura cliente-servidor: servidor é um prestador de serviço. Instancia/conecta, recebe cliente, processa, devolve, fecha e recomeça o ciclo
 
-## Aula 7 - Correção e Discussão da Prova + Socket
+## Aula Semana 7 - Correção e Discussão da Prova + Socket
     - Socket é um recurso de baixo nível
     - Conecta 2 máquinas
     - Usa o modelo TCP/IP: endereço IP, porta lógica
@@ -86,9 +86,9 @@
         - servidor (java): ServerSocket (porta logica autorizada) + Socket (representando o cliente) + leitor (input) e escritor (output) de socket + threads para não bloquear a comunicação
         - cliente: Socket (endereço ip + porta lógica do servidor) + leitor (input) e escritor (output)
 
-## Aula 6 - Avaliação
+## Aula Semana 6 - Avaliação
 
-## Aula 5 - Sincronização Distribuída – Relógios Físicos e Lógicos. Exclusão Mútua e Eleição.
+## Aula Semana 5 - Sincronização Distribuída – Relógios Físicos e Lógicos. Exclusão Mútua e Eleição.
     - Teoria básica de sistemas distribuídos
         - o que é e para que serve -> compartilhar recurso (cpu, ram, memória secundária)
         - diferenças entre grid (computação concomitante) e cluster (computação paralela)
@@ -115,7 +115,7 @@
         - refazer ou compreender o Tele Jogo com uso de threads (sem e com compartilhamento de recurso)
 
 
-## Aula 4 - Threads
+## Aula Semana 4 - Threads
     - Entrega do desafio 2
     - Revisão
         - passagem de parâmetro Java (construtor), C# (construtor) e Python (args)
@@ -126,7 +126,7 @@
     - Threads com memória compartilhada
 
         
-## Aula 3 - Threads
+## Aula Semana 3 - Threads
 
 Threads
     - o que são?
@@ -167,7 +167,7 @@ Desafio para depois do intervalo:
                     new PopulaLista(listaDeListas.get(i), tamanhoLista).start();
                 }
 
-## Aula 2
+## Aula Semana 2
     - Revisão:
         - Sistemas Distribuídos
         - Comunicação
@@ -177,7 +177,7 @@ Desafio para depois do intervalo:
     - Threads nas 3 linguagens: ideia geral
     - Desafio 1: Divisão e Conquista
 
-## Aula 1
+## Aula Semana 1
     - Alexandre Zamberlan - alexz@ufn.edu.br
     - github.com/alexandrezamberlan/sistemasDistribuidos
         - Processo de avaliação
