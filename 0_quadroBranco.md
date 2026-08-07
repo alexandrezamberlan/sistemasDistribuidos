@@ -173,7 +173,7 @@ Desafio para depois do intervalo:
         - Comunicação
         - Modelo TCP/IP
     - Threads nas 3 linguagens: ideia geral
-    - Desafio 1: Jogo da cobrinha
+    - Desafio 1: Divisão e Conquista
 
 ## Aula 1
     - Alexandre Zamberlan - alexz@ufn.edu.br
