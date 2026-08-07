@@ -172,6 +172,8 @@ Desafio para depois do intervalo:
         - Sistemas Distribuídos
         - Comunicação
         - Modelo TCP/IP
+        - Arquiteturas
+        - Comunicação
     - Threads nas 3 linguagens: ideia geral
     - Desafio 1: Divisão e Conquista
 
