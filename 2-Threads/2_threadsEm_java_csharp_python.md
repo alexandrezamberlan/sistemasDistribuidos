@@ -14,7 +14,8 @@
 **Exemplo básico:**
 
 ```java
-class MinhaThread extends Thread {
+class MinhaThread extends Thread { //nao permite mem. compartilhada
+    @Override
     public void run() {
         System.out.println("Thread executando!");
     }

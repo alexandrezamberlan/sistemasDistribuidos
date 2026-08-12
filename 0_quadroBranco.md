@@ -149,23 +149,24 @@ Threads
 Exercícios:
     Para os códigos Threads em Java, C# e Python, adicionar rotinas que identifiquem as threads em execução ou finalizadas
 
-Desafio para depois do intervalo:
-    Fazer um programa na sua linguagem de preferência que:
-        i) distribua n números em m listas de inteiros, sendo que os números devem variar entre 1000 a 100000
-        ii) que faça a média dos valores gerados em todas as listas
-        iii) circundar as rotinas com threads, desde que possível
+Desafios:
+Fazer um código orientado a objetos (java, c# ou python) que:
+    a) leia o arquivo numeros.txt (com 10 numeros, um abaixo do outro) e popule seus números numa lista de inteiros
+    b) leia o arquivo nomes.txt (com 15 nomes, um abaixo do outro) e popula seus nomes numa lista de string
+    c) exiba as listas respectivas
 
-        DICA:
-            JAVA
-                List<List> listaDeListas = new ArrayList<>();
-                int totalListas = 1000;
-                for (int i = 0; i < totalListas; i++) {
-                    listaDeListas.add( new ArrayList<Integer>());
-                }
+    Observação:
+        - implemente threads para as operações de ler/popular arquivo (fique atento se não seria necessario 2 métodos)
+        - implemente threads para as operações de exibir listas
+        - sem memória compartilhada
 
-                for (int i = 0; i < totalListas; i++) {
-                    new PopulaLista(listaDeListas.get(i), tamanhoLista).start();
-                }
+Fazer um código orientado a objetos (java, c# ou python) que:
+    a) leia o arquivo numeros1.txt (com 10 numeros, um abaixo do outro) e popule seus números na lista de inteiros         
+    b) leia o arquivo numeros2.txt (com 10 numeros, um abaixo do outro) e popule seus números na mesma lista de inteiros anterior
+
+    Observação:
+        - implemente threads para as operações de ler/popular
+        - com memória compartilhada
 
 ## Aula Semana 2
     - Revisão:
