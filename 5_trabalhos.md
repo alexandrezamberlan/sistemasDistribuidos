@@ -1,6 +1,8 @@
 # Trabalhos avaliativos
 
 ## Threads
+### Entrega
+Disponibilizar os códigos realizados no github pessoal para avaliação posterior. Os programas serão apresentados oralmente para o professor.
 
 ### Módulo 1: Com Compartilhamento de Memória (Threads/State)
 Foco em sincronização, condições de corrida e exclusão mútua.
