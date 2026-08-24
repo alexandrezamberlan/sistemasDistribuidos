@@ -21,3 +21,7 @@ Problema: Você tem uma lista com 5.000 strings contendo nomes de usuários grav
 Ação: Divida a lista em 2 blocos. A Thread A recebe a primeira metade e a Thread B recebe a segunda metade. Cada thread deve processar sua sublista isolada, aplicando regras de limpeza: remover espaços em branco no início/fim e converter todo o texto para letras maiúsculas.
 
 Encerramento: Cada thread retorna uma nova lista limpa. A thread principal junta as duas listas resultantes.
+
+3. Pesquisar, compilar e disponibilizar nos githubs pessoais sobre Relógios Físicos e Lógicos. Exclusão Mútua e Eleição
+    
+4. Pesquisar e compilar sobre a teoria de pool de threads - criar exemplos usando listas
