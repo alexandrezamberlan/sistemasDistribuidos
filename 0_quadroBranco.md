@@ -107,11 +107,11 @@
                 - via relógio: físico e lógico (lamport)
                 - exclusão mútua - lock ou relógio ou eleição
 
-    - Poll de Threads
+    - Pool de Threads
 
     - Atividades:
         - pesquisar, compilar e disponibilizar nos githubs pessoais sobre Relógios Físicos e Lógicos. Exclusão Mútua e Eleição
-        - pesquisar e compilar sobre a teoria de poll de threads
+        - pesquisar e compilar sobre a teoria de pool de threads
         - refazer ou compreender o Tele Jogo com uso de threads (sem e com compartilhamento de recurso)
 
 
