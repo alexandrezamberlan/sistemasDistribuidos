@@ -29,7 +29,7 @@
 
 5: Analisador de Logs Distribuído (MapReduce Local)
     
-    Os alunos devem criar um sistema para processar arquivos de log gigantescos.
+    Os alunos devem criar um sistema para processar arquivos de log gigantescos (https://raw.githubusercontent.com/alexandrezamberlan/sistemasDistribuidos/refs/heads/master/00-exercicios_trabalhos/erro.log).
 
     O Cenário: Um processo coordenador lê o arquivo grande. Ele divide o arquivo em pedaços menores.
     
