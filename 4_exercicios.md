@@ -39,7 +39,7 @@
     
     O Resultado: O coordenador junta todos os resumos e mostra o resultado final.
     
-5: Simulador de Chat por Mensageria
+6: Simulador de Chat por Mensageria
     
     Os alunos devem criar um mini chat onde o estado não é compartilhado entre as threads.
     
