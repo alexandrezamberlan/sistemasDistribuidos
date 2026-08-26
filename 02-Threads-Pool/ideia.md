@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 public class ExemploPool {
     public static void main(String[] args) {
         // Criamos um pool de threads com capacidade para N tarefas ao mesmo tempo
-        int N = 5
+        int N = 5;
         ExecutorService pool = Executors.newFixedThreadPool(N);
 
         for (int i = 1; i <= N; i++) {
