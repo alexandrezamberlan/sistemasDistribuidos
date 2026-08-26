@@ -27,7 +27,7 @@
 4. Pesquisar e compilar sobre a teoria de pool de threads - criar exemplos usando listas
 
 
-5: Analisador de Logs Distribuído (MapReduce Local)
+5. Analisador de Logs Distribuído (MapReduce Local)
     
     Os alunos devem criar um sistema para processar arquivos de log gigantescos (https://raw.githubusercontent.com/alexandrezamberlan/sistemasDistribuidos/refs/heads/master/00-exercicios_trabalhos/erro.log).
 
@@ -39,7 +39,7 @@
     
     O Resultado: O coordenador junta todos os resumos e mostra o resultado final.
     
-6: Simulador de Chat por Mensageria
+6. Simulador de Chat por Mensageria
     
     Os alunos devem criar um mini chat onde o estado não é compartilhado entre as threads.
     
