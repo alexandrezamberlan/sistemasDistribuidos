@@ -17,6 +17,7 @@ public class ExemploPool {
     public static void main(String[] args) {
         // Criamos um pool de threads com capacidade para N tarefas ao mesmo tempo
         int N = 5;
+        int tamanhoLista = 20;
         ExecutorService pool = Executors.newFixedThreadPool(N);
 
         for (int i = 1; i <= N; i++) {
@@ -27,7 +28,7 @@ public class ExemploPool {
                 Random random = new Random();
 
                 // 1. Popular de forma aleatória
-                for (int j = 0; j < N; j++) {
+                for (int j = 0; j < tamanhoLista; j++) {
                     lista.add(random.nextInt(100));
                 }
 
@@ -49,7 +50,6 @@ public class ExemploPool {
 
 ```
 
-
 ## Python (usando ThreadPoolExecutor)
 No Python, a biblioteca concurrent.futures é o mecanismo para gerenciar o pool.
 
@@ -61,7 +61,7 @@ import random
 def processar_lista(id_tarefa):
     # Cada tarefa tem sua própria lista isolada
     # 1. Popular de forma aleatória
-    lista = [random.randint(1, 100) for _ in range(5)]
+    lista = [random.randint(1, 100) for _ in range(tamanho_lista)]
     
     # 2. Exibir lista original
     print(f"Tarefa {id_tarefa} (Original): {lista}")
@@ -74,7 +74,8 @@ def processar_lista(id_tarefa):
 
 # Criamos o pool limitando o máximo de trabalhadores em 5
 N = 5
-with ThreadPoolExecutor(max_workers=N) as pool:
+tamanho_lista = 20
+with ThreadPoolExecutor(max_workers=N, tamanho=tamanho_lista) as pool:
     for i in range(1, N+1):
         pool.submit(processar_lista, i)
 ```
@@ -93,6 +94,7 @@ class Program
     {
         // Criamos uma lista para guardar as N tarefas do pool
         int N = 5;
+        int TamanhoLista = 20;
         List<Task> tarefas = new List<Task>();
 
         for (int i = 1; i <= N; i++)
@@ -107,7 +109,7 @@ class Program
                 Random random = new Random();
 
                 // 1. Popular de forma aleatória
-                for (int j = 0; j < N; j++)
+                for (int j = 0; j < TamanhoLista; j++)
                 {
                     lista.Add(random.Next(1, 100));
                 }
