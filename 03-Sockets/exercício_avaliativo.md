@@ -1,6 +1,6 @@
-# Exercício de fixação de Sockets, arquitetura cliente-servidor e threads.
+# Exercício sobre socket, arquitetura cliente-servidor e threads.
 
-## Códigos exemplos 
+## Códigos base para o exercício 
   - https://github.com/alexandrezamberlan/sistemasDistribuidos/tree/master/03-Sockets/src/exemplo2_gerarEmail
     
 
