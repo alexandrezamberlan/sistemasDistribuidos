@@ -17,7 +17,7 @@ Desenvolva uma aplicação Cliente/Servidor multithread em Java integrada com in
   
 #### Requisitos do Servidor (ServidorGUI):
 
-- Exibir uma interface com uma área de log (JTextArea) e uma lista gráfica (JList) com as pessoas cadastradas.
+- Exibir uma interface com uma área de log (JTextArea) e uma lista gráfica (ArrayList ou equivalente) com as pessoas cadastradas.
 - Ao receber os dados do cliente, deve instanciar um objeto Pessoa.
 - Regra de Negócio do E-mail: O e-mail deve ser gerado automaticamente seguindo a lógica:
 
