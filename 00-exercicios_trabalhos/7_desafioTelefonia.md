@@ -9,7 +9,13 @@ Código base em https://github.com/alexandrezamberlan/pesquisa_ordenacao/tree/ma
 ## Observações
 
 1) Cabe ao programador decidir qual abordagem Cliente-Servidor vai utilizar
-2) O servidor deve abrir a base de sessões (https://github.com/alexandrezamberlan/pesquisa_ordenacao/blob/master/05-hash/problemaSessaoTelefonia/telephony_sessions.txt); adicionar em um HashMap.
+2) O servidor deve:
+    - abrir a base de sessões (https://github.com/alexandrezamberlan/pesquisa_ordenacao/blob/master/05-hash/problemaSessaoTelefonia/telephony_sessions.txt);
+    - adicionar em um HashMap as sessões da base;
+    - retornar dados da sessão de um celular informado pelo cliente
+3) O cliente pode:
+    - conectar ao servidor (via RMI, por exemplo)
+    - consultar dados de sessão de um número de celular.
 
 ### O código da classe Sessao:
 ```java
