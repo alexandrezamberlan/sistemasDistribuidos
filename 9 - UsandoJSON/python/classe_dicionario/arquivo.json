@@ -1,0 +1,17 @@
+[
+    {
+        "nome": "Maria",
+        "idade": 20,
+        "matricula": "A123"
+    },
+    {
+        "nome": "João",
+        "idade": 22,
+        "matricula": "B456"
+    },
+    {
+        "nome": "Ana",
+        "idade": 21,
+        "matricula": "C789"
+    }
+]
